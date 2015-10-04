@@ -21,6 +21,8 @@ private slots:
 
     void on_guide_user_Button_clicked();
 
+    void on_guide_overuser_Button_clicked();
+
     void on_guide_newuser_Button_clicked();
 
     void on_manageuser_modify_Button_clicked();

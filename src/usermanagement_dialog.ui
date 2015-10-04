@@ -202,7 +202,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>83</y>
+     <y>80</y>
      <width>571</width>
      <height>271</height>
     </rect>
@@ -437,6 +437,23 @@
      <string>删除</string>
     </property>
    </widget>
+   <zorder>manageuser_modify_Button</zorder>
+   <zorder>manage_stuid</zorder>
+   <zorder>label_6</zorder>
+   <zorder>manage_password</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_8</zorder>
+   <zorder>manage_department</zorder>
+   <zorder>manage_num_limit</zorder>
+   <zorder>label_9</zorder>
+   <zorder>label_10</zorder>
+   <zorder>manage_name</zorder>
+   <zorder>manage_isadmin</zorder>
+   <zorder>manageuser_delete_Button</zorder>
+   <zorder>userview</zorder>
+   <zorder>group_overuser</zorder>
+   <zorder>group_overuser</zorder>
+   <zorder>group_overuser</zorder>
   </widget>
   <widget class="QGroupBox" name="group_nav">
    <property name="geometry">
@@ -476,6 +493,68 @@
      <string>用户管理</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="guide_overuser_Button">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>20</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>逾期用户</string>
+    </property>
+   </widget>
+   <zorder>guide_newuser_Button</zorder>
+   <zorder>guide_user_Button</zorder>
+   <zorder>guide_overuser_Button</zorder>
+   <zorder>group_manageuser</zorder>
+  </widget>
+  <widget class="QGroupBox" name="group_overuser">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>571</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>逾期用户</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QTreeView" name="overuserview">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="rootIsDecorated">
+       <bool>false</bool>
+      </property>
+      <property name="headerHidden">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

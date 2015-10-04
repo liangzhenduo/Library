@@ -61,6 +61,10 @@ public:
     QGroupBox *group_nav;
     QPushButton *guide_newuser_Button;
     QPushButton *guide_user_Button;
+    QPushButton *guide_overuser_Button;
+    QGroupBox *group_overuser;
+    QGridLayout *gridLayout_2;
+    QTreeView *overuserview;
 
     void setupUi(QDialog *userManagement_Dialog)
     {
@@ -112,7 +116,7 @@ public:
         group_user = new QGroupBox(userManagement_Dialog);
         group_user->setObjectName(QStringLiteral("group_user"));
         group_user->setEnabled(true);
-        group_user->setGeometry(QRect(10, 83, 571, 271));
+        group_user->setGeometry(QRect(10, 80, 571, 271));
         gridLayout = new QGridLayout(group_user);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         userview = new QTreeView(group_user);
@@ -175,6 +179,20 @@ public:
         manageuser_delete_Button = new QPushButton(group_manageuser);
         manageuser_delete_Button->setObjectName(QStringLiteral("manageuser_delete_Button"));
         manageuser_delete_Button->setGeometry(QRect(390, 150, 111, 41));
+        manageuser_modify_Button->raise();
+        manage_stuid->raise();
+        label_6->raise();
+        manage_password->raise();
+        label_7->raise();
+        label_8->raise();
+        manage_department->raise();
+        manage_num_limit->raise();
+        label_9->raise();
+        label_10->raise();
+        manage_name->raise();
+        manage_isadmin->raise();
+        manageuser_delete_Button->raise();
+        userview->raise();
         group_nav = new QGroupBox(userManagement_Dialog);
         group_nav->setObjectName(QStringLiteral("group_nav"));
         group_nav->setGeometry(QRect(10, 10, 571, 71));
@@ -184,6 +202,31 @@ public:
         guide_user_Button = new QPushButton(group_nav);
         guide_user_Button->setObjectName(QStringLiteral("guide_user_Button"));
         guide_user_Button->setGeometry(QRect(60, 20, 101, 41));
+        guide_overuser_Button = new QPushButton(group_nav);
+        guide_overuser_Button->setObjectName(QStringLiteral("guide_overuser_Button"));
+        guide_overuser_Button->setGeometry(QRect(260, 20, 101, 41));
+        guide_newuser_Button->raise();
+        guide_user_Button->raise();
+        guide_overuser_Button->raise();
+        group_manageuser->raise();
+        group_overuser = new QGroupBox(userManagement_Dialog);
+        group_overuser->setObjectName(QStringLiteral("group_overuser"));
+        group_overuser->setEnabled(true);
+        group_overuser->setGeometry(QRect(10, 80, 571, 271));
+        gridLayout_2 = new QGridLayout(group_overuser);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        overuserview = new QTreeView(group_overuser);
+        overuserview->setObjectName(QStringLiteral("overuserview"));
+        overuserview->setEnabled(true);
+        overuserview->setFont(font);
+        overuserview->setContextMenuPolicy(Qt::NoContextMenu);
+        overuserview->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        overuserview->setAlternatingRowColors(true);
+        overuserview->setRootIsDecorated(false);
+        overuserview->setHeaderHidden(true);
+
+        gridLayout_2->addWidget(overuserview, 0, 0, 1, 1);
+
 
         retranslateUi(userManagement_Dialog);
 
@@ -230,6 +273,8 @@ public:
         group_nav->setTitle(QApplication::translate("userManagement_Dialog", "\346\223\215\344\275\234\351\200\211\351\241\271", 0));
         guide_newuser_Button->setText(QApplication::translate("userManagement_Dialog", "\346\267\273\345\212\240\347\224\250\346\210\267", 0));
         guide_user_Button->setText(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
+        guide_overuser_Button->setText(QApplication::translate("userManagement_Dialog", "\351\200\276\346\234\237\347\224\250\346\210\267", 0));
+        group_overuser->setTitle(QApplication::translate("userManagement_Dialog", "\351\200\276\346\234\237\347\224\250\346\210\267", 0));
     } // retranslateUi
 
 };

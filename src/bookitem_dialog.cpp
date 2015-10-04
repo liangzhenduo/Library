@@ -88,7 +88,7 @@ void bookitem_Dialog::on_bookview_clicked(const QModelIndex &index) {
 
         if (QLMS.modify_user_book(1)) {
             QSqlQuery(tr("UPDATE qlms_book_item SET status = 0 WHERE id = %1").arg(query_list_book[index.row()]));
-            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline) VALUES(%1, %2, 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY))").arg(query_list_book[index.row()]).arg(QLMS.stuid));
+            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES(%1, %2, 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(QLMS.stuid));
             QMessageBox::information(this, tr("借阅成功"), tr("恭喜您，单册读书已经借阅完毕"));
             bookitem_Dialog::on_signal_load_bookItem(global_isbn);
         } else {
