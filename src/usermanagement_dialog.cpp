@@ -95,8 +95,8 @@ void userManagement_Dialog::on_guide_user_Button_clicked()
 }
 
 void userManagement_Dialog::on_guide_overuser_Button_clicked() {
-    QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, time_deadline, NOW()) WHERE status = 0 AND time_deadline<NOW();"));
-    QSqlQuery query_record(tr("SELECT qlms_book.title,  qlms_user.name, qlms_record.stuid, qlms_user.telnum, qlms_record.overtime, qlms_record.status FROM qlms_record LEFT JOIN qlms_user ON qlms_user.stuid = qlms_record.stuid LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book_item.isbn = qlms_book.isbn ORDER BY qlms_record.overtime DESC"));
+    QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, time_deadline, NOW()) WHERE status = 0;"));
+    QSqlQuery query_record(tr("SELECT qlms_book.title, qlms_user.name, qlms_record.stuid, qlms_user.telnum, qlms_record.overtime, qlms_record.status FROM qlms_record LEFT JOIN qlms_user ON qlms_user.stuid = qlms_record.stuid LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book_item.isbn = qlms_book.isbn WHERE qlms_record.status=0 AND qlms_record.overtime>0 ORDER BY qlms_record.overtime DESC"));
 
     QStandardItemModel* listModel=new QStandardItemModel(0,5,this);
     listModel->insertRow(0);
@@ -108,17 +108,15 @@ void userManagement_Dialog::on_guide_overuser_Button_clicked() {
 
     int i(1);
     while (query_record.next()) {
-        if(query_record.value(5)==0&&query_record.value(4)>0){
-            listModel->insertRow(i);
-            user_list_stuid[i] = query_record.value(1).toString();
-            listModel->setData(listModel->index(i,0), query_record.value(0).toString());
-            listModel->setData(listModel->index(i,1), query_record.value(1).toString());
-            listModel->setData(listModel->index(i,2), query_record.value(2).toString());
-            listModel->setData(listModel->index(i,3), query_record.value(3).toString());
-            listModel->setData(listModel->index(i,4), query_record.value(4).toString());
+        listModel->insertRow(i);
+        user_list_stuid[i] = query_record.value(1).toString();
+        listModel->setData(listModel->index(i,0), query_record.value(0).toString());
+        listModel->setData(listModel->index(i,1), query_record.value(1).toString());
+        listModel->setData(listModel->index(i,2), query_record.value(2).toString());
+        listModel->setData(listModel->index(i,3), query_record.value(3).toString());
+        listModel->setData(listModel->index(i,4), query_record.value(4).toString());
 
-            i++;
-        }
+        i++;
     }
 
     ui->overuserview->setModel(listModel);

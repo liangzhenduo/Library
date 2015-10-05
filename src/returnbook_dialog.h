@@ -27,10 +27,10 @@ private:
     Ui::returnBook_Dialog *ui;
 
     int book_id_list[1000];
-    int last_stuid;
+    QString last_stuid;
 
     void action_returnBook(int id);
-    void load_book_list(int stuid);
+    void load_book_list(QString stuid);
 };
 
 #endif // RETURNBOOK_DIALOG_H

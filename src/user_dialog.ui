@@ -39,36 +39,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QTreeView" name="borrowedbookview">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>180</y>
-     <width>591</width>
-     <height>241</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="contextMenuPolicy">
-    <enum>Qt::NoContextMenu</enum>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
-   </property>
-   <property name="alternatingRowColors">
-    <bool>true</bool>
-   </property>
-   <property name="rootIsDecorated">
-    <bool>false</bool>
-   </property>
-   <property name="headerHidden">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QPushButton" name="return_Button">
    <property name="geometry">
     <rect>
@@ -81,6 +51,49 @@
    <property name="text">
     <string>返回</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>591</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>当前已借</string>
+   </property>
+   <widget class="QTreeView" name="borrowedbookview">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>570</width>
+      <height>214</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="rootIsDecorated">
+     <bool>false</bool>
+    </property>
+    <property name="headerHidden">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

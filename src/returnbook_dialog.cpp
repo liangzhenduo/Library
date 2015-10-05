@@ -21,7 +21,7 @@ void returnBook_Dialog::on_search_Button_clicked()
     }
 
     QString stuid = ui->stuid_label->text();
-    last_stuid = stuid.toInt();
+    last_stuid = stuid;
 
     returnBook_Dialog::load_book_list(last_stuid);
 }
@@ -43,7 +43,7 @@ void returnBook_Dialog::action_returnBook(int id) {
     if (msg_ret == QMessageBox::No) return;
 
     QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_bookItem.value(0).toInt()));
-    QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_bookItem.value(2).toInt()));
+    QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_bookItem.value(2).toString()));
     QSqlQuery(tr("UPDATE qlms_book_item SET status = 1 WHERE id = %1").arg(id));
 
     QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书已经完成单册归还"));
@@ -67,7 +67,7 @@ void returnBook_Dialog::on_return_Button_clicked()
     returnBook_Dialog::action_returnBook(ui->bookId_label->text().toInt());
 }
 
-void returnBook_Dialog::load_book_list(int stuid) {
+void returnBook_Dialog::load_book_list(QString stuid) {
     QSqlQuery query_user(tr("SELECT stuid, name, department, num_borrowed, num_limit FROM qlms_user WHERE stuid = %1;").arg(stuid));
 
 

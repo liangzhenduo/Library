@@ -36,17 +36,17 @@ void user_Dialog::on_signal_load_user_dialog() {
 
     ui->user_info_label->setText(label_html);
 
-    QSqlQuery query_record("SELECT qlms_record.id, qlms_book.isbn, qlms_book.title, qlms_record.status, qlms_record.time_borrow, qlms_record.time_return FROM qlms_record LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book_item.isbn WHERE qlms_record.stuid = '" + QLMS.stuid + "' ORDER BY qlms_record.id DESC");
+    QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, NOW(), time_deadline) WHERE stuid=%1 AND status = 0;").arg(QLMS.stuid));
+    QSqlQuery query_record(tr("SELECT qlms_record.id, qlms_book.isbn, qlms_book.title, qlms_record.time_borrow, qlms_record.overtime FROM qlms_record LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book_item.isbn WHERE qlms_record.stuid = %1 AND qlms_record.status=0 ORDER BY qlms_record.id DESC").arg(QLMS.stuid));
 
 
-    QStandardItemModel* booklistModel=new QStandardItemModel(0,6,this);
+    QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
     booklistModel->insertRow(0);
     booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
-    booklistModel->setData(booklistModel->index(0,1), tr("图书ISBN"));
-    booklistModel->setData(booklistModel->index(0,2), tr("图书名称"));
-    booklistModel->setData(booklistModel->index(0,3), tr("图书状态"));
-    booklistModel->setData(booklistModel->index(0,4), tr("借阅时间"));
-    booklistModel->setData(booklistModel->index(0,5), tr("归还时间"));
+    booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
+    booklistModel->setData(booklistModel->index(0,2), tr("书目"));
+    booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
+    booklistModel->setData(booklistModel->index(0,4), tr("剩余天数"));
 
     int i(1);
 
@@ -55,9 +55,9 @@ void user_Dialog::on_signal_load_user_dialog() {
         booklistModel->setData(booklistModel->index(i,0), query_record.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());
-        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toInt() == 0 ? tr("未归还") : tr("已归还"));
-        booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toString());
-        booklistModel->setData(booklistModel->index(i,5), query_record.value(5).toString());
+        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toString());
+        //booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toInt() <= 0 ? query_record.value(4).toInt() : tr("已过期"));
+        booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toInt() < 0 ? tr("已过期") : query_record.value(4).toString());
 
         i++;
     }

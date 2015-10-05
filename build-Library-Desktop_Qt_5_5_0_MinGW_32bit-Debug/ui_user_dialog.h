@@ -27,8 +27,9 @@ class Ui_user_Dialog
 public:
     QGroupBox *groupBox;
     QLabel *user_info_label;
-    QTreeView *borrowedbookview;
     QPushButton *return_Button;
+    QGroupBox *groupBox_2;
+    QTreeView *borrowedbookview;
 
     void setupUi(QDialog *user_Dialog)
     {
@@ -41,9 +42,15 @@ public:
         user_info_label = new QLabel(groupBox);
         user_info_label->setObjectName(QStringLiteral("user_info_label"));
         user_info_label->setGeometry(QRect(10, 20, 571, 131));
-        borrowedbookview = new QTreeView(user_Dialog);
+        return_Button = new QPushButton(user_Dialog);
+        return_Button->setObjectName(QStringLiteral("return_Button"));
+        return_Button->setGeometry(QRect(260, 430, 81, 31));
+        groupBox_2 = new QGroupBox(user_Dialog);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setGeometry(QRect(10, 180, 591, 241));
+        borrowedbookview = new QTreeView(groupBox_2);
         borrowedbookview->setObjectName(QStringLiteral("borrowedbookview"));
-        borrowedbookview->setGeometry(QRect(10, 180, 591, 241));
+        borrowedbookview->setGeometry(QRect(10, 20, 570, 214));
         QFont font;
         font.setPointSize(13);
         borrowedbookview->setFont(font);
@@ -52,9 +59,6 @@ public:
         borrowedbookview->setAlternatingRowColors(true);
         borrowedbookview->setRootIsDecorated(false);
         borrowedbookview->setHeaderHidden(true);
-        return_Button = new QPushButton(user_Dialog);
-        return_Button->setObjectName(QStringLiteral("return_Button"));
-        return_Button->setGeometry(QRect(260, 430, 81, 31));
 
         retranslateUi(user_Dialog);
 
@@ -67,6 +71,7 @@ public:
         groupBox->setTitle(QApplication::translate("user_Dialog", "\347\224\250\346\210\267\344\277\241\346\201\257", 0));
         user_info_label->setText(QString());
         return_Button->setText(QApplication::translate("user_Dialog", "\350\277\224\345\233\236", 0));
+        groupBox_2->setTitle(QApplication::translate("user_Dialog", "\345\275\223\345\211\215\345\267\262\345\200\237", 0));
     } // retranslateUi
 
 };
