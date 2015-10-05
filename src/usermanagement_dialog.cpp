@@ -17,7 +17,7 @@ userManagement_Dialog::~userManagement_Dialog()
 
 void userManagement_Dialog::on_newuser_add_Button_clicked()
 {
-    if (ui->newuser_department->text() == "" || ui->newuser_num_limit->text() == ""|| ui->newuser_password->text() == "" || ui->newuser_stuid->text() == "" || ui->newuser_name->text() == "") {
+    if (ui->newuser_telnum->text() == "" || ui->newuser_department->text() == "" || ui->newuser_num_limit->text() == ""|| ui->newuser_password->text() == "" || ui->newuser_stuid->text() == "" || ui->newuser_name->text() == "") {
         QMessageBox::warning(this, tr("出错啦"), tr("新用户的具体信息没有填写完整"));
         return;
     }
@@ -25,6 +25,7 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
     QString stuid = ui->newuser_stuid->text();
     QString password = ui->newuser_password->text();
     QString department = ui->newuser_department->text();
+    QString telnum = ui->newuser_telnum->text();
     QString name = ui->newuser_name->text();
     int num_limit = ui->newuser_num_limit->text().toInt();
     int isAdmin =  ui->newuser_isadmin->currentText() == tr("管理员");
@@ -32,6 +33,7 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
     stuid.replace("'","");
     password.replace("'","");
     department.replace("'","");
+    telnum.replace("'","");
     name.replace("'","");
 
     if (num_limit < 0) {
@@ -46,13 +48,14 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
         return;
     }
 
-    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin) VALUES(%1,'%2','%3','%4',%5,0,%6)").arg(stuid).arg(name).arg(password).arg(department).arg(num_limit).arg(isAdmin));
+    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin,telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(department).arg(num_limit).arg(isAdmin).arg(telnum));
 
     ui->newuser_department->setText("");
     ui->newuser_name->setText("");
     ui->newuser_num_limit->setText(tr("7"));
     ui->newuser_password->setText("");
     ui->newuser_stuid->setText("");
+    ui->newuser_telnum->setText("");
 
     QMessageBox::information(this, tr("操作成功"), tr("恭喜您，新用户已经成功创建完毕"));
 }
@@ -93,19 +96,19 @@ void userManagement_Dialog::on_guide_user_Button_clicked()
 
 void userManagement_Dialog::on_guide_overuser_Button_clicked() {
     QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, time_deadline, NOW()) WHERE status = 0 AND time_deadline<NOW();"));
-    QSqlQuery query_record(tr("SELECT qlms_record.stuid, qlms_user.name, qlms_book.title, qlms_record.time_deadline, qlms_record.overtime FROM qlms_record LEFT JOIN qlms_user ON qlms_user.stuid = qlms_record.stuid LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book.isbn ORDER BY qlms_record.overtime DESC"));
+    QSqlQuery query_record(tr("SELECT qlms_book.title,  qlms_user.name, qlms_record.stuid, qlms_user.telnum, qlms_record.overtime, qlms_record.status FROM qlms_record LEFT JOIN qlms_user ON qlms_user.stuid = qlms_record.stuid LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book_item.isbn = qlms_book.isbn ORDER BY qlms_record.overtime DESC"));
 
     QStandardItemModel* listModel=new QStandardItemModel(0,5,this);
     listModel->insertRow(0);
-    listModel->setData(listModel->index(0,0), tr("学号"));
-    listModel->setData(listModel->index(0,1), tr("姓名"));
-    listModel->setData(listModel->index(0,2), tr("书目"));
-    listModel->setData(listModel->index(0,3), tr("应还时间"));
+    listModel->setData(listModel->index(0,0), tr("书目"));
+    listModel->setData(listModel->index(0,1), tr("读者姓名"));
+    listModel->setData(listModel->index(0,2), tr("学号"));
+    listModel->setData(listModel->index(0,3), tr("联系电话"));
     listModel->setData(listModel->index(0,4), tr("逾期天数"));
 
     int i(1);
     while (query_record.next()) {
-        if(query_record.value(4)>0){
+        if(query_record.value(5)==0&&query_record.value(4)>0){
             listModel->insertRow(i);
             user_list_stuid[i] = query_record.value(1).toString();
             listModel->setData(listModel->index(i,0), query_record.value(0).toString());

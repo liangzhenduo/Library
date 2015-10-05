@@ -41,6 +41,9 @@ public:
     QLabel *label_5;
     QLineEdit *newuser_name;
     QComboBox *newuser_isadmin;
+    QLabel *label_11;
+    QLineEdit *newuser_telnum;
+    QLabel *label_12;
     QGroupBox *group_user;
     QGridLayout *gridLayout;
     QTreeView *userview;
@@ -80,39 +83,48 @@ public:
         newuser_add_Button->setGeometry(QRect(390, 110, 111, 41));
         newuser_stuid = new QLineEdit(group_newuser);
         newuser_stuid->setObjectName(QStringLiteral("newuser_stuid"));
-        newuser_stuid->setGeometry(QRect(200, 40, 131, 31));
+        newuser_stuid->setGeometry(QRect(200, 40, 128, 24));
         label = new QLabel(group_newuser);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(100, 50, 41, 16));
+        label->setGeometry(QRect(100, 40, 64, 24));
         newuser_password = new QLineEdit(group_newuser);
         newuser_password->setObjectName(QStringLiteral("newuser_password"));
-        newuser_password->setGeometry(QRect(200, 120, 131, 31));
+        newuser_password->setGeometry(QRect(200, 100, 128, 24));
         newuser_password->setEchoMode(QLineEdit::Password);
         label_2 = new QLabel(group_newuser);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(100, 130, 41, 16));
+        label_2->setGeometry(QRect(100, 100, 64, 24));
         label_3 = new QLabel(group_newuser);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(100, 170, 41, 16));
+        label_3->setGeometry(QRect(100, 130, 64, 24));
         newuser_department = new QLineEdit(group_newuser);
         newuser_department->setObjectName(QStringLiteral("newuser_department"));
-        newuser_department->setGeometry(QRect(200, 160, 131, 31));
+        newuser_department->setGeometry(QRect(200, 130, 128, 24));
         newuser_num_limit = new QLineEdit(group_newuser);
         newuser_num_limit->setObjectName(QStringLiteral("newuser_num_limit"));
-        newuser_num_limit->setGeometry(QRect(200, 200, 131, 31));
+        newuser_num_limit->setGeometry(QRect(200, 190, 128, 24));
         label_4 = new QLabel(group_newuser);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(100, 210, 61, 16));
+        label_4->setGeometry(QRect(100, 190, 64, 24));
         label_5 = new QLabel(group_newuser);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(100, 90, 41, 16));
+        label_5->setGeometry(QRect(100, 70, 64, 24));
         newuser_name = new QLineEdit(group_newuser);
         newuser_name->setObjectName(QStringLiteral("newuser_name"));
-        newuser_name->setGeometry(QRect(200, 80, 131, 31));
+        newuser_name->setGeometry(QRect(200, 70, 128, 24));
         newuser_name->setEchoMode(QLineEdit::Normal);
         newuser_isadmin = new QComboBox(group_newuser);
         newuser_isadmin->setObjectName(QStringLiteral("newuser_isadmin"));
-        newuser_isadmin->setGeometry(QRect(390, 40, 111, 31));
+        newuser_isadmin->setGeometry(QRect(200, 220, 128, 30));
+        label_11 = new QLabel(group_newuser);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(100, 160, 64, 24));
+        newuser_telnum = new QLineEdit(group_newuser);
+        newuser_telnum->setObjectName(QStringLiteral("newuser_telnum"));
+        newuser_telnum->setGeometry(QRect(200, 160, 128, 24));
+        label_12 = new QLabel(group_newuser);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(100, 220, 64, 24));
         group_user = new QGroupBox(userManagement_Dialog);
         group_user->setObjectName(QStringLiteral("group_user"));
         group_user->setEnabled(true);
@@ -179,20 +191,6 @@ public:
         manageuser_delete_Button = new QPushButton(group_manageuser);
         manageuser_delete_Button->setObjectName(QStringLiteral("manageuser_delete_Button"));
         manageuser_delete_Button->setGeometry(QRect(390, 150, 111, 41));
-        manageuser_modify_Button->raise();
-        manage_stuid->raise();
-        label_6->raise();
-        manage_password->raise();
-        label_7->raise();
-        label_8->raise();
-        manage_department->raise();
-        manage_num_limit->raise();
-        label_9->raise();
-        label_10->raise();
-        manage_name->raise();
-        manage_isadmin->raise();
-        manageuser_delete_Button->raise();
-        userview->raise();
         group_nav = new QGroupBox(userManagement_Dialog);
         group_nav->setObjectName(QStringLiteral("group_nav"));
         group_nav->setGeometry(QRect(10, 10, 571, 71));
@@ -205,10 +203,6 @@ public:
         guide_overuser_Button = new QPushButton(group_nav);
         guide_overuser_Button->setObjectName(QStringLiteral("guide_overuser_Button"));
         guide_overuser_Button->setGeometry(QRect(260, 20, 101, 41));
-        guide_newuser_Button->raise();
-        guide_user_Button->raise();
-        guide_overuser_Button->raise();
-        group_manageuser->raise();
         group_overuser = new QGroupBox(userManagement_Dialog);
         group_overuser->setObjectName(QStringLiteral("group_overuser"));
         group_overuser->setEnabled(true);
@@ -227,6 +221,11 @@ public:
 
         gridLayout_2->addWidget(overuserview, 0, 0, 1, 1);
 
+        group_user->raise();
+        group_manageuser->raise();
+        group_nav->raise();
+        group_overuser->raise();
+        group_newuser->raise();
 
         retranslateUi(userManagement_Dialog);
 
@@ -238,20 +237,23 @@ public:
         userManagement_Dialog->setWindowTitle(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\256\241\347\220\206 - \346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
         group_newuser->setTitle(QApplication::translate("userManagement_Dialog", "\346\267\273\345\212\240\346\226\260\347\224\250\346\210\267", 0));
         newuser_add_Button->setText(QApplication::translate("userManagement_Dialog", "\345\210\233\345\273\272", 0));
-        label->setText(QApplication::translate("userManagement_Dialog", "\345\255\246\345\217\267\357\274\232", 0));
+        label->setText(QApplication::translate("userManagement_Dialog", "\345\255\246    \345\217\267\357\274\232", 0));
         newuser_password->setText(QString());
-        label_2->setText(QApplication::translate("userManagement_Dialog", "\345\257\206\347\240\201\357\274\232", 0));
-        label_3->setText(QApplication::translate("userManagement_Dialog", "\351\203\250\351\227\250\357\274\232", 0));
+        label_2->setText(QApplication::translate("userManagement_Dialog", "\345\257\206    \347\240\201\357\274\232", 0));
+        label_3->setText(QApplication::translate("userManagement_Dialog", "\345\215\225    \344\275\215\357\274\232", 0));
         newuser_department->setText(QString());
-        newuser_num_limit->setText(QApplication::translate("userManagement_Dialog", "10", 0));
+        newuser_num_limit->setText(QApplication::translate("userManagement_Dialog", "7", 0));
         label_4->setText(QApplication::translate("userManagement_Dialog", "\345\200\237\344\271\246\344\270\212\351\231\220\357\274\232", 0));
-        label_5->setText(QApplication::translate("userManagement_Dialog", "\345\247\223\345\220\215\357\274\232", 0));
+        label_5->setText(QApplication::translate("userManagement_Dialog", "\345\247\223    \345\220\215\357\274\232", 0));
         newuser_name->setText(QString());
         newuser_isadmin->clear();
         newuser_isadmin->insertItems(0, QStringList()
          << QApplication::translate("userManagement_Dialog", "\346\231\256\351\200\232\347\224\250\346\210\267", 0)
          << QApplication::translate("userManagement_Dialog", "\347\256\241\347\220\206\345\221\230", 0)
         );
+        newuser_isadmin->setCurrentText(QApplication::translate("userManagement_Dialog", "\346\231\256\351\200\232\347\224\250\346\210\267", 0));
+        label_11->setText(QApplication::translate("userManagement_Dialog", "\350\201\224\347\263\273\347\224\265\350\257\235\357\274\232", 0));
+        label_12->setText(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\261\273\345\210\253\357\274\232", 0));
         group_user->setTitle(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
         group_manageuser->setTitle(QApplication::translate("userManagement_Dialog", "\347\256\241\347\220\206\347\224\250\346\210\267", 0));
         manageuser_modify_Button->setText(QApplication::translate("userManagement_Dialog", "\344\277\256\346\224\271", 0));
@@ -274,7 +276,7 @@ public:
         guide_newuser_Button->setText(QApplication::translate("userManagement_Dialog", "\346\267\273\345\212\240\347\224\250\346\210\267", 0));
         guide_user_Button->setText(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
         guide_overuser_Button->setText(QApplication::translate("userManagement_Dialog", "\351\200\276\346\234\237\347\224\250\346\210\267", 0));
-        group_overuser->setTitle(QApplication::translate("userManagement_Dialog", "\351\200\276\346\234\237\347\224\250\346\210\267", 0));
+        group_overuser->setTitle(QApplication::translate("userManagement_Dialog", "\351\200\276\346\234\237\350\256\260\345\275\225", 0));
     } // retranslateUi
 
 };

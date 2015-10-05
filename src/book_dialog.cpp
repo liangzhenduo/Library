@@ -26,7 +26,7 @@ void book_Dialog::on_search_Button_clicked()
     QString keyword = ui->keyword_edit->text();
     keyword.replace("'","");
 
-    QSqlQuery query("SELECT isbn, title, author, num_total, pub_press FROM qlms_book WHERE isbn LIKE '%" + keyword + "%' OR title LIKE '%" + keyword + "%' OR type LIKE '%" + keyword + "%' OR pub_press LIKE '%" + keyword + "%' OR author LIKE '%" + keyword + "%' ORDER BY isbn");
+    QSqlQuery query("SELECT isbn, title, author, num_total, pub_press FROM qlms_book WHERE title LIKE '%" + keyword + "%' ORDER BY isbn");
 
     QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
     booklistModel->insertRow(0);
