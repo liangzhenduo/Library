@@ -6,11 +6,10 @@
 #include "qlms_public.h"
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
     
 public:
@@ -19,7 +18,6 @@ public:
     
 private:
     Ui::MainWindow *ui;
-    login_Dialog* inst_login_Dialog;
     user_Dialog* inst_user_Dialog;
     book_Dialog* inst_book_Dialog;
     bookitem_Dialog* inst_bookItem_Dialog;
@@ -28,7 +26,9 @@ private:
     manageBook_Dialog* inst_manageBook_Dialog;
 
 private slots:
+    void on_login_action_button_clicked();
     void on_main_log_Button_clicked();
+
     void on_main_userinfo_Button_clicked();
     void on_main_bookSearch_Button_clicked();
 
@@ -42,10 +42,12 @@ private slots:
     void on_main_manageBook_Button_clicked();
 
 signals:
+    void signal_change_login_status();
     void signal_load_user_dialog();
     void signal_init_book_dialog();
 };
 
 extern QLMS_CLASS QLMS;
+extern bool isLogin;
 
 #endif // MAINWINDOW_H

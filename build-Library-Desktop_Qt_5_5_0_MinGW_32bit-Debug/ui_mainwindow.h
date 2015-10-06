@@ -13,8 +13,10 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -29,13 +31,20 @@ public:
     QAction *action_log;
     QWidget *centralWidget;
     QLabel *label;
-    QPushButton *main_log_Button;
-    QLabel *main_user_status_label;
     QPushButton *main_userinfo_Button;
     QPushButton *main_bookSearch_Button;
     QPushButton *main_returnBook_Button;
     QPushButton *main_userManagement_Button;
     QPushButton *main_manageBook_Button;
+    QGroupBox *login_groupBox;
+    QLineEdit *login_stuid_label;
+    QLabel *label_2;
+    QLineEdit *login_password_label;
+    QLabel *label_3;
+    QPushButton *login_action_button;
+    QLabel *main_user_status_label;
+    QLabel *label_logo;
+    QPushButton *main_log_Button;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -56,34 +65,74 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setEnabled(true);
-        label->setGeometry(QRect(20, 100, 401, 151));
-        main_log_Button = new QPushButton(centralWidget);
-        main_log_Button->setObjectName(QStringLiteral("main_log_Button"));
-        main_log_Button->setGeometry(QRect(470, 270, 121, 41));
-        main_user_status_label = new QLabel(centralWidget);
-        main_user_status_label->setObjectName(QStringLiteral("main_user_status_label"));
-        main_user_status_label->setGeometry(QRect(60, 80, 381, 16));
+        label->setGeometry(QRect(120, 120, 401, 151));
         main_userinfo_Button = new QPushButton(centralWidget);
         main_userinfo_Button->setObjectName(QStringLiteral("main_userinfo_Button"));
-        main_userinfo_Button->setGeometry(QRect(470, 70, 121, 41));
+        main_userinfo_Button->setGeometry(QRect(30, 300, 121, 41));
         main_bookSearch_Button = new QPushButton(centralWidget);
         main_bookSearch_Button->setObjectName(QStringLiteral("main_bookSearch_Button"));
-        main_bookSearch_Button->setGeometry(QRect(470, 110, 121, 41));
+        main_bookSearch_Button->setGeometry(QRect(30, 230, 121, 41));
         main_returnBook_Button = new QPushButton(centralWidget);
         main_returnBook_Button->setObjectName(QStringLiteral("main_returnBook_Button"));
-        main_returnBook_Button->setGeometry(QRect(470, 150, 121, 41));
+        main_returnBook_Button->setGeometry(QRect(500, 140, 121, 41));
         main_userManagement_Button = new QPushButton(centralWidget);
         main_userManagement_Button->setObjectName(QStringLiteral("main_userManagement_Button"));
-        main_userManagement_Button->setGeometry(QRect(470, 190, 121, 41));
+        main_userManagement_Button->setGeometry(QRect(494, 300, 121, 41));
         main_manageBook_Button = new QPushButton(centralWidget);
         main_manageBook_Button->setObjectName(QStringLiteral("main_manageBook_Button"));
-        main_manageBook_Button->setGeometry(QRect(470, 230, 121, 41));
+        main_manageBook_Button->setGeometry(QRect(494, 230, 121, 41));
+        login_groupBox = new QGroupBox(centralWidget);
+        login_groupBox->setObjectName(QStringLiteral("login_groupBox"));
+        login_groupBox->setGeometry(QRect(40, 20, 561, 61));
+        login_stuid_label = new QLineEdit(login_groupBox);
+        login_stuid_label->setObjectName(QStringLiteral("login_stuid_label"));
+        login_stuid_label->setGeometry(QRect(70, 24, 128, 24));
+        label_2 = new QLabel(login_groupBox);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(30, 24, 36, 24));
+        login_password_label = new QLineEdit(login_groupBox);
+        login_password_label->setObjectName(QStringLiteral("login_password_label"));
+        login_password_label->setGeometry(QRect(270, 24, 128, 24));
+        login_password_label->setAcceptDrops(true);
+        login_password_label->setEchoMode(QLineEdit::Password);
+        label_3 = new QLabel(login_groupBox);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(230, 24, 36, 24));
+        login_action_button = new QPushButton(login_groupBox);
+        login_action_button->setObjectName(QStringLiteral("login_action_button"));
+        login_action_button->setGeometry(QRect(430, 20, 100, 36));
+        login_action_button->setAutoExclusive(false);
+        login_action_button->setAutoDefault(false);
+        login_action_button->setFlat(false);
+        main_user_status_label = new QLabel(centralWidget);
+        main_user_status_label->setObjectName(QStringLiteral("main_user_status_label"));
+        main_user_status_label->setGeometry(QRect(70, 44, 381, 24));
+        label_logo = new QLabel(centralWidget);
+        label_logo->setObjectName(QStringLiteral("label_logo"));
+        label_logo->setGeometry(QRect(164, 71, 316, 316));
+        label_logo->setStyleSheet(QStringLiteral("background-image: url(:/images/TJU_logo.png);"));
+        main_log_Button = new QPushButton(centralWidget);
+        main_log_Button->setObjectName(QStringLiteral("main_log_Button"));
+        main_log_Button->setGeometry(QRect(470, 40, 100, 36));
         MainWindow->setCentralWidget(centralWidget);
+        label_logo->raise();
+        main_user_status_label->raise();
+        label->raise();
+        main_userinfo_Button->raise();
+        main_bookSearch_Button->raise();
+        main_returnBook_Button->raise();
+        main_userManagement_Button->raise();
+        main_manageBook_Button->raise();
+        main_log_Button->raise();
+        login_groupBox->raise();
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+
+        login_action_button->setDefault(false);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -100,13 +149,18 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600; color:#00aaff;\">\345\214\227\346\264\213\345\244\247\345\255\246\345\233\276\344\271\246\351\246\206</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8ff;\">P</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">eiyang </span><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8"
                         "ff;\">L</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">ibrary </span><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8ff;\">M</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">anagement </span><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8ff;\">S</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">ystem</span></p></body></html>", 0));
-        main_log_Button->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225", 0));
-        main_user_status_label->setText(QString());
         main_userinfo_Button->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\344\277\241\346\201\257", 0));
-        main_bookSearch_Button->setText(QApplication::translate("MainWindow", "\345\233\276\344\271\246\346\237\245\350\257\242", 0));
+        main_bookSearch_Button->setText(QApplication::translate("MainWindow", "\345\233\276\344\271\246\346\243\200\347\264\242", 0));
         main_returnBook_Button->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\350\277\230\344\271\246", 0));
         main_userManagement_Button->setText(QApplication::translate("MainWindow", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
-        main_manageBook_Button->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\345\233\276\344\271\246", 0));
+        main_manageBook_Button->setText(QApplication::translate("MainWindow", "\345\233\276\344\271\246\347\256\241\347\220\206", 0));
+        login_groupBox->setTitle(QApplication::translate("MainWindow", "\347\231\273\345\275\225\347\263\273\347\273\237", 0));
+        label_2->setText(QApplication::translate("MainWindow", "\350\264\246\345\217\267\357\274\232", 0));
+        label_3->setText(QApplication::translate("MainWindow", "\345\257\206\347\240\201\357\274\232", 0));
+        login_action_button->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225", 0));
+        main_user_status_label->setText(QString());
+        label_logo->setText(QString());
+        main_log_Button->setText(QApplication::translate("MainWindow", "\346\263\250\351\224\200", 0));
     } // retranslateUi
 
 };

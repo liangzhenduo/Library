@@ -1,7 +1,6 @@
 INPUT(
 ./debug\main.o
 ./debug\mainwindow.o
-./debug\login_dialog.o
 ./debug\user_dialog.o
 ./debug\book_dialog.o
 ./debug\bookitem_dialog.o
@@ -10,7 +9,6 @@ INPUT(
 ./debug\managebook_dialog.o
 ./debug\qrc_resource.o
 ./debug\moc_mainwindow.o
-./debug\moc_login_dialog.o
 ./debug\moc_user_dialog.o
 ./debug\moc_book_dialog.o
 ./debug\moc_bookitem_dialog.o

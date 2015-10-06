@@ -33,7 +33,7 @@ public:
     bool check_isAdmin();
 };
 
-#include "login_dialog.h"
+//#include "login_dialog.h"
 #include "user_dialog.h"
 #include "book_dialog.h"
 #include "bookitem_dialog.h"

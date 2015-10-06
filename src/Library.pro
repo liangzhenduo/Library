@@ -7,7 +7,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    login_dialog.cpp \
     user_dialog.cpp \
     book_dialog.cpp \
     bookitem_dialog.cpp \
@@ -16,7 +15,6 @@ SOURCES += main.cpp\
     managebook_dialog.cpp
 
 HEADERS  += mainwindow.h \
-    login_dialog.h \
     qlms_public.h \
     user_dialog.h \
     book_dialog.h \
@@ -26,7 +24,6 @@ HEADERS  += mainwindow.h \
     managebook_dialog.h
 
 FORMS    += mainwindow.ui \
-    login_dialog.ui \
     user_dialog.ui \
     book_dialog.ui \
     bookitem_dialog.ui \
