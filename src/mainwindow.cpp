@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
         ui->setupUi(this);
         if (!QLMS.check_DatabaseConnect()) {
-            QMessageBox::warning(this, tr("Connection Error"), tr("Couldn't connect to database server. Please check your network connection and try again."));
+            QMessageBox::warning(this, tr("Connection Error"), tr("Couldn't connect to database server!\nPlease check your network connection and try again."));
             this->close();
     }
 

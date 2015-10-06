@@ -8,6 +8,7 @@ INPUT(
 ./debug\returnbook_dialog.o
 ./debug\usermanagement_dialog.o
 ./debug\managebook_dialog.o
+./debug\qrc_resource.o
 ./debug\moc_mainwindow.o
 ./debug\moc_login_dialog.o
 ./debug\moc_user_dialog.o

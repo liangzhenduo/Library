@@ -43,6 +43,9 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(644, 418);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/images/TJU_logo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         action_2 = new QAction(MainWindow);
         action_2->setObjectName(QStringLiteral("action_2"));
         action_log = new QAction(MainWindow);
@@ -87,7 +90,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\345\244\251\346\264\245\345\244\247\345\255\246\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
         action_2->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225", 0));
         action_log->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225", 0));
         label->setText(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

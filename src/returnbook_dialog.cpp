@@ -1,15 +1,22 @@
 #include "returnbook_dialog.h"
 #include "ui_returnbook_dialog.h"
 
-returnBook_Dialog::returnBook_Dialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::returnBook_Dialog)
-{
+returnBook_Dialog::returnBook_Dialog(QWidget *parent):
+QDialog(parent),ui(new Ui::returnBook_Dialog){
     ui->setupUi(this);
+
+    QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
+    booklistModel->insertRow(0);
+    booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
+    booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
+    booklistModel->setData(booklistModel->index(0,2), tr("书目"));
+    booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
+    booklistModel->setData(booklistModel->index(0,4), tr("归还时间"));
+
+    ui->borrowedbookview->setModel(booklistModel);
 }
 
-returnBook_Dialog::~returnBook_Dialog()
-{
+returnBook_Dialog::~returnBook_Dialog() {
     delete ui;
 }
 
@@ -68,39 +75,34 @@ void returnBook_Dialog::on_return_Button_clicked()
 }
 
 void returnBook_Dialog::load_book_list(QString stuid) {
-    QSqlQuery query_user(tr("SELECT stuid, name, department, num_borrowed, num_limit FROM qlms_user WHERE stuid = %1;").arg(stuid));
+
+    QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
+    booklistModel->insertRow(0);
+    booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
+    booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
+    booklistModel->setData(booklistModel->index(0,2), tr("书目"));
+    booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
+    booklistModel->setData(booklistModel->index(0,4), tr("归还时间"));
+    ui->borrowedbookview->setModel(booklistModel);
+
+    QSqlQuery query_user("SELECT stuid, name, department, num_borrowed, num_limit FROM qlms_user WHERE stuid = "+ stuid +";");
 
 
     if (!query_user.next()) {
-        QMessageBox::warning(this, tr("出错啦"), tr("这个借书证[学号]不存在哟，请重新输入"));
+        QMessageBox::warning(this, tr("ERROR"), tr("该用户不存在！"));
         return;
     }
 
-    QSqlQuery query_record(tr("SELECT qlms_record.id, qlms_book.isbn, qlms_book.title, qlms_record.status, qlms_record.time_borrow, qlms_record.time_return FROM qlms_record LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book_item.isbn WHERE qlms_record.stuid = %1 ORDER BY qlms_record.status, qlms_record.uuid DESC").arg(stuid));
+    QSqlQuery query_record("SELECT qlms_record.id, qlms_book.isbn, qlms_book.title, qlms_record.time_borrow, qlms_record.time_return, qlms_record.status FROM qlms_record LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book_item.isbn WHERE qlms_record.stuid = "+ stuid +" ORDER BY qlms_record.status, qlms_record.uuid DESC");
 
-    QStandardItemModel* booklistModel=new QStandardItemModel(0,6,this);
-    booklistModel->insertRow(0);
-    booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
-    booklistModel->setData(booklistModel->index(0,1), tr("图书ISBN"));
-    booklistModel->setData(booklistModel->index(0,2), tr("图书名称"));
-    booklistModel->setData(booklistModel->index(0,3), tr("图书状态"));
-    booklistModel->setData(booklistModel->index(0,4), tr("借阅时间"));
-    booklistModel->setData(booklistModel->index(0,5), tr("归还时间"));
-
-    int i(1);
-
-    while (query_record.next()) {
+    for(int i=1;query_record.next();i++) {
         booklistModel->insertRow(i);
         book_id_list[i] = query_record.value(0).toInt();
         booklistModel->setData(booklistModel->index(i,0), query_record.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());
-        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toInt() == 0 ? tr("未归还") : tr("已归还"));
-        booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toString());
-        booklistModel->setData(booklistModel->index(i,5), query_record.value(5).toString());
-
-        i++;
+        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toString());
+        booklistModel->setData(booklistModel->index(i,4), query_record.value(5).toInt() == 0 ? tr("未归还") :query_record.value(4).toString());
     }
 
-    ui->borrowedbookview->setModel(booklistModel);
 }

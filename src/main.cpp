@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QtWidgets>
 #include <QtSql>
+#include <QSplashScreen>
 #include <iostream>
 #include "qlms_public.h"
 #include "mainwindow.h"
@@ -13,9 +14,17 @@ int main(int argc, char *argv[]) {
     QLMS.initialize_database();
 
     QApplication app(argc, argv);
+    QSplashScreen *splash=new QSplashScreen;
+    splash->setPixmap(QPixmap(":/images/TJU_logo.png"));
+    splash->show();
+    for(int i=0;i<1000;i++){
+        splash->repaint();
+    }
     MainWindow w;
     w.show();
-    
+    w.move ((QApplication::desktop()->width() - w.width())/2,(QApplication::desktop()->height() - w.height())/2);
+    splash->finish(&w);
+    delete splash;
     return app.exec();
 }
 
@@ -33,8 +42,8 @@ bool QLMS_CLASS::initialize_database() {
     db.setDatabaseName("Driver={MySQL ODBC 5.3 Unicode Driver};SERVER=127.0.0.1;DATABASE=dbms;UID=root;Pwd=password");
 
     if (!db.open()) {
-        cerr << "Error: can't connect to database server!" << endl;
-        cerr << "Reason: " << db.lastError().text().toStdString() << endl;
+        cerr << "Error: Couldn't connect to database server!" << endl;
+        cerr << db.lastError().text().toStdString() << endl;
         is_connect_database = 0;
         return 0;
     }
@@ -66,10 +75,10 @@ bool QLMS_CLASS::modify_user_book(int num) {
 
     if (num > 0) {
         num_borrowed ++;
-        QSqlQuery query("UPDATE qlms_user SET num_borrowed = num_borrowed + 1 WHERE stuid = '" + stuid +"';");
+        QSqlQuery query("UPDATE qlms_user SET num_borrowed = num_borrowed + 1 WHERE stuid = " + stuid +";");
     } else {
         num_borrowed --;
-        QSqlQuery query("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = '" + stuid +"';");
+        QSqlQuery query("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = " + stuid +";");
     }
 
     return 1;

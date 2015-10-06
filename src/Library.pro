@@ -33,3 +33,6 @@ FORMS    += mainwindow.ui \
     returnbook_dialog.ui \
     usermanagement_dialog.ui \
     managebook_dialog.ui
+
+RESOURCES += \
+    resource.qrc
