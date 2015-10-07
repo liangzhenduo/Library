@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string> 图书详情 - 求是图书管理系统</string>
+   <string>图书信息</string>
   </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">

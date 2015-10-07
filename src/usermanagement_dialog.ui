@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>用户管理 - 求是图书管理系统</string>
+   <string>用户管理</string>
   </property>
   <widget class="QGroupBox" name="group_newuser">
    <property name="enabled">

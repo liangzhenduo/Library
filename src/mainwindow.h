@@ -27,7 +27,7 @@ private:
 
 private slots:
     void on_login_action_button_clicked();
-    void on_main_log_Button_clicked();
+    void on_main_logout_Button_clicked();
 
     void on_main_userinfo_Button_clicked();
     void on_main_bookSearch_Button_clicked();

@@ -67,7 +67,7 @@ public:
 
     void retranslateUi(QDialog *user_Dialog)
     {
-        user_Dialog->setWindowTitle(QApplication::translate("user_Dialog", "\346\210\221\347\232\204\344\277\241\346\201\257 - \346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
+        user_Dialog->setWindowTitle(QApplication::translate("user_Dialog", "\347\224\250\346\210\267\344\277\241\346\201\257", 0));
         groupBox->setTitle(QApplication::translate("user_Dialog", "\347\224\250\346\210\267\344\277\241\346\201\257", 0));
         user_info_label->setText(QString());
         return_Button->setText(QApplication::translate("user_Dialog", "\350\277\224\345\233\236", 0));

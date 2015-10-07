@@ -234,7 +234,7 @@ public:
 
     void retranslateUi(QDialog *userManagement_Dialog)
     {
-        userManagement_Dialog->setWindowTitle(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\256\241\347\220\206 - \346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
+        userManagement_Dialog->setWindowTitle(QApplication::translate("userManagement_Dialog", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
         group_newuser->setTitle(QApplication::translate("userManagement_Dialog", "\346\267\273\345\212\240\346\226\260\347\224\250\346\210\267", 0));
         newuser_add_Button->setText(QApplication::translate("userManagement_Dialog", "\345\210\233\345\273\272", 0));
         label->setText(QApplication::translate("userManagement_Dialog", "\345\255\246    \345\217\267\357\274\232", 0));

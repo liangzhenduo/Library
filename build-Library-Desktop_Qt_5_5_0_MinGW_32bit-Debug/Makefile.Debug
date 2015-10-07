@@ -406,9 +406,8 @@ debug/moc_mainwindow.cpp: C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QMainW
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -672,7 +671,6 @@ debug/moc_user_dialog.cpp: C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDial
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
 		../src/user_dialog.h \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
@@ -936,9 +934,8 @@ debug/moc_book_dialog.cpp: ../src/qlms_public.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -1201,9 +1198,8 @@ debug/moc_bookitem_dialog.cpp: ../src/qlms_public.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -1466,9 +1462,8 @@ debug/moc_returnbook_dialog.cpp: ../src/qlms_public.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -1731,9 +1726,8 @@ debug/moc_usermanagement_dialog.cpp: ../src/qlms_public.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -1996,9 +1990,8 @@ debug/moc_managebook_dialog.cpp: ../src/qlms_public.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -2525,9 +2518,8 @@ debug/main.o: ../src/main.cpp C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QA
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/QStandardItem \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
@@ -2791,44 +2783,14 @@ debug/mainwindow.o: ../src/mainwindow.cpp ../src/mainwindow.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
 		../src/usermanagement_dialog.h \
 		../src/managebook_dialog.h \
-		ui_mainwindow.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QStatusBar \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qstatusbar.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\src\mainwindow.cpp
 
 debug/user_dialog.o: ../src/user_dialog.cpp ../src/user_dialog.h \
@@ -3087,35 +3049,12 @@ debug/user_dialog.o: ../src/user_dialog.cpp ../src/user_dialog.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
 		../src/usermanagement_dialog.h \
 		../src/managebook_dialog.h \
-		ui_user_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QTreeView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qtreeview.h
+		ui_user_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\user_dialog.o ..\src\user_dialog.cpp
 
 debug/book_dialog.o: ../src/book_dialog.cpp ../src/book_dialog.h \
@@ -3373,42 +3312,13 @@ debug/book_dialog.o: ../src/book_dialog.cpp ../src/book_dialog.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
 		../src/usermanagement_dialog.h \
 		../src/managebook_dialog.h \
-		ui_book_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QTreeView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qtreeview.h
+		ui_book_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\book_dialog.o ..\src\book_dialog.cpp
 
 debug/bookitem_dialog.o: ../src/bookitem_dialog.cpp ../src/bookitem_dialog.h \
@@ -3666,33 +3576,13 @@ debug/bookitem_dialog.o: ../src/bookitem_dialog.cpp ../src/bookitem_dialog.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/returnbook_dialog.h \
 		../src/usermanagement_dialog.h \
 		../src/managebook_dialog.h \
-		ui_bookitem_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QTreeView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qtreeview.h
+		ui_bookitem_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\bookitem_dialog.o ..\src\bookitem_dialog.cpp
 
 debug/returnbook_dialog.o: ../src/returnbook_dialog.cpp ../src/returnbook_dialog.h \
@@ -3950,42 +3840,13 @@ debug/returnbook_dialog.o: ../src/returnbook_dialog.cpp ../src/returnbook_dialog
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/usermanagement_dialog.h \
 		../src/managebook_dialog.h \
-		ui_returnbook_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QTreeView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qtreeview.h
+		ui_returnbook_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\returnbook_dialog.o ..\src\returnbook_dialog.cpp
 
 debug/usermanagement_dialog.o: ../src/usermanagement_dialog.cpp ../src/usermanagement_dialog.h \
@@ -4243,48 +4104,13 @@ debug/usermanagement_dialog.o: ../src/usermanagement_dialog.cpp ../src/usermanag
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
 		../src/managebook_dialog.h \
-		ui_usermanagement_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QTreeView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qtreeview.h
+		ui_usermanagement_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\usermanagement_dialog.o ..\src\usermanagement_dialog.cpp
 
 debug/managebook_dialog.o: ../src/managebook_dialog.cpp ../src/managebook_dialog.h \
@@ -4542,47 +4368,13 @@ debug/managebook_dialog.o: ../src/managebook_dialog.cpp ../src/managebook_dialog
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QTextCodec \
-		../src/login_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/user_dialog.h \
+		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QDialog \
 		../src/book_dialog.h \
 		../src/bookitem_dialog.h \
 		../src/returnbook_dialog.h \
 		../src/usermanagement_dialog.h \
 		ui_managebook_dialog.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QTreeView \
-		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qtreeview.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/QFileDialog \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
 		C:/Qt/Qt5.5.0/5.5/mingw492_32/include/QtCore/QFile

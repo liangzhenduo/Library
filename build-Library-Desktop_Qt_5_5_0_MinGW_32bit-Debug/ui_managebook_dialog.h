@@ -184,7 +184,7 @@ public:
 
     void retranslateUi(QDialog *manageBook_Dialog)
     {
-        manageBook_Dialog->setWindowTitle(QApplication::translate("manageBook_Dialog", "\345\233\276\344\271\246\347\256\241\347\220\206 - \346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
+        manageBook_Dialog->setWindowTitle(QApplication::translate("manageBook_Dialog", "\345\233\276\344\271\246\347\256\241\347\220\206", 0));
         group_booklist->setTitle(QApplication::translate("manageBook_Dialog", "\345\233\276\344\271\246\345\210\227\350\241\250", 0));
         group_add_single->setTitle(QApplication::translate("manageBook_Dialog", "\345\215\225\345\206\214\345\233\276\344\271\246\346\267\273\345\212\240", 0));
         label->setText(QApplication::translate("manageBook_Dialog", "\345\233\276\344\271\246\345\220\215\347\247\260\357\274\232", 0));

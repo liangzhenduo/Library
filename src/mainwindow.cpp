@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <ctime>
+#include <cstdlib>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->login_password_label, SIGNAL(returnPressed()), ui->login_action_button, SIGNAL(clicked()), Qt::UniqueConnection);
     connect(this, SIGNAL(signal_change_login_status()), this, SLOT(on_signal_change_login_status()));
     connect(this, SIGNAL(signal_load_user_dialog()), inst_user_Dialog, SLOT(on_signal_load_user_dialog()));
-    connect(this,SIGNAL(signal_init_book_dialog()), inst_book_Dialog, SLOT(on_signal_init_book_dialog()));
+    connect(this, SIGNAL(signal_init_book_dialog()), inst_book_Dialog, SLOT(on_signal_init_book_dialog()));
     connect(inst_book_Dialog, SIGNAL(signal_load_bookItem(int)), inst_bookItem_Dialog, SLOT(on_signal_load_bookItem(int)));
     connect(inst_book_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(on_signal_show_dialog(int)));
     connect(inst_manageBook_Dialog, SIGNAL(signal_load_bookItem(int)), inst_bookItem_Dialog, SLOT(on_signal_load_bookItem(int)));
@@ -41,13 +43,13 @@ void MainWindow::on_login_action_button_clicked()
     password = ui->login_password_label->text();
 
     if (stuid == "") {
-        QMessageBox::warning(this, tr("登录失败"), tr("学号不能为空！"));
+        QMessageBox::warning(this, tr("Login Failed"), tr("学号不能为空！"));
         ui->login_stuid_label->setFocus();
         return;
     }
 
     if (password == "") {
-        QMessageBox::warning(this, tr("登录失败"), tr("密码不能为空！"));
+        QMessageBox::warning(this, tr("Login Failed"), tr("密码不能为空！"));
         ui->login_password_label->setFocus();
         return;
     }
@@ -62,19 +64,19 @@ void MainWindow::on_login_action_button_clicked()
             QLMS.isAdmin = query.value(5).toInt();
             QLMS.set_number(query.value(3).toInt(), query.value(4).toInt());
 
-            QMessageBox::information(this, tr("登录成功"), tr("登录成功，欢迎 %1 进入北洋大学图书馆").arg(query.value(2).toString()));
+            QMessageBox::information(this, tr("Login Succeed"), tr("欢迎 %1 进入天津大学图书馆！").arg(query.value(2).toString()));
             ui->login_stuid_label->setText("");
             ui->login_password_label->setText("");
             emit signal_change_login_status();
         }
         else {  //密码错误
-            QMessageBox::information(this, tr("登录失败"), tr("密码与账号不匹配，请重试！"));
+            QMessageBox::warning(this, tr("Login Failed"), tr("密码与账号不匹配，请重试！"));
             ui->login_password_label->setText("");
             ui->login_password_label->setFocus();
         }
     }
     else {  //用户不存在
-        QMessageBox::warning(this, tr("登录失败"), tr("该用户不存在"));
+        QMessageBox::warning(this, tr("Login Failed"), tr("该用户不存在！"));
         ui->login_stuid_label->setText("");
         ui->login_password_label->setText("");
         ui->login_stuid_label->setFocus();
@@ -83,7 +85,7 @@ void MainWindow::on_login_action_button_clicked()
 
 }
 
-void MainWindow::on_main_log_Button_clicked() {
+void MainWindow::on_main_logout_Button_clicked() {
     if (QLMS.check_isUserLogin()) {
         QLMS.user_logout();
         MainWindow::on_signal_change_login_status();
@@ -93,7 +95,11 @@ void MainWindow::on_main_log_Button_clicked() {
 void MainWindow::on_signal_change_login_status(){
     if (QLMS.check_isUserLogin()) {
         ui->login_groupBox->hide();
-        ui->main_user_status_label->setText(tr("账号： %1    [ %2 ]    已登录").arg(QLMS.stuid).arg(QLMS.name));
+        char *t = (char*)malloc(sizeof(char)*30);
+        time_t now;
+        time(&now);
+        strftime(t, 30 , "%Y年%m月%d日 %H:%M:%S", localtime(&now));
+        ui->main_user_status_label->setText(tr("账号： %1 【%2】  登录时间： %3").arg(QLMS.stuid).arg(QLMS.name).arg(t));
         ui->main_userinfo_Button->setEnabled(true);
         if (QLMS.isAdmin) {
             ui->main_returnBook_Button->setEnabled(true);

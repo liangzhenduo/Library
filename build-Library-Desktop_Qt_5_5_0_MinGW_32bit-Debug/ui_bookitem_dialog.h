@@ -62,7 +62,7 @@ public:
 
     void retranslateUi(QDialog *bookitem_Dialog)
     {
-        bookitem_Dialog->setWindowTitle(QApplication::translate("bookitem_Dialog", " \345\233\276\344\271\246\350\257\246\346\203\205 - \346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
+        bookitem_Dialog->setWindowTitle(QApplication::translate("bookitem_Dialog", "\345\233\276\344\271\246\344\277\241\346\201\257", 0));
         groupBox->setTitle(QApplication::translate("bookitem_Dialog", "\345\233\276\344\271\246\350\257\246\346\203\205", 0));
         bookItem_label->setText(QString());
         groupBox_2->setTitle(QApplication::translate("bookitem_Dialog", "\345\215\225\345\206\214\345\233\276\344\271\246\346\270\205\345\215\225", 0));

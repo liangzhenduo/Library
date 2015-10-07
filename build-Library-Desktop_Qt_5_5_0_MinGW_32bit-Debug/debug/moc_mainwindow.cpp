@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[15];
-    char stringdata0[379];
+    char stringdata0[382];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,22 +35,22 @@ QT_MOC_LITERAL(2, 38, 0), // ""
 QT_MOC_LITERAL(3, 39, 23), // "signal_load_user_dialog"
 QT_MOC_LITERAL(4, 63, 23), // "signal_init_book_dialog"
 QT_MOC_LITERAL(5, 87, 30), // "on_login_action_button_clicked"
-QT_MOC_LITERAL(6, 118, 26), // "on_main_log_Button_clicked"
-QT_MOC_LITERAL(7, 145, 31), // "on_main_userinfo_Button_clicked"
-QT_MOC_LITERAL(8, 177, 33), // "on_main_bookSearch_Button_cli..."
-QT_MOC_LITERAL(9, 211, 29), // "on_signal_change_login_status"
-QT_MOC_LITERAL(10, 241, 21), // "on_signal_show_dialog"
-QT_MOC_LITERAL(11, 263, 9), // "dialog_id"
-QT_MOC_LITERAL(12, 273, 33), // "on_main_returnBook_Button_cli..."
-QT_MOC_LITERAL(13, 307, 37), // "on_main_userManagement_Button..."
-QT_MOC_LITERAL(14, 345, 33) // "on_main_manageBook_Button_cli..."
+QT_MOC_LITERAL(6, 118, 29), // "on_main_logout_Button_clicked"
+QT_MOC_LITERAL(7, 148, 31), // "on_main_userinfo_Button_clicked"
+QT_MOC_LITERAL(8, 180, 33), // "on_main_bookSearch_Button_cli..."
+QT_MOC_LITERAL(9, 214, 29), // "on_signal_change_login_status"
+QT_MOC_LITERAL(10, 244, 21), // "on_signal_show_dialog"
+QT_MOC_LITERAL(11, 266, 9), // "dialog_id"
+QT_MOC_LITERAL(12, 276, 33), // "on_main_returnBook_Button_cli..."
+QT_MOC_LITERAL(13, 310, 37), // "on_main_userManagement_Button..."
+QT_MOC_LITERAL(14, 348, 33) // "on_main_manageBook_Button_cli..."
 
     },
     "MainWindow\0signal_change_login_status\0"
     "\0signal_load_user_dialog\0"
     "signal_init_book_dialog\0"
     "on_login_action_button_clicked\0"
-    "on_main_log_Button_clicked\0"
+    "on_main_logout_Button_clicked\0"
     "on_main_userinfo_Button_clicked\0"
     "on_main_bookSearch_Button_clicked\0"
     "on_signal_change_login_status\0"
@@ -119,7 +119,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->signal_load_user_dialog(); break;
         case 2: _t->signal_init_book_dialog(); break;
         case 3: _t->on_login_action_button_clicked(); break;
-        case 4: _t->on_main_log_Button_clicked(); break;
+        case 4: _t->on_main_logout_Button_clicked(); break;
         case 5: _t->on_main_userinfo_Button_clicked(); break;
         case 6: _t->on_main_bookSearch_Button_clicked(); break;
         case 7: _t->on_signal_change_login_status(); break;
