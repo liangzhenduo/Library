@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     QSplashScreen *splash=new QSplashScreen;
     splash->setPixmap(QPixmap(":/images/TJU_logo.png"));
     splash->show();
-    for(int i=0;i<1000;i++){
+    for(int i=0;i<5000;i++){
         splash->repaint();
     }
     MainWindow w;

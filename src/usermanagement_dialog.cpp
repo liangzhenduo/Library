@@ -17,14 +17,14 @@ userManagement_Dialog::~userManagement_Dialog()
 
 void userManagement_Dialog::on_newuser_add_Button_clicked()
 {
-    if (ui->newuser_telnum->text() == "" || ui->newuser_department->text() == "" || ui->newuser_num_limit->text() == ""|| ui->newuser_password->text() == "" || ui->newuser_stuid->text() == "" || ui->newuser_name->text() == "") {
+    if (ui->newuser_telnum->text() == "" || ui->newuser_num_limit->text() == ""|| ui->newuser_password->text() == "" || ui->newuser_stuid->text() == "" || ui->newuser_name->text() == "") {
         QMessageBox::warning(this, tr("出错啦"), tr("新用户的具体信息没有填写完整"));
         return;
     }
 
     QString stuid = ui->newuser_stuid->text();
     QString password = ui->newuser_password->text();
-    QString department = ui->newuser_department->text();
+    //QString department = ui->newuser_department->text();
     QString telnum = ui->newuser_telnum->text();
     QString name = ui->newuser_name->text();
     int num_limit = ui->newuser_num_limit->text().toInt();
@@ -32,7 +32,7 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
 
     stuid.replace("'","");
     password.replace("'","");
-    department.replace("'","");
+    //department.replace("'","");
     telnum.replace("'","");
     name.replace("'","");
 
@@ -48,9 +48,9 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
         return;
     }
 
-    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin,telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(department).arg(num_limit).arg(isAdmin).arg(telnum));
+    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin,telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(111).arg(num_limit).arg(isAdmin).arg(telnum));
 
-    ui->newuser_department->setText("");
+    //ui->newuser_department->setText("");
     ui->newuser_name->setText("");
     ui->newuser_num_limit->setText(tr("7"));
     ui->newuser_password->setText("");

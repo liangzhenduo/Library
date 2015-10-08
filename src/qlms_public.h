@@ -8,7 +8,7 @@
 #include <QSqlError>
 #include <QTextCodec>
 
-#define MXN 1000
+#define MXN 5000
 
 class QLMS_CLASS {
 

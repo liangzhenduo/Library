@@ -33,7 +33,7 @@ private slots:
 
 private:
     Ui::userManagement_Dialog *ui;
-    QString user_list_stuid[1000];
+    QString user_list_stuid[5000];
 
 };
 
