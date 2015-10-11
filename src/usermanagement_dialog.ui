@@ -554,6 +554,28 @@
   <zorder>group_overuser</zorder>
   <zorder>group_newuser</zorder>
  </widget>
+ <tabstops>
+  <tabstop>newuser_stuid</tabstop>
+  <tabstop>newuser_name</tabstop>
+  <tabstop>newuser_password</tabstop>
+  <tabstop>newuser_telnum</tabstop>
+  <tabstop>newuser_num_limit</tabstop>
+  <tabstop>newuser_isadmin</tabstop>
+  <tabstop>newuser_add_Button</tabstop>
+  <tabstop>userview</tabstop>
+  <tabstop>manageuser_modify_Button</tabstop>
+  <tabstop>manage_stuid</tabstop>
+  <tabstop>manage_password</tabstop>
+  <tabstop>manage_department</tabstop>
+  <tabstop>manage_num_limit</tabstop>
+  <tabstop>manage_name</tabstop>
+  <tabstop>manage_isadmin</tabstop>
+  <tabstop>manageuser_delete_Button</tabstop>
+  <tabstop>guide_newuser_Button</tabstop>
+  <tabstop>guide_user_Button</tabstop>
+  <tabstop>guide_overuser_Button</tabstop>
+  <tabstop>overuserview</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

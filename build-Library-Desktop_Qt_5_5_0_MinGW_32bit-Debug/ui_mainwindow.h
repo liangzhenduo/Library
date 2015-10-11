@@ -30,7 +30,6 @@ public:
     QAction *action_2;
     QAction *action_log;
     QWidget *centralWidget;
-    QLabel *label;
     QPushButton *main_userinfo_Button;
     QPushButton *main_bookSearch_Button;
     QPushButton *main_returnBook_Button;
@@ -62,10 +61,6 @@ public:
         action_log->setCheckable(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setEnabled(true);
-        label->setGeometry(QRect(120, 120, 401, 151));
         main_userinfo_Button = new QPushButton(centralWidget);
         main_userinfo_Button->setObjectName(QStringLiteral("main_userinfo_Button"));
         main_userinfo_Button->setGeometry(QRect(30, 300, 121, 41));
@@ -123,7 +118,6 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         label_logo->raise();
         main_user_status_label->raise();
-        label->raise();
         main_userinfo_Button->raise();
         main_bookSearch_Button->raise();
         main_returnBook_Button->raise();
@@ -148,13 +142,6 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\345\244\251\346\264\245\345\244\247\345\255\246\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
         action_2->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225", 0));
         action_log->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225", 0));
-        label->setText(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600; color:#00aaff;\">\345\214\227\346\264\213\345\244\247\345\255\246\345\233\276\344\271\246\351\246\206</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8ff;\">P</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">eiyang </span><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8"
-                        "ff;\">L</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">ibrary </span><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8ff;\">M</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">anagement </span><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#02c8ff;\">S</span><span style=\" font-size:14pt; font-style:italic; color:#02c8ff;\">ystem</span></p></body></html>", 0));
         main_userinfo_Button->setText(QApplication::translate("MainWindow", "\347\224\250\346\210\267\344\277\241\346\201\257", 0));
         main_bookSearch_Button->setText(QApplication::translate("MainWindow", "\345\233\276\344\271\246\346\243\200\347\264\242", 0));
         main_returnBook_Button->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\350\277\230\344\271\246", 0));

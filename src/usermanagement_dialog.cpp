@@ -23,18 +23,19 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
     }
 
     QString stuid = ui->newuser_stuid->text();
+    QString tmp;
+    tmp[0]=stuid[4],tmp[1]=stuid[5],tmp[2]=stuid[6];
+    int department = tmp.toInt();
     QString password = ui->newuser_password->text();
-    //QString department = ui->newuser_department->text();
     QString telnum = ui->newuser_telnum->text();
     QString name = ui->newuser_name->text();
     int num_limit = ui->newuser_num_limit->text().toInt();
     int isAdmin =  ui->newuser_isadmin->currentText() == tr("管理员");
 
     stuid.replace("'","");
-    password.replace("'","");
-    //department.replace("'","");
-    telnum.replace("'","");
     name.replace("'","");
+    password.replace("'","");
+    telnum.replace("'","");
 
     if (num_limit < 0) {
         QMessageBox::warning(this, tr("出错啦"), tr("用户借阅图书上限不能小于0哦"));
@@ -48,9 +49,8 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
         return;
     }
 
-    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin,telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(111).arg(num_limit).arg(isAdmin).arg(telnum));
+    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin,telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(department).arg(num_limit).arg(isAdmin).arg(telnum));
 
-    //ui->newuser_department->setText("");
     ui->newuser_name->setText("");
     ui->newuser_num_limit->setText(tr("7"));
     ui->newuser_password->setText("");
@@ -62,7 +62,7 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
 
 void userManagement_Dialog::on_guide_user_Button_clicked()
 {
-    QSqlQuery query("SELECT stuid, name, department, num_borrowed, isadmin FROM qlms_user ORDER BY stuid;");
+    QSqlQuery query("SELECT qlms_user.stuid, qlms_user.name, department.school, qlms_user.num_borrowed, qlms_user.isadmin FROM qlms_user LEFT JOIN department ON department.code = qlms_user.department ORDER BY stuid;");
 
 
     QStandardItemModel* listModel=new QStandardItemModel(0,5,this);
@@ -190,12 +190,15 @@ void userManagement_Dialog::on_userview_clicked(const QModelIndex &index)
     ui->group_user->hide();
 }
 
-void userManagement_Dialog::on_manageuser_delete_Button_clicked()
-{
+void userManagement_Dialog::on_manageuser_delete_Button_clicked() {
     QString stuid = ui->manage_stuid->text();
+    if(QLMS.stuid==stuid){
+        QMessageBox::information(this, tr("ERROR"), tr("无法删除已登录用户！"));
+        return;
+    }
 
     QSqlQuery(tr("DELETE FROM qlms_user WHERE stuid = %1").arg(stuid));
 
-    QMessageBox::information(this, tr("删除成功"), tr("恭喜您，已经成功删除该用户"));
+    QMessageBox::information(this, tr("删除成功"), tr("用户 %1 已被成功删除！").arg(stuid));
     userManagement_Dialog::on_guide_user_Button_clicked();
 }

@@ -23,8 +23,7 @@ void user_Dialog::on_return_Button_clicked()
 }
 
 void user_Dialog::on_signal_load_user_dialog() {
-    QSqlQuery query_user("SELECT stuid, name, department, num_borrowed, num_limit FROM qlms_user WHERE stuid = '" + QLMS.stuid + "';");
-
+    QSqlQuery query_user("SELECT qlms_user.name, qlms_user.stuid, department.school, qlms_user.num_borrowed, qlms_user.num_limit FROM qlms_user LEFT JOIN department ON department.code = qlms_user.department WHERE stuid = '" + QLMS.stuid + "';");
     if (!query_user.next()) {
         QMessageBox::warning(this, tr("出错啦"), tr("貌似出现问题咯，您当前所登录的用户在数据库貌似丢失了，请重新登录"));
         this->close();
@@ -32,7 +31,7 @@ void user_Dialog::on_signal_load_user_dialog() {
     }
 
     QString label_html;
-    label_html = tr("<p>姓名：%1</p><p>学号：%2</p><p>所属学院：%3</p><p>当前借书数量：%4</p><p>最大借书量：%5</p>").arg(query_user.value(1).toString()).arg(query_user.value(0).toString()).arg(query_user.value(2).toString()).arg(query_user.value(3).toString()).arg(query_user.value(4).toString());
+    label_html = tr("<p>姓名：%1</p><p>学号：%2</p><p>单位：%3</p><p>当前持有：%4</p><p>借书上限：%5</p>").arg(query_user.value(0).toString()).arg(query_user.value(1).toString()).arg(query_user.value(2).toString()).arg(query_user.value(3).toString()).arg(query_user.value(4).toString());
 
     ui->user_info_label->setText(label_html);
 

@@ -218,6 +218,25 @@ public:
         group_nav->raise();
         group_overuser->raise();
         group_newuser->raise();
+        QWidget::setTabOrder(newuser_stuid, newuser_name);
+        QWidget::setTabOrder(newuser_name, newuser_password);
+        QWidget::setTabOrder(newuser_password, newuser_telnum);
+        QWidget::setTabOrder(newuser_telnum, newuser_num_limit);
+        QWidget::setTabOrder(newuser_num_limit, newuser_isadmin);
+        QWidget::setTabOrder(newuser_isadmin, newuser_add_Button);
+        QWidget::setTabOrder(newuser_add_Button, userview);
+        QWidget::setTabOrder(userview, manageuser_modify_Button);
+        QWidget::setTabOrder(manageuser_modify_Button, manage_stuid);
+        QWidget::setTabOrder(manage_stuid, manage_password);
+        QWidget::setTabOrder(manage_password, manage_department);
+        QWidget::setTabOrder(manage_department, manage_num_limit);
+        QWidget::setTabOrder(manage_num_limit, manage_name);
+        QWidget::setTabOrder(manage_name, manage_isadmin);
+        QWidget::setTabOrder(manage_isadmin, manageuser_delete_Button);
+        QWidget::setTabOrder(manageuser_delete_Button, guide_newuser_Button);
+        QWidget::setTabOrder(guide_newuser_Button, guide_user_Button);
+        QWidget::setTabOrder(guide_user_Button, guide_overuser_Button);
+        QWidget::setTabOrder(guide_overuser_Button, overuserview);
 
         retranslateUi(userManagement_Dialog);
 
