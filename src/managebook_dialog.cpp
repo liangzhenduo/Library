@@ -35,17 +35,17 @@ void manageBook_Dialog::on_single_clear_clicked()
 void manageBook_Dialog::on_single_add_clicked()
 {
     QString location = ui->single_location->text();
-    QString pub_press = ui->single_location->text();
+    QString pub_press = ui->single_pub_press->text();
     QString title = ui->single_title->text();
     QString type = ui->single_type->text();
     QString price = ui->single_price->text();
     QString author = ui->single_author->text();
-    QString _isbn = ui->single_isbn->text();
-    _isbn.replace("-","");
-    _isbn.replace(" ","");
+    QString isbn = ui->single_isbn->text();
+    isbn.replace("-","_");
+    //_isbn.replace(" ","");
     int pub_year = ui->single_pub_year->text().toInt();
     int num_total = ui->single_num_total->text().toInt();
-    int isbn = _isbn.toInt();
+    //QString isbn = _isbn.toInt();
 
     if (ui->single_isbn->text() == "") {
         QMessageBox::warning(this, tr("出错啦"), tr("ISBN编号没有填写哦"));
@@ -73,7 +73,7 @@ void manageBook_Dialog::on_single_add_clicked()
         int msg_ret = QMessageBox::information(this, tr("询问"), tr("您要添加的图书ISBN已经存在，您是否要进行单册图书入库操作？"), QMessageBox::Yes | QMessageBox::No);
         if (msg_ret == QMessageBox::No) return;
         for (int i=0;i<num_total;i++) {
-            QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status,location) VALUES(%1,1,'%2')").arg(isbn).arg(location));
+            QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status,location) VALUES('%1',1,'%2')").arg(isbn).arg(location));
             QSqlQuery(tr("UPDATE qlms_book SET num_total = num_total + 1 WHERE isbn = %1").arg(isbn));
         }
         QMessageBox::information(this, tr("操作成功"), tr("图书已经完成入库操作"));
@@ -82,7 +82,7 @@ void manageBook_Dialog::on_single_add_clicked()
         //新图书哦
         QSqlQuery(tr("INSERT INTO qlms_book (isbn,title,type,pub_press,pub_year,author,price,num_total) VALUES(%1,'%2','%3','%4','%5','%6',%7,%8)").arg(isbn).arg(title).arg(type).arg(pub_press).arg(pub_year).arg(author).arg(price).arg(num_total));
         for (int i=0;i<num_total;i++) {
-            QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status,location) VALUES(%1,1,'%2')").arg(isbn).arg(location));
+            QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status,location) VALUES('%1',1,'%2')").arg(isbn).arg(location));
         }
         QMessageBox::information(this, tr("操作成功"), tr("图书已经完成录入操作"));
     }

@@ -67,7 +67,7 @@ void bookitem_Dialog::on_signal_load_bookItem(int isbn) {
 void bookitem_Dialog::on_bookview_clicked(const QModelIndex &index) {
     if (index.row() == 0) return;
 
-    QSqlQuery query(tr("SELECT id, status FROM qlms_book_item WHERE id = %1").arg(query_list_book[index.row()]));
+    QSqlQuery query(tr("SELECT id, status, isbn FROM qlms_book_item WHERE id = %1").arg(query_list_book[index.row()]));
 
     if (!QLMS.check_isUserLogin()) {
         QMessageBox::warning(this, tr("出错啦"), tr("亲，您还没有登录图书管理系统，不能进行借阅哦"));
@@ -88,7 +88,11 @@ void bookitem_Dialog::on_bookview_clicked(const QModelIndex &index) {
 
         if (QLMS.modify_user_book(1)) {
             QSqlQuery(tr("UPDATE qlms_book_item SET status = 0 WHERE id = %1").arg(query_list_book[index.row()]));
-            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES(%1, %2, 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(QLMS.stuid));
+            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES(%1, '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(QLMS.stuid));
+            QString tmp;
+            tmp[0]=QLMS.stuid[4],tmp[1]=QLMS.stuid[5],tmp[2]=QLMS.stuid[6];
+            QSqlQuery("UPDATE statistics SET s" + tmp + " = s" + tmp +" +1 WHERE isbn = "+query.value(2).toString());
+
             QMessageBox::information(this, tr("借阅成功"), tr("恭喜您，单册读书已经借阅完毕"));
             bookitem_Dialog::on_signal_load_bookItem(global_isbn);
         } else {

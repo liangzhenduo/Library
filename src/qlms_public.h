@@ -36,6 +36,7 @@ public:
 //#include "login_dialog.h"
 #include "user_dialog.h"
 #include "book_dialog.h"
+#include "rank_dialog.h"
 #include "bookitem_dialog.h"
 #include "returnbook_dialog.h"
 #include "usermanagement_dialog.h"

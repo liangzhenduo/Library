@@ -44,6 +44,7 @@ public:
     QLabel *main_user_status_label;
     QLabel *label_logo;
     QPushButton *main_logout_Button;
+    QPushButton *main_ranklist_Button;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -115,6 +116,9 @@ public:
         main_logout_Button = new QPushButton(centralWidget);
         main_logout_Button->setObjectName(QStringLiteral("main_logout_Button"));
         main_logout_Button->setGeometry(QRect(490, 30, 72, 36));
+        main_ranklist_Button = new QPushButton(centralWidget);
+        main_ranklist_Button->setObjectName(QStringLiteral("main_ranklist_Button"));
+        main_ranklist_Button->setGeometry(QRect(30, 160, 121, 41));
         MainWindow->setCentralWidget(centralWidget);
         label_logo->raise();
         main_user_status_label->raise();
@@ -125,6 +129,7 @@ public:
         main_manageBook_Button->raise();
         main_logout_Button->raise();
         login_groupBox->raise();
+        main_ranklist_Button->raise();
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -154,6 +159,7 @@ public:
         main_user_status_label->setText(QString());
         label_logo->setText(QString());
         main_logout_Button->setText(QApplication::translate("MainWindow", "\346\263\250\351\224\200", 0));
+        main_ranklist_Button->setText(QApplication::translate("MainWindow", "\350\256\260\345\275\225\347\273\237\350\256\241", 0));
     } // retranslateUi
 
 };

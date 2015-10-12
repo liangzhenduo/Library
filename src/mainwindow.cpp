@@ -61,10 +61,10 @@ void MainWindow::on_login_action_button_clicked()
             QLMS.isLogin = 1;
             QLMS.stuid = stuid;
             QLMS.name = query.value(2).toString();
+            QLMS.name.replace("\r","");
             QLMS.isAdmin = query.value(5).toInt();
             QLMS.set_number(query.value(3).toInt(), query.value(4).toInt());
-
-            QMessageBox::information(this, tr("Login Succeed"), tr("欢迎 %1 进入天津大学图书馆！").arg(query.value(2).toString()));
+            QMessageBox::information(this, tr("Login Succeed"), tr("欢迎 %1 进入天津大学图书馆！").arg(QLMS.name));
             ui->login_stuid_label->setText("");
             ui->login_password_label->setText("");
             emit signal_change_login_status();
@@ -131,6 +131,12 @@ void MainWindow::on_main_bookSearch_Button_clicked()
 {
     inst_book_Dialog->show();
     emit signal_init_book_dialog();
+}
+
+void MainWindow::on_main_ranklist_Button_clicked()
+{
+    inst_rank_Dialog->show();
+    //emit signal_init_rank_dialog();
 }
 
 void MainWindow::on_signal_show_dialog(int dialog_id) {

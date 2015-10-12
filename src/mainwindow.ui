@@ -233,6 +233,19 @@
      <string>注销</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="main_ranklist_Button">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>记录统计</string>
+    </property>
+   </widget>
    <zorder>label_logo</zorder>
    <zorder>main_user_status_label</zorder>
    <zorder>main_userinfo_Button</zorder>
@@ -242,6 +255,7 @@
    <zorder>main_manageBook_Button</zorder>
    <zorder>main_logout_Button</zorder>
    <zorder>login_groupBox</zorder>
+   <zorder>main_ranklist_Button</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_2">

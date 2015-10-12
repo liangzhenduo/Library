@@ -7,6 +7,7 @@ INPUT(
 ./debug\returnbook_dialog.o
 ./debug\usermanagement_dialog.o
 ./debug\managebook_dialog.o
+./debug\rank_dialog.o
 ./debug\qrc_resource.o
 ./debug\moc_mainwindow.o
 ./debug\moc_user_dialog.o
@@ -15,4 +16,5 @@ INPUT(
 ./debug\moc_returnbook_dialog.o
 ./debug\moc_usermanagement_dialog.o
 ./debug\moc_managebook_dialog.o
+./debug\moc_rank_dialog.o
 );
