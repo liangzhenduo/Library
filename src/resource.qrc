@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>TJU_logo.png</file>
+        <file>TJU_logo1.png</file>
     </qresource>
 </RCC>

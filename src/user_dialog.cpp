@@ -55,7 +55,6 @@ void user_Dialog::on_signal_load_user_dialog() {
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());
         booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toString());
-        //booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toInt() <= 0 ? query_record.value(4).toInt() : tr("已过期"));
         booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toInt() < 0 ? tr("已过期") : query_record.value(4).toString());
 
         i++;

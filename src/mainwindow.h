@@ -47,6 +47,7 @@ signals:
     void signal_change_login_status();
     void signal_load_user_dialog();
     void signal_init_book_dialog();
+    void signal_init_rank_dialog();
 };
 
 extern QLMS_CLASS QLMS;

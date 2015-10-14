@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     inst_user_Dialog = new user_Dialog;
     inst_book_Dialog = new book_Dialog;
+    inst_rank_Dialog = new rank_Dialog;
     inst_bookItem_Dialog = new bookitem_Dialog;
     inst_returnBook_Dialog = new returnBook_Dialog;
     inst_userManagement_Dialog = new userManagement_Dialog;
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(signal_change_login_status()), this, SLOT(on_signal_change_login_status()));
     connect(this, SIGNAL(signal_load_user_dialog()), inst_user_Dialog, SLOT(on_signal_load_user_dialog()));
     connect(this, SIGNAL(signal_init_book_dialog()), inst_book_Dialog, SLOT(on_signal_init_book_dialog()));
+    connect(this, SIGNAL(signal_init_rank_dialog()), inst_rank_Dialog, SLOT(on_signal_init_rank_dialog()));
     connect(inst_book_Dialog, SIGNAL(signal_load_bookItem(int)), inst_bookItem_Dialog, SLOT(on_signal_load_bookItem(int)));
     connect(inst_book_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(on_signal_show_dialog(int)));
     connect(inst_manageBook_Dialog, SIGNAL(signal_load_bookItem(int)), inst_bookItem_Dialog, SLOT(on_signal_load_bookItem(int)));
@@ -101,6 +103,7 @@ void MainWindow::on_signal_change_login_status(){
         strftime(t, 30 , "%Y年%m月%d日 %H:%M:%S", localtime(&now));
         ui->main_user_status_label->setText(tr("账号： %1 【%2】  登录时间： %3").arg(QLMS.stuid).arg(QLMS.name).arg(t));
         ui->main_userinfo_Button->setEnabled(true);
+        ui->main_ranklist_Button->setEnabled(true);
         if (QLMS.isAdmin) {
             ui->main_returnBook_Button->setEnabled(true);
             ui->main_manageBook_Button->setEnabled(true);
@@ -110,6 +113,7 @@ void MainWindow::on_signal_change_login_status(){
         ui->login_groupBox->show();
         ui->main_user_status_label->setText("");
         ui->main_userinfo_Button->setEnabled(false);
+        ui->main_ranklist_Button->setEnabled(false);
         ui->main_returnBook_Button->setEnabled(false);
         ui->main_manageBook_Button->setEnabled(false);
         ui->main_userManagement_Button->setEnabled(false);
@@ -136,7 +140,7 @@ void MainWindow::on_main_bookSearch_Button_clicked()
 void MainWindow::on_main_ranklist_Button_clicked()
 {
     inst_rank_Dialog->show();
-    //emit signal_init_rank_dialog();
+    emit signal_init_rank_dialog();
 }
 
 void MainWindow::on_signal_show_dialog(int dialog_id) {

@@ -51,7 +51,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(644, 418);
+        MainWindow->resize(640, 420);
         QIcon icon;
         icon.addFile(QStringLiteral(":/images/TJU_logo.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -64,19 +64,19 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         main_userinfo_Button = new QPushButton(centralWidget);
         main_userinfo_Button->setObjectName(QStringLiteral("main_userinfo_Button"));
-        main_userinfo_Button->setGeometry(QRect(30, 300, 121, 41));
+        main_userinfo_Button->setGeometry(QRect(30, 210, 120, 40));
         main_bookSearch_Button = new QPushButton(centralWidget);
         main_bookSearch_Button->setObjectName(QStringLiteral("main_bookSearch_Button"));
-        main_bookSearch_Button->setGeometry(QRect(30, 230, 121, 41));
+        main_bookSearch_Button->setGeometry(QRect(30, 150, 120, 40));
         main_returnBook_Button = new QPushButton(centralWidget);
         main_returnBook_Button->setObjectName(QStringLiteral("main_returnBook_Button"));
-        main_returnBook_Button->setGeometry(QRect(490, 180, 121, 41));
+        main_returnBook_Button->setGeometry(QRect(490, 150, 120, 40));
         main_userManagement_Button = new QPushButton(centralWidget);
         main_userManagement_Button->setObjectName(QStringLiteral("main_userManagement_Button"));
-        main_userManagement_Button->setGeometry(QRect(494, 300, 121, 41));
+        main_userManagement_Button->setGeometry(QRect(490, 210, 120, 40));
         main_manageBook_Button = new QPushButton(centralWidget);
         main_manageBook_Button->setObjectName(QStringLiteral("main_manageBook_Button"));
-        main_manageBook_Button->setGeometry(QRect(494, 230, 121, 41));
+        main_manageBook_Button->setGeometry(QRect(490, 270, 120, 40));
         login_groupBox = new QGroupBox(centralWidget);
         login_groupBox->setObjectName(QStringLiteral("login_groupBox"));
         login_groupBox->setEnabled(true);
@@ -111,14 +111,14 @@ public:
         main_user_status_label->setGeometry(QRect(70, 34, 400, 24));
         label_logo = new QLabel(centralWidget);
         label_logo->setObjectName(QStringLiteral("label_logo"));
-        label_logo->setGeometry(QRect(164, 71, 316, 316));
-        label_logo->setStyleSheet(QStringLiteral("background-image: url(:/images/TJU_logo.png);"));
+        label_logo->setGeometry(QRect(162, 72, 316, 316));
+        label_logo->setStyleSheet(QStringLiteral("background-image: url(:/images/TJU_logo1.png);"));
         main_logout_Button = new QPushButton(centralWidget);
         main_logout_Button->setObjectName(QStringLiteral("main_logout_Button"));
         main_logout_Button->setGeometry(QRect(490, 30, 72, 36));
         main_ranklist_Button = new QPushButton(centralWidget);
         main_ranklist_Button->setObjectName(QStringLiteral("main_ranklist_Button"));
-        main_ranklist_Button->setGeometry(QRect(30, 160, 121, 41));
+        main_ranklist_Button->setGeometry(QRect(30, 270, 120, 40));
         MainWindow->setCentralWidget(centralWidget);
         label_logo->raise();
         main_user_status_label->raise();
