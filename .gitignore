@@ -23,6 +23,11 @@ $RECYCLE.BIN/
 # Compile object
 *.o
 
+#Debug File
+*.debug
+
+#Realese File
+*.release
 # =========================
 # Operating System Files
 # =========================
