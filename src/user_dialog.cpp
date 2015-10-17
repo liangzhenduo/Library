@@ -1,6 +1,5 @@
 #include "user_dialog.h"
 #include "ui_user_dialog.h"
-#include <iostream>
 
 using namespace std;
 
@@ -22,7 +21,20 @@ void user_Dialog::on_return_Button_clicked()
     this->close();
 }
 
-void user_Dialog::on_signal_load_user_dialog() {
+void user_Dialog::on_change_Button_clicked()
+{
+    QString old_password,new_password,confirm_password;
+    old_password = ui->old_password->text();
+    QSqlQuery query("SELECT password FROM qlms_user WHERE stuid = "+QLMS.stuid);
+    query.next();
+    if(old_password!=query.value(0)){
+        QMessageBox::warning(this, tr("ERROR"), tr("密码错误！"));
+        return;
+    }
+
+}
+
+void user_Dialog::onsignal_load_user_dialog() {
     QSqlQuery query_user("SELECT qlms_user.name, qlms_user.stuid, department.school, qlms_user.num_borrowed, qlms_user.num_limit FROM qlms_user LEFT JOIN department ON department.code = qlms_user.department WHERE stuid = '" + QLMS.stuid + "';");
     if (!query_user.next()) {
         QMessageBox::warning(this, tr("出错啦"), tr("貌似出现问题咯，您当前所登录的用户在数据库貌似丢失了，请重新登录"));

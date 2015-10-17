@@ -30,13 +30,13 @@ private slots:
     void on_guide_add_batch_clicked();
 
 signals:
-    void signal_load_bookItem(int isbn);
+    void signal_load_item(QString isbn);
     void signal_show_dialog(int dialog_id);
 
 private:
     Ui::manageBook_Dialog *ui;
 
-    int book_isbn[MXN];
+    QString book_isbn[MXN];
     void add_new_book(QString pub_press, QString title, QString type, QString price, QString author, int pub_year, int num_total, QString _isbn);
 };
 

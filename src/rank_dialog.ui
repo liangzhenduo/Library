@@ -28,7 +28,7 @@
    <property name="title">
     <string>图书清单</string>
    </property>
-   <widget class="QTreeView" name="borrowedbookview">
+   <widget class="QTreeView" name="bookrankview">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -39,7 +39,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>13</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="contextMenuPolicy">
@@ -97,16 +97,6 @@
      <string>返回</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="keyword_edit">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>30</y>
-      <width>321</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -119,6 +109,116 @@
     <property name="text">
      <string>学院：</string>
     </property>
+   </widget>
+   <widget class="QComboBox" name="department_select">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>30</y>
+      <width>300</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="currentText">
+     <string/>
+    </property>
+    <property name="currentIndex">
+     <number>-1</number>
+    </property>
+    <property name="maxVisibleItems">
+     <number>18</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>机械学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>精仪学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>自动化学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>电信学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>建工学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>建筑学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>化工学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>材料学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>经管学部</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>理学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>文法学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>教育学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>药学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>环境学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>计算机学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>软件学院</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>生科学院</string>
+     </property>
+    </item>
    </widget>
   </widget>
  </widget>

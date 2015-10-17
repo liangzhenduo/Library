@@ -20,18 +20,17 @@ private slots:
     void on_return_Button_clicked();
     void on_search_Button_clicked();
 
-    void on_signal_init_book_dialog();
-
     void on_borrowedbookview_clicked(const QModelIndex &index);
 
 signals:
-    void signal_load_bookItem(int isbn);
+    void signal_load_item(QString isbn);
     void signal_show_dialog(int dialog_id);
 
 private:
     Ui::book_Dialog *ui;
-
-    int book_isbn[MXN];
+    QString book_isbn[MXN];
+    QStandardItemModel* booklistModel;
+    int line;
 };
 
 #endif // BOOK_DIALOG_H

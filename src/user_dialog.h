@@ -1,8 +1,8 @@
 #ifndef USER_DIALOG_H
 #define USER_DIALOG_H
 
-#include <QDialog>
 #include "qlms_public.h"
+#include <QDialog>
 
 namespace Ui {
 class user_Dialog;
@@ -17,8 +17,9 @@ public:
     ~user_Dialog();
     
 private slots:
+    void on_change_Button_clicked();
     void on_return_Button_clicked();
-    void on_signal_load_user_dialog();
+    void onsignal_load_user_dialog();
 
 private:
     Ui::user_Dialog *ui;

@@ -1,6 +1,4 @@
 #include <QApplication>
-#include <QtWidgets>
-#include <QtSql>
 #include <QSplashScreen>
 #include <iostream>
 #include "qlms_public.h"
@@ -57,7 +55,7 @@ bool QLMS_CLASS::check_DatabaseConnect() {
     return is_connect_database;
 }
 
-bool QLMS_CLASS::check_isUserLogin() {
+bool QLMS_CLASS::check_isLogin() {
     return isLogin;
 }
 

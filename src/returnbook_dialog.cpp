@@ -34,14 +34,14 @@ void returnBook_Dialog::on_search_Button_clicked()
 }
 
 void returnBook_Dialog::action_returnBook(int id) {
-    QSqlQuery query_bookItem(tr("SELECT qlms_record.uuid, qlms_book_item.status, qlms_record.stuid FROM qlms_book_item LEFT JOIN qlms_record ON (qlms_record.status = 0 AND qlms_record.id = qlms_book_item.id) WHERE qlms_book_item.id = %1 ").arg(id));
+    QSqlQuery query_item(tr("SELECT qlms_record.uuid, qlms_book_item.status, qlms_record.stuid FROM qlms_book_item LEFT JOIN qlms_record ON (qlms_record.status = 0 AND qlms_record.id = qlms_book_item.id) WHERE qlms_book_item.id = %1 ").arg(id));
 
-    if (!query_bookItem.next()) {
+    if (!query_item.next()) {
         QMessageBox::warning(this, tr("出错啦"), tr("您要操作的单册图书不存在哦"));
         return;
     }
 
-    if (query_bookItem.value(1).toInt() == 1) {
+    if (query_item.value(1).toInt() == 1) {
         QMessageBox::warning(this, tr("出错啦"), tr("您要操作的单册图书已经在馆"));
         return;
     }
@@ -49,8 +49,8 @@ void returnBook_Dialog::action_returnBook(int id) {
     int msg_ret = QMessageBox::information(this, tr("询问"), tr("请确认图书已经归还完毕"), QMessageBox::Yes | QMessageBox::No);
     if (msg_ret == QMessageBox::No) return;
 
-    QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_bookItem.value(0).toInt()));
-    QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_bookItem.value(2).toString()));
+    QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
+    QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_item.value(2).toString()));
     QSqlQuery(tr("UPDATE qlms_book_item SET status = 1 WHERE id = %1").arg(id));
 
     QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书已经完成单册归还"));

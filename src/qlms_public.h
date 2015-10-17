@@ -29,15 +29,14 @@ public:
     bool initialize_database();
 
     bool check_DatabaseConnect();
-    bool check_isUserLogin();
+    bool check_isLogin();
     bool check_isAdmin();
 };
 
-//#include "login_dialog.h"
 #include "user_dialog.h"
 #include "book_dialog.h"
 #include "rank_dialog.h"
-#include "bookitem_dialog.h"
+#include "item_dialog.h"
 #include "returnbook_dialog.h"
 #include "usermanagement_dialog.h"
 #include "managebook_dialog.h"

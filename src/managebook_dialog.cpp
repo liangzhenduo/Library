@@ -1,8 +1,6 @@
 #include "managebook_dialog.h"
 #include "ui_managebook_dialog.h"
 #include <QFileDialog>
-#include <QFile>
-#include <iostream>
 
 using namespace std;
 
@@ -105,7 +103,7 @@ void manageBook_Dialog::on_guide_booklist_clicked()
 
     while (query.next()) {
         listModel->insertRow(i);
-        book_isbn[i] = query.value(0).toInt();
+        book_isbn[i] = query.value(0).toString();
         listModel->setData(listModel->index(i,0), query.value(0).toString());
         listModel->setData(listModel->index(i,1), query.value(1).toString());
         listModel->setData(listModel->index(i,2), query.value(3).toString());
@@ -125,7 +123,7 @@ void manageBook_Dialog::on_userview_clicked(const QModelIndex &index)
 {
     if (index.row() < 1) return;
 
-    emit signal_load_bookItem(book_isbn[index.row()]);
+    emit signal_load_item(book_isbn[index.row()]);
     emit signal_show_dialog(1);
 }
 

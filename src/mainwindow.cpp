@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QMessageBox>
 #include <ctime>
 #include <cstdlib>
 
@@ -17,21 +16,21 @@ MainWindow::MainWindow(QWidget *parent) :
     inst_user_Dialog = new user_Dialog;
     inst_book_Dialog = new book_Dialog;
     inst_rank_Dialog = new rank_Dialog;
-    inst_bookItem_Dialog = new bookitem_Dialog;
+    inst_item_Dialog = new item_Dialog;
     inst_returnBook_Dialog = new returnBook_Dialog;
     inst_userManagement_Dialog = new userManagement_Dialog;
     inst_manageBook_Dialog = new manageBook_Dialog;
     connect(ui->login_password_label, SIGNAL(returnPressed()), ui->login_action_button, SIGNAL(clicked()), Qt::UniqueConnection);
-    connect(this, SIGNAL(signal_change_login_status()), this, SLOT(on_signal_change_login_status()));
-    connect(this, SIGNAL(signal_load_user_dialog()), inst_user_Dialog, SLOT(on_signal_load_user_dialog()));
-    connect(this, SIGNAL(signal_init_book_dialog()), inst_book_Dialog, SLOT(on_signal_init_book_dialog()));
-    connect(this, SIGNAL(signal_init_rank_dialog()), inst_rank_Dialog, SLOT(on_signal_init_rank_dialog()));
-    connect(inst_book_Dialog, SIGNAL(signal_load_bookItem(int)), inst_bookItem_Dialog, SLOT(on_signal_load_bookItem(int)));
-    connect(inst_book_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(on_signal_show_dialog(int)));
-    connect(inst_manageBook_Dialog, SIGNAL(signal_load_bookItem(int)), inst_bookItem_Dialog, SLOT(on_signal_load_bookItem(int)));
-    connect(inst_manageBook_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(on_signal_show_dialog(int)));
+    connect(this, SIGNAL(signal_change_login_status()), this, SLOT(onsignal_change_login_status()));
+    connect(this, SIGNAL(signal_load_user_dialog()), inst_user_Dialog, SLOT(onsignal_load_user_dialog()));
+    connect(inst_book_Dialog, SIGNAL(signal_load_item(QString)), inst_item_Dialog, SLOT(onsignal_load_item(QString)));
+    connect(inst_book_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(onsignal_show_dialog(int)));
+    connect(inst_rank_Dialog, SIGNAL(signal_load_item(QString)), inst_item_Dialog, SLOT(onsignal_load_item(QString)));
+    connect(inst_rank_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(onsignal_show_dialog(int)));
+    connect(inst_manageBook_Dialog, SIGNAL(signal_load_item(QString)), inst_item_Dialog, SLOT(onsignal_load_item(QString)));
+    connect(inst_manageBook_Dialog, SIGNAL(signal_show_dialog(int)), this, SLOT(onsignal_show_dialog(int)));
 
-    MainWindow::on_signal_change_login_status();
+    MainWindow::onsignal_change_login_status();
 }
 
 MainWindow::~MainWindow() {
@@ -88,14 +87,14 @@ void MainWindow::on_login_action_button_clicked()
 }
 
 void MainWindow::on_main_logout_Button_clicked() {
-    if (QLMS.check_isUserLogin()) {
+    if (QLMS.check_isLogin()) {
         QLMS.user_logout();
-        MainWindow::on_signal_change_login_status();
+        MainWindow::onsignal_change_login_status();
     }
 }
 
-void MainWindow::on_signal_change_login_status(){
-    if (QLMS.check_isUserLogin()) {
+void MainWindow::onsignal_change_login_status(){
+    if (QLMS.check_isLogin()) {
         ui->login_groupBox->hide();
         char *t = (char*)malloc(sizeof(char)*30);
         time_t now;
@@ -122,11 +121,6 @@ void MainWindow::on_signal_change_login_status(){
 
 void MainWindow::on_main_userinfo_Button_clicked()
 {
-    if (!QLMS.check_isUserLogin()) {
-        QMessageBox::warning(this, tr("尚未登录"), tr("亲，您尚未登录求是图书管理系统，请您登录后再查看您的信息"));
-        return;
-    }
-
     inst_user_Dialog->show();
     emit signal_load_user_dialog();
 }
@@ -134,47 +128,32 @@ void MainWindow::on_main_userinfo_Button_clicked()
 void MainWindow::on_main_bookSearch_Button_clicked()
 {
     inst_book_Dialog->show();
-    emit signal_init_book_dialog();
+    //emit signal_init_book_dialog();
 }
 
 void MainWindow::on_main_ranklist_Button_clicked()
 {
     inst_rank_Dialog->show();
-    emit signal_init_rank_dialog();
+    //emit signal_init_rank_dialog();
 }
 
-void MainWindow::on_signal_show_dialog(int dialog_id) {
+void MainWindow::onsignal_show_dialog(int dialog_id) {
     switch (dialog_id) {
-        case 1: inst_bookItem_Dialog->show();
+        case 1: inst_item_Dialog->show();
     }
 }
 
 void MainWindow::on_main_returnBook_Button_clicked()
 {
-    if (!QLMS.check_isUserLogin() || !QLMS.isAdmin) {
-        QMessageBox::warning(this, tr("尚未登录"), tr("亲，您尚未登录求是图书管理系统或者没有管理权限哟"));
-        return;
-    }
-
     inst_returnBook_Dialog->show();
 }
 
 void MainWindow::on_main_userManagement_Button_clicked()
 {
-    if (!QLMS.check_isUserLogin() || !QLMS.isAdmin) {
-        QMessageBox::warning(this, tr("尚未登录"), tr("亲，您尚未登录求是图书管理系统或者没有管理权限哟"));
-        return;
-    }
-
     inst_userManagement_Dialog->show();
 }
 
 void MainWindow::on_main_manageBook_Button_clicked()
 {
-    if (!QLMS.check_isUserLogin() || !QLMS.isAdmin) {
-        QMessageBox::warning(this, tr("尚未登录"), tr("亲，您尚未登录求是图书管理系统或者没有管理权限哟"));
-        return;
-    }
-
     inst_manageBook_Dialog->show();
 }
