@@ -23,6 +23,7 @@ private slots:
 
 private:
     Ui::user_Dialog *ui;
+    QStandardItemModel* booklistModel;
 };
 
 extern QLMS_CLASS QLMS;

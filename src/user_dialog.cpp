@@ -1,8 +1,6 @@
 #include "user_dialog.h"
 #include "ui_user_dialog.h"
 
-using namespace std;
-
 user_Dialog::user_Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::user_Dialog)
@@ -25,13 +23,33 @@ void user_Dialog::on_change_Button_clicked()
 {
     QString old_password,new_password,confirm_password;
     old_password = ui->old_password->text();
+    new_password = ui->new_password->text();
+    confirm_password = ui->confirm_password->text();
     QSqlQuery query("SELECT password FROM qlms_user WHERE stuid = "+QLMS.stuid);
     query.next();
     if(old_password!=query.value(0)){
         QMessageBox::warning(this, tr("ERROR"), tr("密码错误！"));
+        ui->old_password->setText("");
+        ui->old_password->setFocus();
         return;
     }
-
+    if(new_password==""){
+        QMessageBox::warning(this, tr("ERROR"), tr("密码不能为空！"));
+        ui->new_password->setFocus();
+        return;
+    }
+    if(confirm_password!=new_password){
+        QMessageBox::warning(this, tr("ERROR"), tr("请重新确认密码！"));
+        ui->confirm_password->setText("");
+        ui->confirm_password->setFocus();
+        return;
+    }
+    QSqlQuery("UPDATE qlms_user SET password = " + new_password + " WHERE stuid="+ QLMS.stuid);
+    QMessageBox::warning(this, tr("OK"), tr("密码修改成功！"));
+    ui->new_password->setText("");
+    ui->old_password->setText("");
+    ui->confirm_password->setText("");
+    ui->old_password->setFocus();
 }
 
 void user_Dialog::onsignal_load_user_dialog() {
@@ -51,7 +69,7 @@ void user_Dialog::onsignal_load_user_dialog() {
     QSqlQuery query_record(tr("SELECT qlms_record.id, qlms_book.isbn, qlms_book.title, qlms_record.time_borrow, qlms_record.overtime FROM qlms_record LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book_item.isbn WHERE qlms_record.stuid = %1 AND qlms_record.status=0 ORDER BY qlms_record.id DESC").arg(QLMS.stuid));
 
 
-    QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
+    booklistModel=new QStandardItemModel(0,5,this);
     booklistModel->insertRow(0);
     booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
     booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
@@ -59,18 +77,13 @@ void user_Dialog::onsignal_load_user_dialog() {
     booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
     booklistModel->setData(booklistModel->index(0,4), tr("剩余天数"));
 
-    int i(1);
-
-    while (query_record.next()) {
+    for(int i=1;query_record.next();i++) {
         booklistModel->insertRow(i);
         booklistModel->setData(booklistModel->index(i,0), query_record.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());
         booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toString());
         booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toInt() < 0 ? tr("已过期") : query_record.value(4).toString());
-
-        i++;
     }
-
     ui->borrowedbookview->setModel(booklistModel);
 }

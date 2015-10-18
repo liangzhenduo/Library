@@ -37,7 +37,6 @@ void book_Dialog::on_search_Button_clicked()
     for(i=line;i>0;i--)
         booklistModel->removeRow(i);
     QString keyword = ui->keyword_edit->text();
-    keyword.replace("'","");
 
     QSqlQuery query("SELECT isbn, title, author, num_total, pub_press FROM qlms_book WHERE title LIKE '%" + keyword + "%' ORDER BY isbn");
 
@@ -56,7 +55,6 @@ void book_Dialog::on_search_Button_clicked()
 void book_Dialog::on_borrowedbookview_clicked(const QModelIndex &index)
 {
     if (index.row() == 0) return;
-
     emit signal_load_item(book_isbn[index.row()]);
     emit signal_show_dialog(1);
 }

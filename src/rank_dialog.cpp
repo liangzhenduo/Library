@@ -64,7 +64,6 @@ void rank_Dialog::on_search_Button_clicked()
 void rank_Dialog::on_bookrankview_clicked(const QModelIndex &index)
 {
     if (index.row() == 0) return;
-
     emit signal_load_item(book_isbn[index.row()]);
     emit signal_show_dialog(1);
 }
