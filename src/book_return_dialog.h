@@ -1,20 +1,20 @@
-#ifndef RETURNBOOK_DIALOG_H
-#define RETURNBOOK_DIALOG_H
+#ifndef BOOK_RETURN_DIALOG_H
+#define BOOK_RETURN_DIALOG_H
 
-#include "qlms_public.h"
+#include "public.h"
 #include <QDialog>
 
 namespace Ui {
-class returnBook_Dialog;
+class book_return_Dialog;
 }
 
-class returnBook_Dialog : public QDialog
+class book_return_Dialog : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit returnBook_Dialog(QWidget *parent = 0);
-    ~returnBook_Dialog();
+    explicit book_return_Dialog(QWidget *parent = 0);
+    ~book_return_Dialog();
     
 private slots:
     void on_search_Button_clicked();
@@ -24,13 +24,13 @@ private slots:
     void on_return_Button_clicked();
 
 private:
-    Ui::returnBook_Dialog *ui;
+    Ui::book_return_Dialog *ui;
 
     int book_id_list[5000];
     QString last_stuid;
 
-    void action_returnBook(int id);
+    void action_book_return(int id);
     void load_book_list(QString stuid);
 };
 
-#endif // RETURNBOOK_DIALOG_H
+#endif // BOOK_RETURN_DIALOG_H

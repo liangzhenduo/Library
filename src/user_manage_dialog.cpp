@@ -1,21 +1,21 @@
-#include "usermanagement_dialog.h"
-#include "ui_usermanagement_dialog.h"
+#include "user_manage_dialog.h"
+#include "ui_user_manage_dialog.h"
 
-userManagement_Dialog::userManagement_Dialog(QWidget *parent) :
+user_manage_Dialog::user_manage_Dialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::userManagement_Dialog)
+    ui(new Ui::user_manage_Dialog)
 {
     ui->setupUi(this);
 
-    userManagement_Dialog::on_guide_user_Button_clicked();
+    user_manage_Dialog::on_guide_user_Button_clicked();
 }
 
-userManagement_Dialog::~userManagement_Dialog()
+user_manage_Dialog::~user_manage_Dialog()
 {
     delete ui;
 }
 
-void userManagement_Dialog::on_newuser_add_Button_clicked()
+void user_manage_Dialog::on_newuser_add_Button_clicked()
 {
     if (ui->newuser_telnum->text() == "" || ui->newuser_num_limit->text() == ""|| ui->newuser_password->text() == "" || ui->newuser_stuid->text() == "" || ui->newuser_name->text() == "") {
         QMessageBox::warning(this, tr("出错啦"), tr("新用户的具体信息没有填写完整"));
@@ -60,7 +60,7 @@ void userManagement_Dialog::on_newuser_add_Button_clicked()
     QMessageBox::information(this, tr("操作成功"), tr("恭喜您，新用户已经成功创建完毕"));
 }
 
-void userManagement_Dialog::on_guide_user_Button_clicked()
+void user_manage_Dialog::on_guide_user_Button_clicked()
 {
     QSqlQuery query("SELECT qlms_user.stuid, qlms_user.name, department.school, qlms_user.num_borrowed, qlms_user.isadmin FROM qlms_user LEFT JOIN department ON department.code = qlms_user.department ORDER BY stuid;");
 
@@ -94,7 +94,7 @@ void userManagement_Dialog::on_guide_user_Button_clicked()
     ui->group_manageuser->hide();
 }
 
-void userManagement_Dialog::on_guide_overuser_Button_clicked() {
+void user_manage_Dialog::on_guide_overuser_Button_clicked() {
     QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, time_deadline, NOW()) WHERE status = 0;"));
     QSqlQuery query_record(tr("SELECT qlms_book.title, qlms_user.name, qlms_record.stuid, qlms_user.telnum, qlms_record.overtime, qlms_record.status FROM qlms_record LEFT JOIN qlms_user ON qlms_user.stuid = qlms_record.stuid LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book_item.isbn = qlms_book.isbn WHERE qlms_record.status=0 AND qlms_record.overtime>0 ORDER BY qlms_record.overtime DESC"));
 
@@ -126,7 +126,7 @@ void userManagement_Dialog::on_guide_overuser_Button_clicked() {
     ui->group_manageuser->hide();
 }
 
-void userManagement_Dialog::on_guide_newuser_Button_clicked()
+void user_manage_Dialog::on_guide_newuser_Button_clicked()
 {
     ui->group_newuser->show();
     ui->group_overuser->hide();
@@ -134,7 +134,7 @@ void userManagement_Dialog::on_guide_newuser_Button_clicked()
     ui->group_manageuser->hide();
 }
 
-void userManagement_Dialog::on_manageuser_modify_Button_clicked()
+void user_manage_Dialog::on_manageuser_modify_Button_clicked()
 {
     QString stuid = ui->manage_stuid->text();
     int num_limit = ui->manage_num_limit->text().toInt();
@@ -165,10 +165,10 @@ void userManagement_Dialog::on_manageuser_modify_Button_clicked()
     QSqlQuery (tr("UPDATE qlms_user SET name = '%1', department = '%2', password = '%3', num_limit = %4, isadmin = %5 WHERE stuid = %6").arg(name).arg(department).arg(password).arg(num_limit).arg(isAdmin).arg(stuid));
 
     QMessageBox::information(this, tr("修改成功"), tr("恭喜您，已经成功修改完毕"));
-    userManagement_Dialog::on_guide_user_Button_clicked();
+    user_manage_Dialog::on_guide_user_Button_clicked();
 }
 
-void userManagement_Dialog::on_userview_clicked(const QModelIndex &index)
+void user_manage_Dialog::on_userview_clicked(const QModelIndex &index)
 {
 
     if (index.row() < 1) return;
@@ -190,9 +190,9 @@ void userManagement_Dialog::on_userview_clicked(const QModelIndex &index)
     ui->group_user->hide();
 }
 
-void userManagement_Dialog::on_manageuser_delete_Button_clicked() {
+void user_manage_Dialog::on_manageuser_delete_Button_clicked() {
     QString stuid = ui->manage_stuid->text();
-    if(QLMS.stuid==stuid){
+    if(TJUL.stuid==stuid){
         QMessageBox::information(this, tr("ERROR"), tr("无法删除已登录用户！"));
         return;
     }
@@ -200,5 +200,5 @@ void userManagement_Dialog::on_manageuser_delete_Button_clicked() {
     QSqlQuery(tr("DELETE FROM qlms_user WHERE stuid = %1").arg(stuid));
 
     QMessageBox::information(this, tr("删除成功"), tr("用户 %1 已被成功删除！").arg(stuid));
-    userManagement_Dialog::on_guide_user_Button_clicked();
+    user_manage_Dialog::on_guide_user_Button_clicked();
 }

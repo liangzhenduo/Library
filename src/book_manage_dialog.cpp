@@ -1,23 +1,23 @@
-#include "managebook_dialog.h"
-#include "ui_managebook_dialog.h"
+#include "book_manage_dialog.h"
+#include "ui_book_manage_dialog.h"
 #include <QFileDialog>
 
 using namespace std;
 
-manageBook_Dialog::manageBook_Dialog(QWidget *parent) :
+book_manage_Dialog::book_manage_Dialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::manageBook_Dialog)
+    ui(new Ui::book_manage_Dialog)
 {
     ui->setupUi(this);
-    manageBook_Dialog::on_guide_booklist_clicked();
+    book_manage_Dialog::on_guide_booklist_clicked();
 }
 
-manageBook_Dialog::~manageBook_Dialog()
+book_manage_Dialog::~book_manage_Dialog()
 {
     delete ui;
 }
 
-void manageBook_Dialog::on_single_clear_clicked()
+void book_manage_Dialog::on_single_clear_clicked()
 {
     ui->single_location->setText("");
     ui->single_num_total->setText("1");
@@ -30,7 +30,7 @@ void manageBook_Dialog::on_single_clear_clicked()
     ui->single_isbn->setText("");
 }
 
-void manageBook_Dialog::on_single_add_clicked()
+void book_manage_Dialog::on_single_add_clicked()
 {
     QString location = ui->single_location->text();
     QString pub_press = ui->single_pub_press->text();
@@ -39,7 +39,7 @@ void manageBook_Dialog::on_single_add_clicked()
     QString price = ui->single_price->text();
     QString author = ui->single_author->text();
     QString isbn = ui->single_isbn->text();
-    isbn.replace("-","_");
+    //isbn.replace("-","_");
     //_isbn.replace(" ","");
     int pub_year = ui->single_pub_year->text().toInt();
     int num_total = ui->single_num_total->text().toInt();
@@ -78,7 +78,7 @@ void manageBook_Dialog::on_single_add_clicked()
 
     } else {
         //新图书哦
-        QSqlQuery(tr("INSERT INTO qlms_book (isbn,title,type,pub_press,pub_year,author,price,num_total) VALUES(%1,'%2','%3','%4','%5','%6',%7,%8)").arg(isbn).arg(title).arg(type).arg(pub_press).arg(pub_year).arg(author).arg(price).arg(num_total));
+        QSqlQuery(tr("INSERT INTO qlms_book (isbn,title,type,pub_press,pub_year,author,price,num_total) VALUES('%1','%2','%3','%4','%5','%6',%7,%8)").arg(isbn).arg(title).arg(type).arg(pub_press).arg(pub_year).arg(author).arg(price).arg(num_total));
         for (int i=0;i<num_total;i++) {
             QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status,location) VALUES('%1',1,'%2')").arg(isbn).arg(location));
         }
@@ -87,7 +87,7 @@ void manageBook_Dialog::on_single_add_clicked()
 
 }
 
-void manageBook_Dialog::on_guide_booklist_clicked()
+void book_manage_Dialog::on_guide_booklist_clicked()
 {
     QSqlQuery query("SELECT isbn,title,type,pub_press,pub_year,author,price,num_total FROM qlms_book ORDER BY isbn");
 
@@ -119,7 +119,7 @@ void manageBook_Dialog::on_guide_booklist_clicked()
     ui->group_add_single->hide();
 }
 
-void manageBook_Dialog::on_userview_clicked(const QModelIndex &index)
+void book_manage_Dialog::on_userview_clicked(const QModelIndex &index)
 {
     if (index.row() < 1) return;
 
@@ -127,13 +127,13 @@ void manageBook_Dialog::on_userview_clicked(const QModelIndex &index)
     emit signal_show_dialog(1);
 }
 
-void manageBook_Dialog::on_guide_add_single_clicked()
+void book_manage_Dialog::on_guide_add_single_clicked()
 {
     ui->group_add_single->show();
     ui->group_booklist->hide();
 }
 
-void manageBook_Dialog::on_guide_add_batch_clicked()
+void book_manage_Dialog::on_guide_add_batch_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("请选择要批量导入的文件"));
 
@@ -166,7 +166,7 @@ void manageBook_Dialog::on_guide_add_batch_clicked()
 
 }
 
-void manageBook_Dialog::add_new_book(QString pub_press, QString title, QString type, QString price, QString author, int pub_year, int num_total, QString _isbn) {
+void book_manage_Dialog::add_new_book(QString pub_press, QString title, QString type, QString price, QString author, int pub_year, int num_total, QString _isbn) {
 
     _isbn.replace("-","");
     _isbn.replace(" ","");
@@ -201,6 +201,6 @@ void manageBook_Dialog::add_new_book(QString pub_press, QString title, QString t
         }
     }
 
-    manageBook_Dialog::on_guide_booklist_clicked();
+    book_manage_Dialog::on_guide_booklist_clicked();
     QMessageBox::information(this, tr("操作成功"), tr("恭喜您，已经完成图书批量录入工作"));
 }

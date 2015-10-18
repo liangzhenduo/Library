@@ -1,20 +1,20 @@
-#ifndef USERMANAGEMENT_DIALOG_H
-#define USERMANAGEMENT_DIALOG_H
+#ifndef USER_MANAGE_DIALOG_H
+#define USER_MANAGE_DIALOG_H
 
-#include "qlms_public.h"
+#include "public.h"
 #include <QDialog>
 
 namespace Ui {
-class userManagement_Dialog;
+class user_manage_Dialog;
 }
 
-class userManagement_Dialog : public QDialog
+class user_manage_Dialog : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit userManagement_Dialog(QWidget *parent = 0);
-    ~userManagement_Dialog();
+    explicit user_manage_Dialog(QWidget *parent = 0);
+    ~user_manage_Dialog();
     
 private slots:
     void on_newuser_add_Button_clicked();
@@ -32,10 +32,10 @@ private slots:
     void on_manageuser_delete_Button_clicked();
 
 private:
-    Ui::userManagement_Dialog *ui;
+    Ui::user_manage_Dialog *ui;
     QString user_list_stuid[5000];
 
 };
 
-#endif // USERMANAGEMENT_DIALOG_H
+#endif // USER_MANAGE_DIALOG_H
 

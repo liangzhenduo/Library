@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>returnBook_Dialog</class>
- <widget class="QDialog" name="returnBook_Dialog">
+ <class>book_return_Dialog</class>
+ <widget class="QDialog" name="book_return_Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>

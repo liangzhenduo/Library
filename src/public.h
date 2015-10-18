@@ -1,5 +1,5 @@
-#ifndef QLMS_PUBLIC_H
-#define QLMS_PUBLIC_H
+#ifndef PUBLIC_H
+#define PUBLIC_H
 
 #include <QMainWindow>
 #include <QMessageBox>
@@ -10,7 +10,7 @@
 
 #define MXN 5000
 
-class QLMS_CLASS {
+class TJUL_CLASS {
 
 private:
     bool is_connect_database;
@@ -37,8 +37,8 @@ public:
 #include "book_dialog.h"
 #include "rank_dialog.h"
 #include "item_dialog.h"
-#include "returnbook_dialog.h"
-#include "usermanagement_dialog.h"
-#include "managebook_dialog.h"
+#include "book_return_dialog.h"
+#include "user_manage_dialog.h"
+#include "book_manage_dialog.h"
 
-#endif // QLMS_PUBLIC_H
+#endif // PUBLIC_H

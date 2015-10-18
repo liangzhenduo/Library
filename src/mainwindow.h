@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "qlms_public.h"
+#include "public.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -21,9 +21,9 @@ private:
     book_Dialog* inst_book_Dialog;
     rank_Dialog* inst_rank_Dialog;
     item_Dialog* inst_item_Dialog;
-    returnBook_Dialog* inst_returnBook_Dialog;
-    userManagement_Dialog* inst_userManagement_Dialog;
-    manageBook_Dialog* inst_manageBook_Dialog;
+    book_return_Dialog* inst_book_return_Dialog;
+    user_manage_Dialog* inst_user_manage_Dialog;
+    book_manage_Dialog* inst_book_manage_Dialog;
 
 private slots:
     void on_login_action_button_clicked();
@@ -38,7 +38,7 @@ private slots:
 
     void on_main_returnBook_Button_clicked();
 
-    void on_main_userManagement_Button_clicked();
+    void on_main_manageUser_Button_clicked();
 
     void on_main_manageBook_Button_clicked();
 
@@ -47,7 +47,7 @@ signals:
     void signal_load_user_dialog();
 };
 
-extern QLMS_CLASS QLMS;
+extern TJUL_CLASS TJUL;
 extern bool isLogin;
 
 #endif // MAINWINDOW_H

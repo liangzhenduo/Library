@@ -1,8 +1,8 @@
-#include "returnbook_dialog.h"
-#include "ui_returnbook_dialog.h"
+#include "book_return_dialog.h"
+#include "ui_book_return_dialog.h"
 
-returnBook_Dialog::returnBook_Dialog(QWidget *parent):
-QDialog(parent),ui(new Ui::returnBook_Dialog){
+book_return_Dialog::book_return_Dialog(QWidget *parent):
+QDialog(parent),ui(new Ui::book_return_Dialog){
     ui->setupUi(this);
 
     QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
@@ -16,11 +16,11 @@ QDialog(parent),ui(new Ui::returnBook_Dialog){
     ui->borrowedbookview->setModel(booklistModel);
 }
 
-returnBook_Dialog::~returnBook_Dialog() {
+book_return_Dialog::~book_return_Dialog() {
     delete ui;
 }
 
-void returnBook_Dialog::on_search_Button_clicked()
+void book_return_Dialog::on_search_Button_clicked()
 {
     if (ui->stuid_label->text() == "") {
         QMessageBox::warning(this, tr("出错啦"), tr("借书者学号尚未输入，不能进行单用户操作哦"));
@@ -30,10 +30,10 @@ void returnBook_Dialog::on_search_Button_clicked()
     QString stuid = ui->stuid_label->text();
     last_stuid = stuid;
 
-    returnBook_Dialog::load_book_list(last_stuid);
+    book_return_Dialog::load_book_list(last_stuid);
 }
 
-void returnBook_Dialog::action_returnBook(int id) {
+void book_return_Dialog::action_book_return(int id) {
     QSqlQuery query_item(tr("SELECT qlms_record.uuid, qlms_book_item.status, qlms_record.stuid FROM qlms_book_item LEFT JOIN qlms_record ON (qlms_record.status = 0 AND qlms_record.id = qlms_book_item.id) WHERE qlms_book_item.id = %1 ").arg(id));
 
     if (!query_item.next()) {
@@ -54,27 +54,27 @@ void returnBook_Dialog::action_returnBook(int id) {
     QSqlQuery(tr("UPDATE qlms_book_item SET status = 1 WHERE id = %1").arg(id));
 
     QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书已经完成单册归还"));
-    returnBook_Dialog::load_book_list(last_stuid);
+    book_return_Dialog::load_book_list(last_stuid);
 }
 
-void returnBook_Dialog::on_borrowedbookview_clicked(const QModelIndex &index)
+void book_return_Dialog::on_borrowedbookview_clicked(const QModelIndex &index)
 {
     if (index.row() <=0 ) return;
 
-    returnBook_Dialog::action_returnBook(book_id_list[index.row()]);
+    book_return_Dialog::action_book_return(book_id_list[index.row()]);
 }
 
-void returnBook_Dialog::on_return_Button_clicked()
+void book_return_Dialog::on_return_Button_clicked()
 {
     if (ui->bookId_label->text() == "") {
         QMessageBox::warning(this, tr("出错啦"), tr("您还没有填写要归还的图书编号"));
         return;
     }
 
-    returnBook_Dialog::action_returnBook(ui->bookId_label->text().toInt());
+    book_return_Dialog::action_book_return(ui->bookId_label->text().toInt());
 }
 
-void returnBook_Dialog::load_book_list(QString stuid) {
+void book_return_Dialog::load_book_list(QString stuid) {
 
     QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
     booklistModel->insertRow(0);

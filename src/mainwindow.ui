@@ -57,7 +57,7 @@
      <string>管理还书</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="main_userManagement_Button">
+   <widget class="QPushButton" name="main_manageUser_Button">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -251,7 +251,7 @@
    <zorder>main_userinfo_Button</zorder>
    <zorder>main_bookSearch_Button</zorder>
    <zorder>main_returnBook_Button</zorder>
-   <zorder>main_userManagement_Button</zorder>
+   <zorder>main_manageUser_Button</zorder>
    <zorder>main_manageBook_Button</zorder>
    <zorder>main_logout_Button</zorder>
    <zorder>login_groupBox</zorder>

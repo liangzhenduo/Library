@@ -33,7 +33,7 @@ public:
     QPushButton *main_userinfo_Button;
     QPushButton *main_bookSearch_Button;
     QPushButton *main_returnBook_Button;
-    QPushButton *main_userManagement_Button;
+    QPushButton *main_manageUser_Button;
     QPushButton *main_manageBook_Button;
     QGroupBox *login_groupBox;
     QLineEdit *login_stuid_label;
@@ -71,9 +71,9 @@ public:
         main_returnBook_Button = new QPushButton(centralWidget);
         main_returnBook_Button->setObjectName(QStringLiteral("main_returnBook_Button"));
         main_returnBook_Button->setGeometry(QRect(490, 150, 120, 40));
-        main_userManagement_Button = new QPushButton(centralWidget);
-        main_userManagement_Button->setObjectName(QStringLiteral("main_userManagement_Button"));
-        main_userManagement_Button->setGeometry(QRect(490, 210, 120, 40));
+        main_manageUser_Button = new QPushButton(centralWidget);
+        main_manageUser_Button->setObjectName(QStringLiteral("main_manageUser_Button"));
+        main_manageUser_Button->setGeometry(QRect(490, 210, 120, 40));
         main_manageBook_Button = new QPushButton(centralWidget);
         main_manageBook_Button->setObjectName(QStringLiteral("main_manageBook_Button"));
         main_manageBook_Button->setGeometry(QRect(490, 270, 120, 40));
@@ -125,7 +125,7 @@ public:
         main_userinfo_Button->raise();
         main_bookSearch_Button->raise();
         main_returnBook_Button->raise();
-        main_userManagement_Button->raise();
+        main_manageUser_Button->raise();
         main_manageBook_Button->raise();
         main_logout_Button->raise();
         login_groupBox->raise();
@@ -150,7 +150,7 @@ public:
         main_userinfo_Button->setText(QApplication::translate("MainWindow", "\347\224\250\346\210\267\344\277\241\346\201\257", 0));
         main_bookSearch_Button->setText(QApplication::translate("MainWindow", "\345\233\276\344\271\246\346\243\200\347\264\242", 0));
         main_returnBook_Button->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\350\277\230\344\271\246", 0));
-        main_userManagement_Button->setText(QApplication::translate("MainWindow", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
+        main_manageUser_Button->setText(QApplication::translate("MainWindow", "\347\224\250\346\210\267\347\256\241\347\220\206", 0));
         main_manageBook_Button->setText(QApplication::translate("MainWindow", "\345\233\276\344\271\246\347\256\241\347\220\206", 0));
         login_groupBox->setTitle(QApplication::translate("MainWindow", "\347\263\273\347\273\237\347\231\273\345\275\225", 0));
         label_2->setText(QApplication::translate("MainWindow", "\350\264\246\345\217\267\357\274\232", 0));

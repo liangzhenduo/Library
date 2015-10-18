@@ -1,7 +1,7 @@
 #ifndef ITEM_DIALOG_H
 #define ITEM_DIALOG_H
 
-#include "qlms_public.h"
+#include "public.h"
 #include <QDialog>
 
 namespace Ui {

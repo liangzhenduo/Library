@@ -1,7 +1,7 @@
 #ifndef RANK_DIALOG_H
 #define RANK_DIALOG_H
 
-#include "qlms_public.h"
+#include "public.h"
 #include <QDialog>
 
 namespace Ui {

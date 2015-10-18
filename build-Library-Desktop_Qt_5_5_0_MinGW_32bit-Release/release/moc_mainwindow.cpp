@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[15];
-    char stringdata0[388];
+    char stringdata0[384];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,8 +42,8 @@ QT_MOC_LITERAL(9, 222, 28), // "onsignal_change_login_status"
 QT_MOC_LITERAL(10, 251, 20), // "onsignal_show_dialog"
 QT_MOC_LITERAL(11, 272, 9), // "dialog_id"
 QT_MOC_LITERAL(12, 282, 33), // "on_main_returnBook_Button_cli..."
-QT_MOC_LITERAL(13, 316, 37), // "on_main_userManagement_Button..."
-QT_MOC_LITERAL(14, 354, 33) // "on_main_manageBook_Button_cli..."
+QT_MOC_LITERAL(13, 316, 33), // "on_main_manageUser_Button_cli..."
+QT_MOC_LITERAL(14, 350, 33) // "on_main_manageBook_Button_cli..."
 
     },
     "MainWindow\0signal_change_login_status\0"
@@ -56,7 +56,7 @@ QT_MOC_LITERAL(14, 354, 33) // "on_main_manageBook_Button_cli..."
     "onsignal_change_login_status\0"
     "onsignal_show_dialog\0dialog_id\0"
     "on_main_returnBook_Button_clicked\0"
-    "on_main_userManagement_Button_clicked\0"
+    "on_main_manageUser_Button_clicked\0"
     "on_main_manageBook_Button_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -125,7 +125,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->onsignal_change_login_status(); break;
         case 8: _t->onsignal_show_dialog((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 9: _t->on_main_returnBook_Button_clicked(); break;
-        case 10: _t->on_main_userManagement_Button_clicked(); break;
+        case 10: _t->on_main_manageUser_Button_clicked(); break;
         case 11: _t->on_main_manageBook_Button_clicked(); break;
         default: ;
         }

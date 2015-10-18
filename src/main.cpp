@@ -1,16 +1,16 @@
 #include <QApplication>
 #include <QSplashScreen>
 #include <iostream>
-#include "qlms_public.h"
+#include "public.h"
 #include "mainwindow.h"
 
 using namespace std;
 
-QLMS_CLASS QLMS;
+TJUL_CLASS TJUL;
 
 int main(int argc, char *argv[]) {
-    QLMS.initialize_database();
-
+    TJUL.initialize_database();
+    QApplication::addLibraryPath(".");
     QApplication app(argc, argv);
     QSplashScreen *splash=new QSplashScreen;
     splash->setPixmap(QPixmap(":/images/TJU_logo.png"));
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     return app.exec();
 }
 
-void QLMS_CLASS::user_logout() {
+void TJUL_CLASS::user_logout() {
     isLogin = 0;
     isAdmin = 0;
     stuid = "";
@@ -34,7 +34,7 @@ void QLMS_CLASS::user_logout() {
     num_limit = 0;
 }
 
-bool QLMS_CLASS::initialize_database() {
+bool TJUL_CLASS::initialize_database() {
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName("Driver={MySQL ODBC 5.3 Unicode Driver};SERVER=127.0.0.1;DATABASE=dbms;UID=root;Pwd=password");
 
@@ -51,19 +51,19 @@ bool QLMS_CLASS::initialize_database() {
     return 1;
 }
 
-bool QLMS_CLASS::check_DatabaseConnect() {
+bool TJUL_CLASS::check_DatabaseConnect() {
     return is_connect_database;
 }
 
-bool QLMS_CLASS::check_isLogin() {
+bool TJUL_CLASS::check_isLogin() {
     return isLogin;
 }
 
-bool QLMS_CLASS::check_isAdmin() {
+bool TJUL_CLASS::check_isAdmin() {
     return isAdmin;
 }
 
-bool QLMS_CLASS::modify_user_book(int num) {
+bool TJUL_CLASS::modify_user_book(int num) {
     if (!isLogin)
         return 0;
 
@@ -81,7 +81,7 @@ bool QLMS_CLASS::modify_user_book(int num) {
     return 1;
 }
 
-void QLMS_CLASS::set_number(int _num_borrowed, int _num_limit) {
+void TJUL_CLASS::set_number(int _num_borrowed, int _num_limit) {
     if (_num_borrowed >= 0)
         num_borrowed = _num_borrowed;
 

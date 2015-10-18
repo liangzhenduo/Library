@@ -1,7 +1,7 @@
 #ifndef USER_DIALOG_H
 #define USER_DIALOG_H
 
-#include "qlms_public.h"
+#include "public.h"
 #include <QDialog>
 
 namespace Ui {
@@ -26,6 +26,6 @@ private:
     QStandardItemModel* booklistModel;
 };
 
-extern QLMS_CLASS QLMS;
+extern TJUL_CLASS TJUL;
 
 #endif // USER_DIALOG_H

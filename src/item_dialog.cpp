@@ -69,7 +69,7 @@ void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
 
     QSqlQuery query(tr("SELECT id, status, isbn FROM qlms_book_item WHERE id = %1").arg(query_list_book[index.row()]));
 
-    if (!QLMS.check_isLogin()) {
+    if (!TJUL.check_isLogin()) {
         QMessageBox::warning(this, tr("出错啦"), tr("亲，您还没有登录图书管理系统，不能进行借阅哦"));
         return;
     }
@@ -86,10 +86,10 @@ void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
         int msg_ret = QMessageBox::information(this, tr("询问"), tr("您是否要借阅该册图书？"), QMessageBox::Yes | QMessageBox::No);
         if (msg_ret == QMessageBox::No) return;
 
-        if (QLMS.modify_user_book(1)) {
+        if (TJUL.modify_user_book(1)) {
             QSqlQuery(tr("UPDATE qlms_book_item SET status = 0 WHERE id = %1").arg(query_list_book[index.row()]));
-            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES(%1, '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(QLMS.stuid));
-            QSqlQuery query_depart("SELECT department FROM qlms_user WHERE stuid = "+QLMS.stuid);
+            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES(%1, '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(TJUL.stuid));
+            QSqlQuery query_depart("SELECT department FROM qlms_user WHERE stuid = "+TJUL.stuid);
             query_depart.next();
             QString tmp=query_depart.value(0).toString();
             QSqlQuery("UPDATE statistics SET s" + tmp + " = s" + tmp +" +1 WHERE isbn = "+query.value(2).toString());
