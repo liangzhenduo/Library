@@ -28,7 +28,7 @@ void user_Dialog::on_change_Button_clicked()
     QSqlQuery query("SELECT password FROM qlms_user WHERE stuid = "+TJUL.stuid);
     query.next();
     if(old_password!=query.value(0)){
-        QMessageBox::warning(this, tr("ERROR"), tr("密码错误！"));
+        QMessageBox::warning(this, tr("ERROR"), tr("原始密码错误！"));
         ui->old_password->setText("");
         ui->old_password->setFocus();
         return;

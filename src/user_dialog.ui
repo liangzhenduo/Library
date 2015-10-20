@@ -41,10 +41,10 @@
    <widget class="QLineEdit" name="old_password">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>30</y>
-      <width>113</width>
-      <height>20</height>
+      <x>400</x>
+      <y>25</y>
+      <width>128</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="echoMode">
@@ -54,10 +54,10 @@
    <widget class="QLineEdit" name="new_password">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>400</x>
       <y>60</y>
-      <width>113</width>
-      <height>20</height>
+      <width>128</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="echoMode">
@@ -67,10 +67,10 @@
    <widget class="QLineEdit" name="confirm_password">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>90</y>
-      <width>113</width>
-      <height>20</height>
+      <x>400</x>
+      <y>95</y>
+      <width>128</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="echoMode">
@@ -80,10 +80,10 @@
    <widget class="QPushButton" name="change_Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>120</y>
-      <width>75</width>
-      <height>23</height>
+      <x>380</x>
+      <y>125</y>
+      <width>96</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
@@ -93,7 +93,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>330</x>
       <y>30</y>
       <width>54</width>
       <height>12</height>
@@ -106,8 +106,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>60</y>
+      <x>330</x>
+      <y>65</y>
       <width>54</width>
       <height>12</height>
      </rect>
@@ -119,7 +119,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>330</x>
       <y>100</y>
       <width>54</width>
       <height>12</height>
