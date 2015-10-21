@@ -43,10 +43,8 @@ void book_manage_Dialog::on_single_add_clicked()
                 ui->single_num->setFocus();
                 return;
             }
-            for (int i=0;i<num;i++) {
-                QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status) VALUES('%1',1,'%2')").arg(isbn));
-
-            }
+            for (int i=cur_num;i<num+cur_num;i++)
+                QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
             QSqlQuery(tr("UPDATE qlms_book SET num_total = num_total + %1 WHERE isbn = '%2'").arg(ui->single_num->currentText()).arg(isbn));
             QMessageBox::information(this, tr("操作成功"), tr("图书已经完成入库操作"));
 
@@ -102,7 +100,7 @@ void book_manage_Dialog::on_single_add_clicked()
 
     QSqlQuery(tr("INSERT INTO qlms_book (isbn, title, type, pub_press, pub_year, author, price, num_total) VALUES('%1', '%2', '%3', '%4', %5, '%6', %7, %8)").arg(isbn).arg(title).arg(type).arg(press).arg(year).arg(author).arg(price).arg(num));
     for (int i=0;i<num;i++)
-        QSqlQuery(tr("INSERT INTO qlms_book_item (isbn,status) VALUES('%1',1,'%2')").arg(isbn));
+        QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
     QMessageBox::information(this, tr("操作成功"), tr("图书已经完成录入操作"));
 
     ui->single_num->setCurrentIndex(0);

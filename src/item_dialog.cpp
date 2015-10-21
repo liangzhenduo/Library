@@ -35,7 +35,7 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 
     ui->item_label->setText(html);
 
-    QSqlQuery query_list(tr("SELECT qlms_book_item.id, qlms_book_item.location, qlms_book_item.status, qlms_user.name FROM qlms_book_item LEFT JOIN qlms_record ON (qlms_record.id = qlms_book_item.id AND qlms_record.status = 0) LEFT JOIN qlms_user ON (qlms_user.stuid = qlms_record.stuid) WHERE isbn = %1 ORDER BY status, id;").arg(isbn));
+    QSqlQuery query_list(tr("SELECT qlms_book_item.id, qlms_book.type, qlms_book_item.status, qlms_user.name FROM qlms_book_item LEFT JOIN qlms_book ON (qlms_book_item.isbn=qlms.book_isbn) LEFT JOIN qlms_record ON (qlms_record.id = qlms_book_item.id AND qlms_record.status = 0) LEFT JOIN qlms_user ON (qlms_user.stuid = qlms_record.stuid) WHERE isbn = %1 ORDER BY status, id;").arg(isbn));
 
     QStandardItemModel* booklistModel=new QStandardItemModel(0,4,this);
     booklistModel->insertRow(0);
