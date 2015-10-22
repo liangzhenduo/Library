@@ -18,7 +18,7 @@ void item_Dialog::onsignal_load_item(QString isbn) {
     QSqlQuery query("SELECT title, isbn, type, pub_press, pub_year, author, price, num_total FROM qlms_book WHERE isbn = '"+global_isbn+"'");
 
     if (!query.next()) {
-        QMessageBox::warning(this, tr("出错啦"), tr("您要查询的图书不存在哦，可能程序出现了问题"));
+        QMessageBox::warning(this, tr("ERROR"), tr("未检索到该记录！"));
         this->close();
         return;
     }

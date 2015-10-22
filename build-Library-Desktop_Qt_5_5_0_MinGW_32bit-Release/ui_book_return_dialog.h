@@ -80,7 +80,7 @@ public:
 
     void retranslateUi(QDialog *book_return_Dialog)
     {
-        book_return_Dialog->setWindowTitle(QApplication::translate("book_return_Dialog", "\345\233\276\344\271\246\345\275\222\350\277\230 - \346\261\202\346\230\257\345\233\276\344\271\246\347\256\241\347\220\206\347\263\273\347\273\237", 0));
+        book_return_Dialog->setWindowTitle(QApplication::translate("book_return_Dialog", "\347\256\241\347\220\206\350\277\230\344\271\246", 0));
         groupBox->setTitle(QApplication::translate("book_return_Dialog", "\347\256\241\347\220\206\351\200\211\351\241\271", 0));
         search_Button->setText(QApplication::translate("book_return_Dialog", "\346\237\245\350\257\242\345\215\225\347\224\250\346\210\267", 0));
         return_Button->setText(QApplication::translate("book_return_Dialog", "\345\215\225\345\206\214\345\275\222\350\277\230", 0));

@@ -19,7 +19,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -45,7 +44,7 @@ public:
     QLabel *label_logo;
     QPushButton *main_logout_Button;
     QPushButton *main_ranklist_Button;
-    QStatusBar *statusBar;
+    QLabel *label;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -119,6 +118,10 @@ public:
         main_ranklist_Button = new QPushButton(centralWidget);
         main_ranklist_Button->setObjectName(QStringLiteral("main_ranklist_Button"));
         main_ranklist_Button->setGeometry(QRect(30, 270, 120, 40));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setEnabled(false);
+        label->setGeometry(QRect(168, 396, 304, 24));
         MainWindow->setCentralWidget(centralWidget);
         label_logo->raise();
         main_user_status_label->raise();
@@ -130,9 +133,7 @@ public:
         main_logout_Button->raise();
         login_groupBox->raise();
         main_ranklist_Button->raise();
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
+        label->raise();
 
         retranslateUi(MainWindow);
 
@@ -160,6 +161,7 @@ public:
         label_logo->setText(QString());
         main_logout_Button->setText(QApplication::translate("MainWindow", "\346\263\250\351\224\200", 0));
         main_ranklist_Button->setText(QApplication::translate("MainWindow", "\350\256\260\345\275\225\347\273\237\350\256\241", 0));
+        label->setText(QApplication::translate("MainWindow", "Copyright \302\2512015 Zhenduo Liang, All Rights Reserved", 0));
     } // retranslateUi
 
 };

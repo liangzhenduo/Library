@@ -246,6 +246,22 @@
      <string>记录统计</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>168</x>
+      <y>396</y>
+      <width>304</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Copyright ©2015 Zhenduo Liang, All Rights Reserved</string>
+    </property>
+   </widget>
    <zorder>label_logo</zorder>
    <zorder>main_user_status_label</zorder>
    <zorder>main_userinfo_Button</zorder>
@@ -256,8 +272,8 @@
    <zorder>main_logout_Button</zorder>
    <zorder>login_groupBox</zorder>
    <zorder>main_ranklist_Button</zorder>
+   <zorder>label</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="action_2">
    <property name="text">
     <string>登录</string>

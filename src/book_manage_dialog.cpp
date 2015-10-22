@@ -1,6 +1,5 @@
 #include "book_manage_dialog.h"
 #include "ui_book_manage_dialog.h"
-#include <QFileDialog>
 
 book_manage_Dialog::book_manage_Dialog(QWidget *parent) :
     QDialog(parent),
@@ -39,14 +38,19 @@ void book_manage_Dialog::on_single_add_clicked()
             int msg_ret = QMessageBox::information(this, tr("WARNING"), tr("该图书当前馆藏%1本，是否继续添加？").arg(cur_num), QMessageBox::Yes | QMessageBox::No);
             if (msg_ret == QMessageBox::No) return;
             if(num + cur_num > 10) {
-                QMessageBox::warning(this, tr("ERROR"), tr("图书数量超出限制，请重新选择数量！"));
+                QMessageBox::warning(this, tr("ERROR"), tr("图书超出数量限制，请重新选择数量！"));
                 ui->single_num->setFocus();
                 return;
             }
-            for (int i=cur_num;i<num+cur_num;i++)
-                QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
+            for (int i=0;num&&i<10;i++){
+                QSqlQuery query_item(tr("SELECT * FROM qlms_book_item WHERE id = '%1(%2)'").arg(isbn).arg(i));
+                if(!query_item.next()){
+                    QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
+                    num--;
+                }
+            }
             QSqlQuery(tr("UPDATE qlms_book SET num_total = num_total + %1 WHERE isbn = '%2'").arg(ui->single_num->currentText()).arg(isbn));
-            QMessageBox::information(this, tr("操作成功"), tr("图书已经完成入库操作"));
+            QMessageBox::information(this, tr("SUCCESS"), tr("图书添加成功！"));
 
             ui->single_num->setCurrentIndex(0);
             ui->single_price->setText("");
@@ -101,7 +105,7 @@ void book_manage_Dialog::on_single_add_clicked()
     QSqlQuery(tr("INSERT INTO qlms_book (isbn, title, type, pub_press, pub_year, author, price, num_total) VALUES('%1', '%2', '%3', '%4', %5, '%6', %7, %8)").arg(isbn).arg(title).arg(type).arg(press).arg(year).arg(author).arg(price).arg(num));
     for (int i=0;i<num;i++)
         QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
-    QMessageBox::information(this, tr("操作成功"), tr("图书已经完成录入操作"));
+    QMessageBox::information(this, tr("SUCCESS"), tr("图书添加成功！"));
 
     ui->single_num->setCurrentIndex(0);
     ui->single_price->setText("");
@@ -125,9 +129,7 @@ void book_manage_Dialog::on_guide_booklist_clicked()
     listModel->setData(listModel->index(0,3), tr("作者"));
     listModel->setData(listModel->index(0,4), tr("数量"));
 
-    int i(1);
-
-    while (query.next()) {
+    for (int i=1;query.next();i++) {
         listModel->insertRow(i);
         book_isbn[i] = query.value(0).toString();
         listModel->setData(listModel->index(i,0), query.value(0).toString());
@@ -135,8 +137,6 @@ void book_manage_Dialog::on_guide_booklist_clicked()
         listModel->setData(listModel->index(i,2), query.value(3).toString());
         listModel->setData(listModel->index(i,3), query.value(5).toString());
         listModel->setData(listModel->index(i,4), query.value(7).toString());
-
-        i++;
     }
 
     ui->userview->setModel(listModel);

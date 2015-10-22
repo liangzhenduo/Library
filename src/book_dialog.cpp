@@ -49,6 +49,8 @@ void book_Dialog::on_search_Button_clicked()
         booklistModel->setData(booklistModel->index(i,3), query.value(3).toString());
         booklistModel->setData(booklistModel->index(i,4), query.value(4).toString());
     }
+    if(i==1)
+        QMessageBox::warning(this, tr("WARNING"), tr("未检索到符合条件的记录！"));
     line=i-1;
 }
 

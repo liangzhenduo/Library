@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>图书归还 - 求是图书管理系统</string>
+   <string>管理还书</string>
   </property>
   <widget class="QTreeView" name="borrowedbookview">
    <property name="geometry">
