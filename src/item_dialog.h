@@ -18,7 +18,7 @@ public:
     
 private:
     Ui::item_Dialog *ui;
-    int query_list_book[MXN];
+    QString query_list_book[MXN];
     QString global_isbn;
 
 private slots:

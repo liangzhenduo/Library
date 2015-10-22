@@ -26,10 +26,10 @@ private slots:
 private:
     Ui::book_return_Dialog *ui;
 
-    int book_id_list[5000];
+    QString book_id_list[5000];
     QString last_stuid;
 
-    void action_book_return(int id);
+    void action_book_return(QString id);
     void load_book_list(QString stuid);
 };
 

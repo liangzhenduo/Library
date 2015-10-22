@@ -33,8 +33,8 @@ void book_return_Dialog::on_search_Button_clicked()
     book_return_Dialog::load_book_list(last_stuid);
 }
 
-void book_return_Dialog::action_book_return(int id) {
-    QSqlQuery query_item(tr("SELECT qlms_record.uuid, qlms_book_item.status, qlms_record.stuid FROM qlms_book_item LEFT JOIN qlms_record ON (qlms_record.status = 0 AND qlms_record.id = qlms_book_item.id) WHERE qlms_book_item.id = %1 ").arg(id));
+void book_return_Dialog::action_book_return(QString id) {
+    QSqlQuery query_item(tr("SELECT qlms_record.uuid, qlms_book_item.status, qlms_record.stuid, qlms_book_item.isbn FROM qlms_book_item LEFT JOIN qlms_record ON (qlms_record.status = 0 AND qlms_record.id = qlms_book_item.id) WHERE qlms_book_item.id = '%1' ").arg(id));
 
     if (!query_item.next()) {
         QMessageBox::warning(this, tr("出错啦"), tr("您要操作的单册图书不存在哦"));
@@ -46,20 +46,41 @@ void book_return_Dialog::action_book_return(int id) {
         return;
     }
 
-    int msg_ret = QMessageBox::information(this, tr("询问"), tr("请确认图书已经归还完毕"), QMessageBox::Yes | QMessageBox::No);
-    if (msg_ret == QMessageBox::No) return;
+    QMessageBox box;//=(QMessageBox::question(this, tr("询问"), tr("进行哪种操作？")));
+    box.setText(tr("请选择要对该书进行的操作："));
+    box.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    box.setButtonText(QMessageBox::Save,QString("归还"));
+    box.setButtonText(QMessageBox::Discard,QString("淘汰"));
+    box.setButtonText(QMessageBox::Cancel,QString("修补"));
+    int msg_ret = box.exec();
+    if (msg_ret == QMessageBox::Save) {
+        QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
+        QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_item.value(2).toString()));
+        QSqlQuery(tr("UPDATE qlms_book_item SET status = 1 WHERE id = '%1'").arg(id));
 
-    QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
-    QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_item.value(2).toString()));
-    QSqlQuery(tr("UPDATE qlms_book_item SET status = 1 WHERE id = %1").arg(id));
+        QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书已经完成单册归还"));
+    }
+    else if (msg_ret == QMessageBox::Cancel) {
+        QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
+        QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_item.value(2).toString()));
+        QSqlQuery(tr("UPDATE qlms_book_item SET status = -1 WHERE id = '%1'").arg(id));
 
-    QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书已经完成单册归还"));
+        QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书正在进行修补"));
+    }
+    else if (msg_ret == QMessageBox::Discard) {
+        QSqlQuery(tr("UPDATE qlms_record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
+        QSqlQuery(tr("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = '%1'").arg(query_item.value(2).toString()));
+        QSqlQuery(tr("UPDATE qlms_book SET num_total = num_total - 1 WHERE isbn = '%1'").arg(query_item.value(3).toString()));
+        QSqlQuery(tr("DELETE FROM qlms_book_item WHERE id = '%1'").arg(id));
+
+        QMessageBox::information(this, tr("操作成功"), tr("操作成功，图书已淘汰"));
+    }
     book_return_Dialog::load_book_list(last_stuid);
 }
 
 void book_return_Dialog::on_borrowedbookview_clicked(const QModelIndex &index)
 {
-    if (index.row() <=0 ) return;
+    if (index.row() <1 ) return;
 
     book_return_Dialog::action_book_return(book_id_list[index.row()]);
 }
@@ -71,7 +92,7 @@ void book_return_Dialog::on_return_Button_clicked()
         return;
     }
 
-    book_return_Dialog::action_book_return(ui->bookId_label->text().toInt());
+    book_return_Dialog::action_book_return(ui->bookId_label->text());
 }
 
 void book_return_Dialog::load_book_list(QString stuid) {
@@ -97,7 +118,7 @@ void book_return_Dialog::load_book_list(QString stuid) {
 
     for(int i=1;query_record.next();i++) {
         booklistModel->insertRow(i);
-        book_id_list[i] = query_record.value(0).toInt();
+        book_id_list[i] = query_record.value(0).toString();
         booklistModel->setData(booklistModel->index(i,0), query_record.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());

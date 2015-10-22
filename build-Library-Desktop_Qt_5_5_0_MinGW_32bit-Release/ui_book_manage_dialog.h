@@ -83,10 +83,10 @@ public:
         group_add_single->setGeometry(QRect(10, 90, 681, 291));
         single_title = new QLineEdit(group_add_single);
         single_title->setObjectName(QStringLiteral("single_title"));
-        single_title->setGeometry(QRect(180, 35, 306, 24));
+        single_title->setGeometry(QRect(180, 70, 306, 24));
         label = new QLabel(group_add_single);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(120, 35, 61, 20));
+        label->setGeometry(QRect(120, 70, 61, 20));
         single_type = new QLineEdit(group_add_single);
         single_type->setObjectName(QStringLiteral("single_type"));
         single_type->setGeometry(QRect(180, 175, 128, 24));
@@ -125,10 +125,10 @@ public:
         single_author->setGeometry(QRect(180, 105, 128, 24));
         single_isbn = new QLineEdit(group_add_single);
         single_isbn->setObjectName(QStringLiteral("single_isbn"));
-        single_isbn->setGeometry(QRect(180, 70, 306, 24));
+        single_isbn->setGeometry(QRect(180, 35, 306, 24));
         label_9 = new QLabel(group_add_single);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(120, 70, 61, 20));
+        label_9->setGeometry(QRect(120, 35, 61, 20));
         single_num = new QComboBox(group_add_single);
         single_num->setObjectName(QStringLiteral("single_num"));
         single_num->setGeometry(QRect(390, 172, 96, 36));
@@ -158,17 +158,17 @@ public:
         guide_add_single = new QPushButton(group_nav);
         guide_add_single->setObjectName(QStringLiteral("guide_add_single"));
         guide_add_single->setGeometry(QRect(130, 20, 101, 41));
+        QWidget::setTabOrder(userview, guide_booklist);
         QWidget::setTabOrder(guide_booklist, guide_add_single);
-        QWidget::setTabOrder(guide_add_single, single_title);
-        QWidget::setTabOrder(single_title, single_isbn);
-        QWidget::setTabOrder(single_isbn, single_author);
+        QWidget::setTabOrder(guide_add_single, single_isbn);
+        QWidget::setTabOrder(single_isbn, single_title);
+        QWidget::setTabOrder(single_title, single_author);
         QWidget::setTabOrder(single_author, single_year);
         QWidget::setTabOrder(single_year, single_press);
         QWidget::setTabOrder(single_press, single_price);
         QWidget::setTabOrder(single_price, single_type);
         QWidget::setTabOrder(single_type, single_num);
         QWidget::setTabOrder(single_num, single_add);
-        QWidget::setTabOrder(single_add, userview);
 
         retranslateUi(book_manage_Dialog);
 

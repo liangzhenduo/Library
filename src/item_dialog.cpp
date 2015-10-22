@@ -35,7 +35,7 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 
     ui->item_label->setText(html);
 
-    QSqlQuery query_list(tr("SELECT qlms_book_item.id, qlms_book.type, qlms_book_item.status, qlms_user.name FROM qlms_book_item LEFT JOIN qlms_book ON (qlms_book_item.isbn=qlms.book_isbn) LEFT JOIN qlms_record ON (qlms_record.id = qlms_book_item.id AND qlms_record.status = 0) LEFT JOIN qlms_user ON (qlms_user.stuid = qlms_record.stuid) WHERE isbn = %1 ORDER BY status, id;").arg(isbn));
+    QSqlQuery query_list(tr("SELECT qlms_book_item.id, type, qlms_book_item.status, name FROM qlms_book_item LEFT JOIN qlms_book ON (qlms_book_item.isbn=qlms_book.isbn) LEFT JOIN qlms_record ON (qlms_record.id = qlms_book_item.id AND qlms_record.status = 0) LEFT JOIN qlms_user ON (qlms_user.stuid = qlms_record.stuid) WHERE qlms_book_item.isbn = '%1' ORDER BY status DESC, id;").arg(isbn));
 
     QStandardItemModel* booklistModel=new QStandardItemModel(0,4,this);
     booklistModel->insertRow(0);
@@ -48,13 +48,19 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 
     while (query_list.next()) {
         booklistModel->insertRow(i);
-        query_list_book[i] = query_list.value(0).toInt();
+        query_list_book[i] = query_list.value(0).toString();
         booklistModel->setData(booklistModel->index(i,0), query_list.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_list.value(1).toString());
-        booklistModel->setData(booklistModel->index(i,2), query_list.value(2).toInt() == 1 ? tr("在馆") : tr("已借出"));
         if (query_list.value(2).toInt() == 1) {
-            booklistModel->setData(booklistModel->index(i,3), tr("图书馆在馆"));
-        } else {
+            booklistModel->setData(booklistModel->index(i,2), tr("在馆"));
+            booklistModel->setData(booklistModel->index(i,3), tr("-"));
+        }
+        else if (query_list.value(2).toInt() == -1) {
+            booklistModel->setData(booklistModel->index(i,2), tr("修补中"));
+            booklistModel->setData(booklistModel->index(i,3), tr("-"));
+        }
+        else {
+            booklistModel->setData(booklistModel->index(i,2), tr("已借出"));
             booklistModel->setData(booklistModel->index(i,3), query_list.value(3).toString());
         }
 
@@ -67,7 +73,7 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
     if (index.row() == 0) return;
 
-    QSqlQuery query(tr("SELECT id, status, isbn FROM qlms_book_item WHERE id = %1").arg(query_list_book[index.row()]));
+    QSqlQuery query(tr("SELECT id, status, isbn FROM qlms_book_item WHERE id = '%1'").arg(query_list_book[index.row()]));
 
     if (!TJUL.check_isLogin()) {
         QMessageBox::warning(this, tr("出错啦"), tr("亲，您还没有登录图书管理系统，不能进行借阅哦"));
@@ -79,16 +85,16 @@ void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
         return;
     }
 
-    if (query.value(1).toInt() == 0) {
-        QMessageBox::warning(this, tr("出错啦"), tr("这本图书已经被借出咯，无法进行借阅操作"));
+    if (query.value(1).toInt() < 1) {
+        QMessageBox::warning(this, tr("出错啦"), tr("当前图书无法进行借阅操作"));
         return;
     } else {
         int msg_ret = QMessageBox::information(this, tr("询问"), tr("您是否要借阅该册图书？"), QMessageBox::Yes | QMessageBox::No);
         if (msg_ret == QMessageBox::No) return;
 
         if (TJUL.modify_user_book(1)) {
-            QSqlQuery(tr("UPDATE qlms_book_item SET status = 0 WHERE id = %1").arg(query_list_book[index.row()]));
-            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES(%1, '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(TJUL.stuid));
+            QSqlQuery(tr("UPDATE qlms_book_item SET status = 0 WHERE id = '%1'").arg(query_list_book[index.row()]));
+            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES('%1', '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(TJUL.stuid));
             QSqlQuery query_depart("SELECT department FROM qlms_user WHERE stuid = "+TJUL.stuid);
             query_depart.next();
             QString tmp=query_depart.value(0).toString();
