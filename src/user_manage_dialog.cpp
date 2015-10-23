@@ -17,52 +17,58 @@ user_manage_Dialog::~user_manage_Dialog()
 
 void user_manage_Dialog::on_newuser_add_Button_clicked()
 {
-    if (ui->newuser_telnum->text() == "" || ui->newuser_num_limit->text() == ""|| ui->newuser_password->text() == "" || ui->newuser_stuid->text() == "" || ui->newuser_name->text() == "") {
-        QMessageBox::warning(this, tr("出错啦"), tr("新用户的具体信息没有填写完整"));
-        return;
-    }
-
     QString stuid = ui->newuser_stuid->text();
+    QString name = ui->newuser_name->text();
     QString tmp;
     tmp[0]=stuid[4],tmp[1]=stuid[5],tmp[2]=stuid[6];
-    int department = tmp.toInt();
+    int school = tmp.toInt();
     QString password = ui->newuser_password->text();
     QString telnum = ui->newuser_telnum->text();
-    QString name = ui->newuser_name->text();
-    int num_limit = ui->newuser_num_limit->text().toInt();
+    int num_limit = ui->newuser_num_limit->currentText().toInt();
     int isAdmin =  ui->newuser_isadmin->currentText() == tr("管理员");
 
-    stuid.replace("'","");
-    name.replace("'","");
-    password.replace("'","");
-    telnum.replace("'","");
-
-    if (num_limit < 0) {
-        QMessageBox::warning(this, tr("出错啦"), tr("用户借阅图书上限不能小于0哦"));
+    if (stuid == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写学号！"));
+        ui->newuser_stuid->setFocus();
+        return;
+    }
+    if (name == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写姓名！"));
+        ui->newuser_name->setFocus();
+        return;
+    }
+    if (password == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写密码！"));
+        ui->newuser_password->setFocus();
+        return;
+    }
+    if (telnum == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写联系电话！"));
+        ui->newuser_telnum->setFocus();
         return;
     }
 
-    QSqlQuery query_user(tr("SELECT * FROM qlms_user WHERE stuid = %1").arg(stuid));
+    QSqlQuery query_user(tr("SELECT * FROM user WHERE stuid = %1").arg(stuid));
 
     if (query_user.next()) {
-        QMessageBox::warning(this, tr("出错啦"), tr("您要添加的学号已经被使用过咯"));
+        QMessageBox::warning(this, tr("ERROR"), tr("该用户已存在！"));
         return;
     }
 
-    QSqlQuery(tr("INSERT INTO qlms_user (stuid,name,password,department,num_limit,num_borrowed,isAdmin,telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(department).arg(num_limit).arg(isAdmin).arg(telnum));
+    QSqlQuery(tr("INSERT INTO user(stuid, name, password, school, num_limit, num_borrowed, isAdmin, telnum) VALUES('%1','%2','%3','%4',%5,0,%6,'%7')").arg(stuid).arg(name).arg(password).arg(school).arg(num_limit).arg(isAdmin).arg(telnum));
 
-    ui->newuser_name->setText("");
-    ui->newuser_num_limit->setText(tr("7"));
-    ui->newuser_password->setText("");
     ui->newuser_stuid->setText("");
+    ui->newuser_name->setText("");
+    ui->newuser_password->setText("");
     ui->newuser_telnum->setText("");
+    ui->newuser_num_limit->setCurrentIndex(2);
 
-    QMessageBox::information(this, tr("操作成功"), tr("恭喜您，新用户已经成功创建完毕"));
+    QMessageBox::information(this, tr("SUCCESS"), tr("新用户添加完成！"));
 }
 
 void user_manage_Dialog::on_guide_user_Button_clicked()
 {
-    QSqlQuery query("SELECT qlms_user.stuid, qlms_user.name, department.school, qlms_user.num_borrowed, qlms_user.isadmin FROM qlms_user LEFT JOIN department ON department.code = qlms_user.department ORDER BY stuid;");
+    QSqlQuery query("SELECT stuid, name, school.school, num_borrowed, isadmin FROM user LEFT JOIN school ON (school.code = user.school) ORDER BY stuid");
 
 
     QStandardItemModel* listModel=new QStandardItemModel(0,5,this);
@@ -82,7 +88,7 @@ void user_manage_Dialog::on_guide_user_Button_clicked()
         listModel->setData(listModel->index(i,1), query.value(1).toString());
         listModel->setData(listModel->index(i,2), query.value(2).toString());
         listModel->setData(listModel->index(i,3), query.value(3).toString());
-        listModel->setData(listModel->index(i,4), query.value(4).toInt() == 1 ? tr("管理员") : tr("读者"));
+        listModel->setData(listModel->index(i,4), query.value(4).toInt() == 1 ? tr("管理员") : tr("普通用户"));
 
         i++;
     }
@@ -95,8 +101,8 @@ void user_manage_Dialog::on_guide_user_Button_clicked()
 }
 
 void user_manage_Dialog::on_guide_overuser_Button_clicked() {
-    QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, time_deadline, NOW()) WHERE status = 0;"));
-    QSqlQuery query_record(tr("SELECT qlms_book.title, qlms_user.name, qlms_record.stuid, qlms_user.telnum, qlms_record.overtime, qlms_record.status FROM qlms_record LEFT JOIN qlms_user ON qlms_user.stuid = qlms_record.stuid LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book_item.isbn = qlms_book.isbn WHERE qlms_record.status=0 AND qlms_record.overtime>0 ORDER BY qlms_record.overtime DESC"));
+    QSqlQuery(tr("UPDATE record SET overtime = TIMESTAMPDIFF(DAY, time_deadline, NOW()) WHERE status = 0"));
+    QSqlQuery query_record(tr("SELECT title, name, record.stuid, telnum, overtime, record.status FROM record LEFT JOIN user ON (user.stuid = record.stuid) LEFT JOIN item ON (item.id = record.id) LEFT JOIN book ON (item.isbn = book.isbn) WHERE (record.status = 0 AND overtime > 0) ORDER BY overtime DESC"));
 
     QStandardItemModel* listModel=new QStandardItemModel(0,5,this);
     listModel->insertRow(0);
@@ -137,34 +143,31 @@ void user_manage_Dialog::on_guide_newuser_Button_clicked()
 void user_manage_Dialog::on_manageuser_modify_Button_clicked()
 {
     QString stuid = ui->manage_stuid->text();
-    int num_limit = ui->manage_num_limit->text().toInt();
+    int num_limit = ui->manage_num_limit->currentText().toInt();
     int isAdmin = ui->manage_isadmin->currentText() == tr("管理员") ? 1 : 0;
     QString name = ui->manage_name->text();
-    QString department = ui->manage_department->text();
+    QString telnum = ui->manage_telnum->text();
     QString password = ui->manage_password->text();
 
-    name.replace("'","");
-    department.replace("'","");
-    password.replace("'","");
-
-    if (ui->manage_stuid->text() == "") {
-        QMessageBox::warning(this, tr("出错啦"), tr("窗口非法调用"));
+    if (name == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写姓名！"));
+        ui->newuser_name->setFocus();
+        return;
+    }
+    if (password == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写密码！"));
+        ui->newuser_password->setFocus();
+        return;
+    }
+    if (telnum == "") {
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写联系电话！"));
+        ui->newuser_telnum->setFocus();
         return;
     }
 
-    if (num_limit < 0) {
-        QMessageBox::warning(this, tr("出错啦"), tr("用户可借阅图书的上限不能为负数"));
-        return;
-    }
+    QSqlQuery (tr("UPDATE user SET name = '%1', telnum = '%2', password = '%3', num_limit = %4, isadmin = %5 WHERE stuid = '%6'").arg(name).arg(telnum).arg(password).arg(num_limit).arg(isAdmin).arg(stuid));
 
-    if (name == "" || department == "" || password == "") {
-        QMessageBox::warning(this, tr("出错啦"), tr("用户信息没有填写完整，请检查后再点击修改按钮"));
-        return;
-    }
-
-    QSqlQuery (tr("UPDATE qlms_user SET name = '%1', department = '%2', password = '%3', num_limit = %4, isadmin = %5 WHERE stuid = %6").arg(name).arg(department).arg(password).arg(num_limit).arg(isAdmin).arg(stuid));
-
-    QMessageBox::information(this, tr("修改成功"), tr("恭喜您，已经成功修改完毕"));
+    QMessageBox::information(this, tr("SUCCESS"), tr("用户信息修改成功！"));
     user_manage_Dialog::on_guide_user_Button_clicked();
 }
 
@@ -172,17 +175,17 @@ void user_manage_Dialog::on_userview_clicked(const QModelIndex &index)
 {
 
     if (index.row() < 1) return;
-    QSqlQuery query(tr("SELECT name, password, department, num_limit FROM qlms_user WHERE stuid = %1").arg(user_list_stuid[index.row()]));
+    QSqlQuery query(tr("SELECT name, password, telnum, num_limit FROM user WHERE stuid = '%1'").arg(user_list_stuid[index.row()]));
 
     if (!query.next()) {
-        QMessageBox::information(this, tr("出错啦"), tr("您要操作的用户不存在哦"));
+        QMessageBox::information(this, tr("ERROR"), tr("未检索到该记录！"));
         return;
     }
 
     ui->manage_name->setText(query.value(0).toString());
     ui->manage_password->setText(query.value(1).toString());
-    ui->manage_department->setText(query.value(2).toString());
-    ui->manage_num_limit->setText(query.value(3).toString());
+    ui->manage_telnum->setText(query.value(2).toString());
+    ui->manage_num_limit->setCurrentText(query.value(3).toString());
     ui->manage_stuid->setText(tr("%1").arg(user_list_stuid[index.row()]));
 
     ui->group_manageuser->show();
@@ -197,8 +200,8 @@ void user_manage_Dialog::on_manageuser_delete_Button_clicked() {
         return;
     }
 
-    QSqlQuery(tr("DELETE FROM qlms_user WHERE stuid = %1").arg(stuid));
+    QSqlQuery(tr("DELETE FROM user WHERE stuid = '%1'").arg(stuid));
 
-    QMessageBox::information(this, tr("删除成功"), tr("用户 %1 已被成功删除！").arg(stuid));
+    QMessageBox::information(this, tr("SUCCESS"), tr("用户 %1 已被成功删除！").arg(stuid));
     user_manage_Dialog::on_guide_user_Button_clicked();
 }

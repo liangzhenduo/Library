@@ -15,7 +15,7 @@ item_Dialog::~item_Dialog()
 
 void item_Dialog::onsignal_load_item(QString isbn) {
     global_isbn = isbn;
-    QSqlQuery query("SELECT title, isbn, type, pub_press, pub_year, author, price, num_total FROM qlms_book WHERE isbn = '"+global_isbn+"'");
+    QSqlQuery query("SELECT title, isbn, type, pub_press, pub_year, author, price, num_total FROM book WHERE isbn = '" + global_isbn + "'");
 
     if (!query.next()) {
         QMessageBox::warning(this, tr("ERROR"), tr("未检索到该记录！"));
@@ -35,7 +35,7 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 
     ui->item_label->setText(html);
 
-    QSqlQuery query_list(tr("SELECT qlms_book_item.id, type, qlms_book_item.status, name FROM qlms_book_item LEFT JOIN qlms_book ON (qlms_book_item.isbn=qlms_book.isbn) LEFT JOIN qlms_record ON (qlms_record.id = qlms_book_item.id AND qlms_record.status = 0) LEFT JOIN qlms_user ON (qlms_user.stuid = qlms_record.stuid) WHERE qlms_book_item.isbn = '%1' ORDER BY status DESC, id;").arg(isbn));
+    QSqlQuery query_list(tr("SELECT item.id, type, item.status, name FROM item LEFT JOIN book ON (item.isbn=book.isbn) LEFT JOIN record ON (record.id = item.id AND record.status = 0) LEFT JOIN user ON (user.stuid = record.stuid) WHERE item.isbn = '%1' ORDER BY status DESC, id;").arg(isbn));
 
     QStandardItemModel* booklistModel=new QStandardItemModel(0,4,this);
     booklistModel->insertRow(0);
@@ -73,37 +73,37 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
     if (index.row() == 0) return;
 
-    QSqlQuery query(tr("SELECT id, status, isbn FROM qlms_book_item WHERE id = '%1'").arg(query_list_book[index.row()]));
+    QSqlQuery query(tr("SELECT id, status, isbn FROM item WHERE id = '%1'").arg(query_list_book[index.row()]));
 
     if (!TJUL.check_isLogin()) {
-        QMessageBox::warning(this, tr("出错啦"), tr("亲，您还没有登录图书管理系统，不能进行借阅哦"));
+        QMessageBox::warning(this, tr("ERROR"), tr("请登录后进行借阅操作！"));
         return;
     }
 
     if (!query.next()) {
-        QMessageBox::warning(this, tr("出错啦"), tr("貌似您要查看的图书被猫吃了？还是数据库出问题了-_-#"));
+        QMessageBox::warning(this, tr("ERROR"), tr("未检索到该记录！"));
         return;
     }
 
     if (query.value(1).toInt() < 1) {
-        QMessageBox::warning(this, tr("出错啦"), tr("当前图书无法进行借阅操作"));
+        QMessageBox::warning(this, tr("ERROR"), tr("当前图书无法进行借阅操作！"));
         return;
     } else {
-        int msg_ret = QMessageBox::information(this, tr("询问"), tr("您是否要借阅该册图书？"), QMessageBox::Yes | QMessageBox::No);
+        int msg_ret = QMessageBox::information(this, tr("CONFIRM"), tr("请确认是否借阅该册图书？"), QMessageBox::Yes | QMessageBox::No);
         if (msg_ret == QMessageBox::No) return;
 
         if (TJUL.modify_user_book(1)) {
-            QSqlQuery(tr("UPDATE qlms_book_item SET status = 0 WHERE id = '%1'").arg(query_list_book[index.row()]));
-            QSqlQuery(tr("INSERT INTO qlms_record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES('%1', '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(TJUL.stuid));
-            QSqlQuery query_depart("SELECT department FROM qlms_user WHERE stuid = "+TJUL.stuid);
+            QSqlQuery(tr("UPDATE item SET status = 0 WHERE id = '%1'").arg(query_list_book[index.row()]));
+            QSqlQuery(tr("INSERT INTO record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES('%1', '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(TJUL.stuid));
+            QSqlQuery query_depart("SELECT school FROM user WHERE stuid = '" + TJUL.stuid + "'");
             query_depart.next();
             QString tmp=query_depart.value(0).toString();
-            QSqlQuery("UPDATE statistics SET s" + tmp + " = s" + tmp +" +1 WHERE isbn = "+query.value(2).toString());
+            QSqlQuery("UPDATE rank SET s" + tmp + " = s" + tmp +" +1 WHERE isbn = '" + query.value(2).toString() +"'");
 
-            QMessageBox::information(this, tr("借阅成功"), tr("恭喜您，单册读书已经借阅完毕"));
+            QMessageBox::information(this, tr("SUCCESS"), tr("该册读书借阅完成！"));
             item_Dialog::onsignal_load_item(global_isbn);
         } else {
-            QMessageBox::warning(this, tr("超出借阅上限"), tr("对不起，您已经超出图书借阅上限了T^T"));
+            QMessageBox::warning(this, tr("ERROR"), tr("当前借阅数量已达上限！"));
             return;
         }
     }

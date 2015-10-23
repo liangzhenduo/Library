@@ -32,7 +32,7 @@ public:
     QPushButton *search_Button;
     QPushButton *return_Button;
     QLabel *label;
-    QComboBox *department_select;
+    QComboBox *school_select;
 
     void setupUi(QDialog *rank_Dialog)
     {
@@ -66,18 +66,18 @@ public:
         label = new QLabel(groupBox);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 30, 51, 31));
-        department_select = new QComboBox(groupBox);
-        department_select->setObjectName(QStringLiteral("department_select"));
-        department_select->setGeometry(QRect(80, 30, 300, 32));
+        school_select = new QComboBox(groupBox);
+        school_select->setObjectName(QStringLiteral("school_select"));
+        school_select->setGeometry(QRect(80, 30, 300, 32));
         QFont font1;
         font1.setFamily(QStringLiteral("Agency FB"));
         font1.setPointSize(12);
-        department_select->setFont(font1);
-        department_select->setMaxVisibleItems(18);
+        school_select->setFont(font1);
+        school_select->setMaxVisibleItems(18);
 
         retranslateUi(rank_Dialog);
 
-        department_select->setCurrentIndex(-1);
+        school_select->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(rank_Dialog);
@@ -91,8 +91,8 @@ public:
         search_Button->setText(QApplication::translate("rank_Dialog", "\346\237\245\350\257\242", 0));
         return_Button->setText(QApplication::translate("rank_Dialog", "\350\277\224\345\233\236", 0));
         label->setText(QApplication::translate("rank_Dialog", "\345\255\246\351\231\242\357\274\232", 0));
-        department_select->clear();
-        department_select->insertItems(0, QStringList()
+        school_select->clear();
+        school_select->insertItems(0, QStringList()
          << QApplication::translate("rank_Dialog", "\346\234\272\346\242\260\345\255\246\351\231\242", 0)
          << QApplication::translate("rank_Dialog", "\347\262\276\344\273\252\345\255\246\351\231\242", 0)
          << QApplication::translate("rank_Dialog", "\350\207\252\345\212\250\345\214\226\345\255\246\351\231\242", 0)
@@ -111,7 +111,7 @@ public:
          << QApplication::translate("rank_Dialog", "\350\275\257\344\273\266\345\255\246\351\231\242", 0)
          << QApplication::translate("rank_Dialog", "\347\224\237\347\247\221\345\255\246\351\231\242", 0)
         );
-        department_select->setCurrentText(QString());
+        school_select->setCurrentText(QString());
     } // retranslateUi
 
 };

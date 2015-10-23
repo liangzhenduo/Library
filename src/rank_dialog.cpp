@@ -27,7 +27,7 @@ void rank_Dialog::on_return_Button_clicked()
 {
     for(int i=line;i>0;i--)
         booklistModel->removeRow(i);
-    ui->department_select->setCurrentIndex(-1);
+    ui->school_select->setCurrentIndex(-1);
     this->close();
 }
 
@@ -37,16 +37,16 @@ void rank_Dialog::on_search_Button_clicked()
     for(i=line;i>0;i--)
         booklistModel->removeRow(i);
 
-    QString department=ui->department_select->currentText();
-    if (department == "" ) {
+    QString school=ui->school_select->currentText();
+    if (school == "" ) {
         QMessageBox::warning(this, tr("WARNING"), tr("请选择学院！"));
         return;
     }
 
-    QSqlQuery query_depart("SELECT code FROM department WHERE school = '"+department+"\r'");
+    QSqlQuery query_depart("SELECT code FROM school WHERE school = '"+school+"\r'");
     query_depart.next();
     QString tmp=query_depart.value(0).toString();
-    QSqlQuery query("SELECT qlms_book.isbn, qlms_book.title, qlms_book.author, qlms_book.pub_press, statistics.s"+tmp+" FROM qlms_book LEFT JOIN statistics ON statistics.isbn = qlms_book.isbn WHERE statistics.s"+tmp+">0 ORDER BY statistics.s"+tmp+" DESC;");
+    QSqlQuery query("SELECT book.isbn, book.title, book.author, book.pub_press, rank.s"+tmp+" FROM book LEFT JOIN rank ON rank.isbn = book.isbn WHERE rank.s"+tmp+">0 ORDER BY rank.s" + tmp + " DESC");
 
     for(i=1;query.next();i++) {
         booklistModel->insertRow(i);

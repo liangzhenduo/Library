@@ -44,18 +44,18 @@ void MainWindow::on_login_action_button_clicked()
     password = ui->login_password_label->text();
 
     if (stuid == "") {
-        QMessageBox::warning(this, tr("Login Failed"), tr("学号不能为空！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("学号不能为空！"));
         ui->login_stuid_label->setFocus();
         return;
     }
 
     if (password == "") {
-        QMessageBox::warning(this, tr("Login Failed"), tr("密码不能为空！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("密码不能为空！"));
         ui->login_password_label->setFocus();
         return;
     }
 
-    QSqlQuery query("SELECT stuid, password, name, num_borrowed, num_limit, isadmin FROM qlms_user WHERE stuid = '" + stuid + "';");
+    QSqlQuery query("SELECT stuid, password, name, num_borrowed, num_limit, isadmin FROM user WHERE stuid = '" + stuid + "'");
 
     if (query.next()) {  //用户存在
         if (query.value(1) == password) {  //登录成功
@@ -65,19 +65,19 @@ void MainWindow::on_login_action_button_clicked()
             TJUL.name.replace("\r","");
             TJUL.isAdmin = query.value(5).toInt();
             TJUL.set_number(query.value(3).toInt(), query.value(4).toInt());
-            QMessageBox::information(this, tr("Login Succeed"), tr("欢迎 %1 进入天津大学图书馆！").arg(TJUL.name));
+            QMessageBox::information(this, tr("SUCCESS"), tr("欢迎 %1 进入天津大学图书馆！").arg(TJUL.name));
             ui->login_stuid_label->setText("");
             ui->login_password_label->setText("");
             emit signal_change_login_status();
         }
         else {  //密码错误
-            QMessageBox::warning(this, tr("Login Failed"), tr("密码与账号不匹配，请重试！"));
+            QMessageBox::warning(this, tr("ERROR"), tr("密码与账号不匹配，请重试！"));
             ui->login_password_label->setText("");
             ui->login_password_label->setFocus();
         }
     }
     else {  //用户不存在
-        QMessageBox::warning(this, tr("Login Failed"), tr("该用户不存在！"));
+        QMessageBox::warning(this, tr("ERROR"), tr("该用户不存在！"));
         ui->login_stuid_label->setText("");
         ui->login_password_label->setText("");
         ui->login_stuid_label->setFocus();
@@ -128,13 +128,11 @@ void MainWindow::on_main_userinfo_Button_clicked()
 void MainWindow::on_main_bookSearch_Button_clicked()
 {
     inst_book_Dialog->show();
-    //emit signal_init_book_dialog();
 }
 
 void MainWindow::on_main_ranklist_Button_clicked()
 {
     inst_rank_Dialog->show();
-    //emit signal_init_rank_dialog();
 }
 
 void MainWindow::onsignal_show_dialog(int dialog_id) {

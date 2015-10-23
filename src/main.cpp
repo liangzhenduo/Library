@@ -72,10 +72,10 @@ bool TJUL_CLASS::modify_user_book(int num) {
 
     if (num > 0) {
         num_borrowed ++;
-        QSqlQuery query("UPDATE qlms_user SET num_borrowed = num_borrowed + 1 WHERE stuid = " + stuid +";");
+        QSqlQuery query("UPDATE user SET num_borrowed = num_borrowed + 1 WHERE stuid = " + stuid +";");
     } else {
         num_borrowed --;
-        QSqlQuery query("UPDATE qlms_user SET num_borrowed = num_borrowed - 1 WHERE stuid = " + stuid +";");
+        QSqlQuery query("UPDATE user SET num_borrowed = num_borrowed - 1 WHERE stuid = " + stuid +";");
     }
 
     return 1;

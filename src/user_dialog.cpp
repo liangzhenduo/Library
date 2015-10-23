@@ -25,7 +25,7 @@ void user_Dialog::on_change_Button_clicked()
     old_password = ui->old_password->text();
     new_password = ui->new_password->text();
     confirm_password = ui->confirm_password->text();
-    QSqlQuery query("SELECT password FROM qlms_user WHERE stuid = "+TJUL.stuid);
+    QSqlQuery query("SELECT password FROM user WHERE stuid = "+TJUL.stuid);
     query.next();
     if(old_password!=query.value(0)){
         QMessageBox::warning(this, tr("ERROR"), tr("原始密码错误！"));
@@ -34,18 +34,18 @@ void user_Dialog::on_change_Button_clicked()
         return;
     }
     if(new_password==""){
-        QMessageBox::warning(this, tr("ERROR"), tr("密码不能为空！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("密码不能为空！"));
         ui->new_password->setFocus();
         return;
     }
     if(confirm_password!=new_password){
-        QMessageBox::warning(this, tr("ERROR"), tr("请重新确认密码！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请重新确认密码！"));
         ui->confirm_password->setText("");
         ui->confirm_password->setFocus();
         return;
     }
-    QSqlQuery("UPDATE qlms_user SET password = " + new_password + " WHERE stuid="+ TJUL.stuid);
-    QMessageBox::warning(this, tr("OK"), tr("密码修改成功！"));
+    QSqlQuery("UPDATE user SET password = " + new_password + " WHERE stuid="+ TJUL.stuid);
+    QMessageBox::warning(this, tr("SUCCESS"), tr("密码修改成功！"));
     ui->new_password->setText("");
     ui->old_password->setText("");
     ui->confirm_password->setText("");
@@ -53,9 +53,9 @@ void user_Dialog::on_change_Button_clicked()
 }
 
 void user_Dialog::onsignal_load_user_dialog() {
-    QSqlQuery query_user("SELECT qlms_user.name, qlms_user.stuid, department.school, qlms_user.num_borrowed, qlms_user.num_limit FROM qlms_user LEFT JOIN department ON department.code = qlms_user.department WHERE stuid = '" + TJUL.stuid + "';");
+    QSqlQuery query_user("SELECT user.name, user.stuid, school.school, user.num_borrowed, user.num_limit FROM user LEFT JOIN school ON school.code = user.school WHERE stuid = '" + TJUL.stuid + "'");
     if (!query_user.next()) {
-        QMessageBox::warning(this, tr("出错啦"), tr("貌似出现问题咯，您当前所登录的用户在数据库貌似丢失了，请重新登录"));
+        QMessageBox::warning(this, tr("ERROR"), tr("未检索到该记录！"));
         this->close();
         return;
     }
@@ -65,8 +65,8 @@ void user_Dialog::onsignal_load_user_dialog() {
 
     ui->user_info_label->setText(label_html);
 
-    QSqlQuery(tr("UPDATE qlms_record SET overtime = TIMESTAMPDIFF(DAY, NOW(), time_deadline) WHERE stuid=%1 AND status = 0;").arg(TJUL.stuid));
-    QSqlQuery query_record(tr("SELECT qlms_record.id, qlms_book.isbn, qlms_book.title, qlms_record.time_borrow, qlms_record.overtime FROM qlms_record LEFT JOIN qlms_book_item ON qlms_book_item.id = qlms_record.id LEFT JOIN qlms_book ON qlms_book.isbn = qlms_book_item.isbn WHERE qlms_record.stuid = %1 AND qlms_record.status=0 ORDER BY qlms_record.id DESC").arg(TJUL.stuid));
+    QSqlQuery(tr("UPDATE record SET overtime = TIMESTAMPDIFF(DAY, NOW(), time_deadline) WHERE stuid = %1 AND status = 0").arg(TJUL.stuid));
+    QSqlQuery query_record(tr("SELECT record.id, book.isbn, title, time_borrow, overtime FROM record LEFT JOIN item ON (item.id = record.id) LEFT JOIN book ON (book.isbn = item.isbn) WHERE (record.stuid = %1 AND record.status=0) ORDER BY record.id DESC").arg(TJUL.stuid));
 
 
     booklistModel=new QStandardItemModel(0,5,this);

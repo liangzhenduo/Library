@@ -110,7 +110,7 @@
      <string>学院：</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="department_select">
+   <widget class="QComboBox" name="school_select">
     <property name="geometry">
      <rect>
       <x>80</x>

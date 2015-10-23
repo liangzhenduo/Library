@@ -38,7 +38,7 @@ void book_Dialog::on_search_Button_clicked()
         booklistModel->removeRow(i);
     QString keyword = ui->keyword_edit->text();
 
-    QSqlQuery query("SELECT isbn, title, author, num_total, pub_press FROM qlms_book WHERE title LIKE '%" + keyword + "%' ORDER BY isbn");
+    QSqlQuery query("SELECT isbn, title, author, num_total, pub_press FROM book WHERE title LIKE '%" + keyword + "%' ORDER BY isbn");
 
     for (i=1;query.next();i++) {
         booklistModel->insertRow(i);
@@ -50,7 +50,7 @@ void book_Dialog::on_search_Button_clicked()
         booklistModel->setData(booklistModel->index(i,4), query.value(4).toString());
     }
     if(i==1)
-        QMessageBox::warning(this, tr("WARNING"), tr("未检索到符合条件的记录！"));
+        QMessageBox::warning(this, tr("ERROR"), tr("未检索到符合条件的记录！"));
     line=i-1;
 }
 

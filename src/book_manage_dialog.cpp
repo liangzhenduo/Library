@@ -26,7 +26,7 @@ void book_manage_Dialog::on_single_add_clicked()
     int num = ui->single_num->currentText().toInt();
 
     if(isbn != ""){
-        QSqlQuery query(tr("SELECT title, author, type, pub_press, price, pub_year, num_total FROM qlms_book WHERE isbn = '%1'").arg(isbn));
+        QSqlQuery query(tr("SELECT title, author, type, pub_press, price, pub_year, num_total FROM book WHERE isbn = '%1'").arg(isbn));
         if (query.next()) {  //图书已存在
             title = query.value(0).toString();
             author = query.value(1).toString();
@@ -43,13 +43,13 @@ void book_manage_Dialog::on_single_add_clicked()
                 return;
             }
             for (int i=0;num&&i<10;i++){
-                QSqlQuery query_item(tr("SELECT * FROM qlms_book_item WHERE id = '%1(%2)'").arg(isbn).arg(i));
+                QSqlQuery query_item(tr("SELECT * FROM item WHERE id = '%1(%2)'").arg(isbn).arg(i));
                 if(!query_item.next()){
-                    QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
+                    QSqlQuery(tr("INSERT INTO item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
                     num--;
                 }
             }
-            QSqlQuery(tr("UPDATE qlms_book SET num_total = num_total + %1 WHERE isbn = '%2'").arg(ui->single_num->currentText()).arg(isbn));
+            QSqlQuery(tr("UPDATE book SET num_total = num_total + %1 WHERE isbn = '%2'").arg(ui->single_num->currentText()).arg(isbn));
             QMessageBox::information(this, tr("SUCCESS"), tr("图书添加成功！"));
 
             ui->single_num->setCurrentIndex(0);
@@ -66,45 +66,46 @@ void book_manage_Dialog::on_single_add_clicked()
 
     //图书不存在
     if (title == "") {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写书目！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写书目！"));
         ui->single_title->setFocus();
         return;
     }
     if (isbn == "") {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写ISBN！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写ISBN！"));
         ui->single_isbn->setFocus();
         return;
     }
     if (author == "") {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写作者！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写作者！"));
         ui->single_author->setFocus();
         return;
     }
     if (type == "") {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写类型！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写类型！"));
         ui->single_type->setFocus();
         return;
     }
     if (press == "") {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写出版社！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写出版社！"));
         ui->single_press->setFocus();
         return;
     }
     if (price <= 0 || price > 4096) {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写有效单价！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写有效单价！"));
         ui->single_price->setFocus();
         return;
     }
     if (year < 1895 || year > 2095) {
-        QMessageBox::warning(this, tr("ERROR"), tr("请填写有效年份！"));
+        QMessageBox::warning(this, tr("WARNING"), tr("请填写有效年份！"));
         ui->single_year->setFocus();
         return;
     }
 
 
-    QSqlQuery(tr("INSERT INTO qlms_book (isbn, title, type, pub_press, pub_year, author, price, num_total) VALUES('%1', '%2', '%3', '%4', %5, '%6', %7, %8)").arg(isbn).arg(title).arg(type).arg(press).arg(year).arg(author).arg(price).arg(num));
+    QSqlQuery(tr("INSERT INTO book(isbn, title, type, pub_press, pub_year, author, price, num_total) VALUES('%1', '%2', '%3', '%4', %5, '%6', %7, %8)").arg(isbn).arg(title).arg(type).arg(press).arg(year).arg(author).arg(price).arg(num));
+    QSqlQuery(tr("INSERT INTO rank(isbn) VALUES('%1')").arg(isbn));
     for (int i=0;i<num;i++)
-        QSqlQuery(tr("INSERT INTO qlms_book_item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
+        QSqlQuery(tr("INSERT INTO item(id, isbn, status) VALUES('%1(%2)','%3',1)").arg(isbn).arg(i).arg(isbn));
     QMessageBox::information(this, tr("SUCCESS"), tr("图书添加成功！"));
 
     ui->single_num->setCurrentIndex(0);
@@ -119,7 +120,7 @@ void book_manage_Dialog::on_single_add_clicked()
 
 void book_manage_Dialog::on_guide_booklist_clicked()
 {
-    QSqlQuery query("SELECT isbn,title,type,pub_press,pub_year,author,price,num_total FROM qlms_book ORDER BY isbn");
+    QSqlQuery query("SELECT isbn, title, type, pub_press, pub_year, author, price, num_total FROM book ORDER BY isbn");
 
     QStandardItemModel* listModel=new QStandardItemModel(0,5,this);
     listModel->insertRow(0);
