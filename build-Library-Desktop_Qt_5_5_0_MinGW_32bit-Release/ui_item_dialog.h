@@ -54,6 +54,8 @@ public:
         bookview->setAlternatingRowColors(true);
         bookview->setRootIsDecorated(false);
         bookview->setHeaderHidden(true);
+        bookview->header()->setDefaultSectionSize(180);
+        bookview->header()->setMinimumSectionSize(30);
 
         retranslateUi(item_Dialog);
 

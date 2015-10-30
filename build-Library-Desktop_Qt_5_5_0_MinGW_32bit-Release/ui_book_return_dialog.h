@@ -51,6 +51,8 @@ public:
         borrowedbookview->setAlternatingRowColors(true);
         borrowedbookview->setRootIsDecorated(false);
         borrowedbookview->setHeaderHidden(true);
+        borrowedbookview->header()->setDefaultSectionSize(180);
+        borrowedbookview->header()->setMinimumSectionSize(30);
         groupBox = new QGroupBox(book_return_Dialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(20, 20, 601, 141));

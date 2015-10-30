@@ -54,6 +54,8 @@ public:
         bookrankview->setAlternatingRowColors(true);
         bookrankview->setRootIsDecorated(false);
         bookrankview->setHeaderHidden(true);
+        bookrankview->header()->setDefaultSectionSize(180);
+        bookrankview->header()->setMinimumSectionSize(30);
         groupBox = new QGroupBox(rank_Dialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(20, 20, 621, 91));

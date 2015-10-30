@@ -5,13 +5,12 @@ book_return_Dialog::book_return_Dialog(QWidget *parent):
 QDialog(parent),ui(new Ui::book_return_Dialog){
     ui->setupUi(this);
 
-    QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
+    QStandardItemModel* booklistModel=new QStandardItemModel(0,4,this);
     booklistModel->insertRow(0);
     booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
-    booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
-    booklistModel->setData(booklistModel->index(0,2), tr("书目"));
-    booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
-    booklistModel->setData(booklistModel->index(0,4), tr("归还时间"));
+    booklistModel->setData(booklistModel->index(0,1), tr("书目"));
+    booklistModel->setData(booklistModel->index(0,2), tr("借阅时间"));
+    booklistModel->setData(booklistModel->index(0,3), tr("归还时间"));
 
     ui->borrowedbookview->setModel(booklistModel);
 }
@@ -50,11 +49,11 @@ void book_return_Dialog::action_book_return(QString id) {
     box.setWindowTitle("CHOOSE");
     box.setText(tr("请选择要对该书进行的操作："));
     box.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-    box.setButtonText(QMessageBox::Save,QString("归还"));
+    box.setButtonText(QMessageBox::Save,QString("修补"));
     box.setButtonText(QMessageBox::Discard,QString("淘汰"));
-    box.setButtonText(QMessageBox::Cancel,QString("修补"));
+    box.setButtonText(QMessageBox::Cancel,QString("归还"));
     int msg_ret = box.exec();
-    if (msg_ret == QMessageBox::Save) {
+    if (msg_ret == QMessageBox::Cancel) {
         if(query_item.value(1).toInt() == 0) {
             QSqlQuery(tr("UPDATE record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
             QSqlQuery(tr("UPDATE user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_item.value(2).toString()));
@@ -68,7 +67,7 @@ void book_return_Dialog::action_book_return(QString id) {
             QMessageBox::information(this, tr("SUCCESS"), tr("图书已修补完成入库！"));
         }
     }
-    else if (msg_ret == QMessageBox::Cancel) {
+    else if (msg_ret == QMessageBox::Save) {
         QSqlQuery(tr("UPDATE record SET status = 1, time_return = NOW() WHERE uuid = %1").arg(query_item.value(0).toInt()));
         QSqlQuery(tr("UPDATE user SET num_borrowed = num_borrowed - 1 WHERE stuid = %1").arg(query_item.value(2).toString()));
         QSqlQuery(tr("UPDATE item SET status = -1 WHERE id = '%1'").arg(id));
@@ -105,13 +104,12 @@ void book_return_Dialog::on_return_Button_clicked()
 
 void book_return_Dialog::load_book_list(QString stuid) {
 
-    QStandardItemModel* booklistModel=new QStandardItemModel(0,5,this);
+    QStandardItemModel* booklistModel=new QStandardItemModel(0,4,this);
     booklistModel->insertRow(0);
     booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
-    booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
-    booklistModel->setData(booklistModel->index(0,2), tr("书目"));
-    booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
-    booklistModel->setData(booklistModel->index(0,4), tr("归还时间"));
+    booklistModel->setData(booklistModel->index(0,1), tr("书目"));
+    booklistModel->setData(booklistModel->index(0,2), tr("借阅时间"));
+    booklistModel->setData(booklistModel->index(0,3), tr("归还时间"));
     ui->borrowedbookview->setModel(booklistModel);
 
     QSqlQuery query_user("SELECT stuid, name, school, num_borrowed, num_limit FROM user WHERE stuid LIKE '" + stuid + "%'");
@@ -122,7 +120,7 @@ void book_return_Dialog::load_book_list(QString stuid) {
     }
 
     ui->stuid_label->setText(query_user.value(0).toString());
-    QSqlQuery query_record("SELECT record.id, book.isbn, book.title, record.time_borrow, record.time_return, record.status FROM record LEFT JOIN item ON item.id = record.id LEFT JOIN book ON book.isbn = item.isbn WHERE record.stuid = "+ stuid +" ORDER BY record.status, record.uuid DESC");
+    QSqlQuery query_record("SELECT record.id, book.title, record.time_borrow, record.time_return, record.status FROM record LEFT JOIN item ON item.id = record.id LEFT JOIN book ON book.isbn = item.isbn WHERE record.stuid = "+ stuid +" ORDER BY record.status, record.uuid DESC");
 
     for(int i=1;query_record.next();i++) {
         booklistModel->insertRow(i);
@@ -130,7 +128,6 @@ void book_return_Dialog::load_book_list(QString stuid) {
         booklistModel->setData(booklistModel->index(i,0), query_record.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());
-        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toString());
-        booklistModel->setData(booklistModel->index(i,4), query_record.value(5).toInt() == 0 ? tr("未归还") :query_record.value(4).toString());
+        booklistModel->setData(booklistModel->index(i,3), query_record.value(4).toInt() == 0 ? tr("未归还") :query_record.value(3).toString());
     }
 }

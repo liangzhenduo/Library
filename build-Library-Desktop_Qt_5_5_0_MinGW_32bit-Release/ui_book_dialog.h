@@ -53,7 +53,12 @@ public:
         borrowedbookview->setEditTriggers(QAbstractItemView::NoEditTriggers);
         borrowedbookview->setAlternatingRowColors(true);
         borrowedbookview->setRootIsDecorated(false);
+        borrowedbookview->setAllColumnsShowFocus(false);
         borrowedbookview->setHeaderHidden(true);
+        borrowedbookview->header()->setVisible(false);
+        borrowedbookview->header()->setCascadingSectionResizes(false);
+        borrowedbookview->header()->setDefaultSectionSize(180);
+        borrowedbookview->header()->setMinimumSectionSize(30);
         groupBox = new QGroupBox(book_Dialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(20, 20, 621, 91));

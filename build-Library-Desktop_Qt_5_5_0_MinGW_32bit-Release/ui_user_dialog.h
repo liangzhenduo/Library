@@ -91,6 +91,8 @@ public:
         borrowedbookview->setAlternatingRowColors(true);
         borrowedbookview->setRootIsDecorated(false);
         borrowedbookview->setHeaderHidden(true);
+        borrowedbookview->header()->setDefaultSectionSize(180);
+        borrowedbookview->header()->setMinimumSectionSize(30);
 
         retranslateUi(user_Dialog);
 

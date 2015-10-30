@@ -42,6 +42,12 @@
    <property name="headerHidden">
     <bool>true</bool>
    </property>
+   <attribute name="headerDefaultSectionSize">
+    <number>180</number>
+   </attribute>
+   <attribute name="headerMinimumSectionSize">
+    <number>30</number>
+   </attribute>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">

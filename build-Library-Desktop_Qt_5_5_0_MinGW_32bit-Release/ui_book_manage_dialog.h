@@ -75,6 +75,8 @@ public:
         userview->setAlternatingRowColors(true);
         userview->setRootIsDecorated(false);
         userview->setHeaderHidden(true);
+        userview->header()->setDefaultSectionSize(180);
+        userview->header()->setMinimumSectionSize(30);
 
         gridLayout->addWidget(userview, 0, 0, 1, 1);
 

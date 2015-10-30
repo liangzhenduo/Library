@@ -66,24 +66,22 @@ void user_Dialog::onsignal_load_user_dialog() {
     ui->user_info_label->setText(label_html);
 
     QSqlQuery(tr("UPDATE record SET overtime = TIMESTAMPDIFF(DAY, NOW(), time_deadline) WHERE stuid = %1 AND status = 0").arg(TJUL.stuid));
-    QSqlQuery query_record(tr("SELECT record.id, book.isbn, title, time_borrow, overtime FROM record LEFT JOIN item ON (item.id = record.id) LEFT JOIN book ON (book.isbn = item.isbn) WHERE (record.stuid = %1 AND record.status=0) ORDER BY record.id DESC").arg(TJUL.stuid));
+    QSqlQuery query_record(tr("SELECT record.id, title, time_borrow, overtime FROM record LEFT JOIN item ON (item.id = record.id) LEFT JOIN book ON (book.isbn = item.isbn) WHERE (record.stuid = %1 AND record.status=0) ORDER BY record.id DESC").arg(TJUL.stuid));
 
 
-    booklistModel=new QStandardItemModel(0,5,this);
+    booklistModel=new QStandardItemModel(0,4,this);
     booklistModel->insertRow(0);
     booklistModel->setData(booklistModel->index(0,0), tr("图书编号"));
-    booklistModel->setData(booklistModel->index(0,1), tr("ISBN"));
-    booklistModel->setData(booklistModel->index(0,2), tr("书目"));
-    booklistModel->setData(booklistModel->index(0,3), tr("借阅时间"));
-    booklistModel->setData(booklistModel->index(0,4), tr("剩余天数"));
+    booklistModel->setData(booklistModel->index(0,1), tr("书目"));
+    booklistModel->setData(booklistModel->index(0,2), tr("借阅时间"));
+    booklistModel->setData(booklistModel->index(0,3), tr("剩余天数"));
 
     for(int i=1;query_record.next();i++) {
         booklistModel->insertRow(i);
         booklistModel->setData(booklistModel->index(i,0), query_record.value(0).toString());
         booklistModel->setData(booklistModel->index(i,1), query_record.value(1).toString());
         booklistModel->setData(booklistModel->index(i,2), query_record.value(2).toString());
-        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toString());
-        booklistModel->setData(booklistModel->index(i,4), query_record.value(4).toInt() < 0 ? tr("已过期") : query_record.value(4).toString());
+        booklistModel->setData(booklistModel->index(i,3), query_record.value(3).toInt() < 0 ? tr("已过期") : query_record.value(3).toString());
     }
     ui->borrowedbookview->setModel(booklistModel);
 }

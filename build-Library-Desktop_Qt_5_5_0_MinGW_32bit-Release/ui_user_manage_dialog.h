@@ -214,6 +214,8 @@ public:
         overuserview->setAlternatingRowColors(true);
         overuserview->setRootIsDecorated(false);
         overuserview->setHeaderHidden(true);
+        overuserview->header()->setDefaultSectionSize(144);
+        overuserview->header()->setMinimumSectionSize(30);
 
         gridLayout_2->addWidget(overuserview, 0, 0, 1, 1);
 
