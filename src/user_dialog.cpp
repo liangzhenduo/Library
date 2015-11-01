@@ -52,7 +52,8 @@ void user_Dialog::on_change_Button_clicked()
     ui->old_password->setFocus();
 }
 
-void user_Dialog::onsignal_load_user_dialog() {
+void user_Dialog::onsignal_load_user_dialog()
+{
     QSqlQuery query_user("SELECT user.name, user.stuid, school.school, user.num_borrowed, user.num_limit FROM user LEFT JOIN school ON school.code = user.school WHERE stuid = '" + TJUL.stuid + "'");
     if (!query_user.next()) {
         QMessageBox::warning(this, tr("ERROR"), tr("未检索到该记录！"));

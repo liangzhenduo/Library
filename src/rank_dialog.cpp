@@ -38,7 +38,7 @@ void rank_Dialog::on_search_Button_clicked()
         booklistModel->removeRow(i);
 
     QString school=ui->school_select->currentText();
-    if (school == "" ) {
+    if (school == "" ) {  //未选择学院
         QMessageBox::warning(this, tr("WARNING"), tr("请选择学院！"));
         return;
     }

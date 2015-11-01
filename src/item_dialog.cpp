@@ -46,7 +46,7 @@ void item_Dialog::onsignal_load_item(QString isbn) {
 
     int i(1);
 
-    while (query_list.next()) {
+    while (query_list.next()) {  //显示图书信息
         booklistModel->insertRow(i);
         query_list_book[i] = query_list.value(0).toString();
         booklistModel->setData(booklistModel->index(i,0), query_list.value(0).toString());
@@ -70,7 +70,8 @@ void item_Dialog::onsignal_load_item(QString isbn) {
     ui->bookview->setModel(booklistModel);
 }
 
-void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
+void item_Dialog::on_bookview_clicked(const QModelIndex &index)
+{
     if (index.row() == 0) return;
 
     QSqlQuery query(tr("SELECT id, status, isbn FROM item WHERE id = '%1'").arg(query_list_book[index.row()]));
@@ -88,11 +89,12 @@ void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
     if (query.value(1).toInt() < 1) {
         QMessageBox::warning(this, tr("ERROR"), tr("当前图书无法进行借阅操作！"));
         return;
-    } else {
+    }
+    else {
         int msg_ret = QMessageBox::information(this, tr("CONFIRM"), tr("请确认是否借阅该册图书？"), QMessageBox::Yes | QMessageBox::No);
         if (msg_ret == QMessageBox::No) return;
 
-        if (TJUL.modify_user_book(1)) {
+        if (TJUL.modify_user_book(1)) {  //借书操作
             QSqlQuery(tr("UPDATE item SET status = 0 WHERE id = '%1'").arg(query_list_book[index.row()]));
             QSqlQuery(tr("INSERT INTO record (id, stuid, status, time_borrow, time_deadline, time_return) VALUES('%1', '%2', 0, NOW(), DATE_ADD(NOW(),INTERVAL 30 DAY), NULL)").arg(query_list_book[index.row()]).arg(TJUL.stuid));
             QSqlQuery query_depart("SELECT school FROM user WHERE stuid = '" + TJUL.stuid + "'");
@@ -102,7 +104,8 @@ void item_Dialog::on_bookview_clicked(const QModelIndex &index) {
 
             QMessageBox::information(this, tr("SUCCESS"), tr("该册读书借阅完成！"));
             item_Dialog::onsignal_load_item(global_isbn);
-        } else {
+        }
+        else {
             QMessageBox::warning(this, tr("ERROR"), tr("当前借阅数量已达上限！"));
             return;
         }

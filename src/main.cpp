@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     QSplashScreen *splash=new QSplashScreen;
     splash->setPixmap(QPixmap(":/images/TJU_logo.png"));
     splash->show();
-    for(int i=0;i<5000;i++){
+    for(int i=0;i<5000;i++){  //延时显示启动画面
         splash->repaint();
     }
     MainWindow w;
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     return app.exec();
 }
 
-void TJUL_CLASS::user_logout() {
+void TJUL_CLASS::user_logout() {  //用户注销
     isLogin = 0;
     isAdmin = 0;
     stuid = "";
@@ -34,7 +34,7 @@ void TJUL_CLASS::user_logout() {
     num_limit = 0;
 }
 
-bool TJUL_CLASS::initialize_database() {
+bool TJUL_CLASS::initialize_database() {  //连接数据库
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName("Driver={MySQL ODBC 5.3 Unicode Driver};SERVER=127.0.0.1;DATABASE=dbms;UID=root;Pwd=password");
 
@@ -51,19 +51,19 @@ bool TJUL_CLASS::initialize_database() {
     return 1;
 }
 
-bool TJUL_CLASS::check_DatabaseConnect() {
+bool TJUL_CLASS::check_DatabaseConnect() {  //检查数据库连接状态
     return is_connect_database;
 }
 
-bool TJUL_CLASS::check_isLogin() {
+bool TJUL_CLASS::check_isLogin() {  //检查用户登陆状态
     return isLogin;
 }
 
-bool TJUL_CLASS::check_isAdmin() {
+bool TJUL_CLASS::check_isAdmin() {  //检查是否为管理员
     return isAdmin;
 }
 
-bool TJUL_CLASS::modify_user_book(int num) {
+bool TJUL_CLASS::modify_user_book(int num) {  //判断借书状态
     if (!isLogin)
         return 0;
 
@@ -72,16 +72,17 @@ bool TJUL_CLASS::modify_user_book(int num) {
 
     if (num > 0) {
         num_borrowed ++;
-        QSqlQuery query("UPDATE user SET num_borrowed = num_borrowed + 1 WHERE stuid = " + stuid +";");
-    } else {
+        QSqlQuery query("UPDATE user SET num_borrowed = num_borrowed + 1 WHERE stuid = " + stuid);
+    }
+    else {
         num_borrowed --;
-        QSqlQuery query("UPDATE user SET num_borrowed = num_borrowed - 1 WHERE stuid = " + stuid +";");
+        QSqlQuery query("UPDATE user SET num_borrowed = num_borrowed - 1 WHERE stuid = " + stuid);
     }
 
     return 1;
 }
 
-void TJUL_CLASS::set_number(int _num_borrowed, int _num_limit) {
+void TJUL_CLASS::set_number(int _num_borrowed, int _num_limit) {  //全局变量赋值
     if (_num_borrowed >= 0)
         num_borrowed = _num_borrowed;
 

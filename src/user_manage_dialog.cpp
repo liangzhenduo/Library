@@ -6,7 +6,6 @@ user_manage_Dialog::user_manage_Dialog(QWidget *parent) :
     ui(new Ui::user_manage_Dialog)
 {
     ui->setupUi(this);
-
     user_manage_Dialog::on_guide_user_Button_clicked();
 }
 
@@ -193,7 +192,8 @@ void user_manage_Dialog::on_userview_clicked(const QModelIndex &index)
     ui->group_user->hide();
 }
 
-void user_manage_Dialog::on_manageuser_delete_Button_clicked() {
+void user_manage_Dialog::on_manageuser_delete_Button_clicked()
+{
     QString stuid = ui->manage_stuid->text();
     if(TJUL.stuid==stuid){
         QMessageBox::information(this, tr("ERROR"), tr("无法删除已登录用户！"));

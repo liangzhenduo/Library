@@ -5,11 +5,12 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow) {
-        ui->setupUi(this);
-        if (!TJUL.check_DatabaseConnect()) {
-            QMessageBox::warning(this, tr("Connection Error"), tr("Couldn't connect to database server!\nPlease check your network connection and try again."));
-            this->close();
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    if (!TJUL.check_DatabaseConnect()) {
+        QMessageBox::warning(this, tr("Connection Error"), tr("Couldn't connect to database server!\nPlease check your network connection and try again."));
+        this->close();
     }
     ui->login_stuid_label->setFocus();
 
@@ -33,7 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     MainWindow::onsignal_change_login_status();
 }
 
-MainWindow::~MainWindow() {
+MainWindow::~MainWindow()
+{
     delete ui;
 }
 
@@ -103,12 +105,13 @@ void MainWindow::onsignal_change_login_status(){
         ui->main_user_status_label->setText(tr("账号： %1 【%2】  登录时间： %3").arg(TJUL.stuid).arg(TJUL.name).arg(t));
         ui->main_userinfo_Button->setEnabled(true);
         ui->main_ranklist_Button->setEnabled(true);
-        if (TJUL.isAdmin) {
+        if (TJUL.isAdmin) {   //开启管理员权限
             ui->main_returnBook_Button->setEnabled(true);
             ui->main_manageBook_Button->setEnabled(true);
             ui->main_manageUser_Button->setEnabled(true);
         }
-    } else {
+    }
+    else {  //关闭登录权限
         ui->login_groupBox->show();
         ui->main_user_status_label->setText("");
         ui->main_userinfo_Button->setEnabled(false);
@@ -135,7 +138,8 @@ void MainWindow::on_main_ranklist_Button_clicked()
     inst_rank_Dialog->show();
 }
 
-void MainWindow::onsignal_show_dialog(int dialog_id) {
+void MainWindow::onsignal_show_dialog(int dialog_id)
+{
     switch (dialog_id) {
         case 1: inst_item_Dialog->show();
     }
