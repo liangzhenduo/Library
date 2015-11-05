@@ -1,10 +1,8 @@
 #当前版本
----------
 
-[Library v1.0 for Windows](https://github.com/liangzhenduo0608/Library)
+[Library v1.0 for Windows](https://github.com/liangzhenduo0608/Library/releases)
 
 #使用说明
----------
 
 - 运行环境需要`MySQL`及`ODBC`驱动
 
