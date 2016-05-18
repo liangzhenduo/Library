@@ -6,6 +6,7 @@ dist: trusty
 
 compiler:
   - clang
+  - gcc
 
 os:
   - linux
@@ -13,20 +14,27 @@ os:
   - windows
 
 before_install:
- - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-      brew update > /dev/null
-      && brew install qt5
-      && chmod -R 755 /usr/local/opt/qt5/*
-      ;
-   else
-      sudo add-apt-repository -y ppa:ubuntu-sdk-team/ppa
-      && sudo apt-get update -qq
-      && sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev -y
-      && sudo apt-get install qt5-default qttools5-dev-tools -y
-      ;
-   fi
+  - |
+    if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+      brew update;
+    else
+      sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa ;
+      sudo apt-get update -qq ;
+    fi
+
+install:
+  - |
+    if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+      brew install qt5;
+    else
+      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qt5-default ;
+      sudo apt-get install -qq libudev-dev ;
+      sudo apt-get install -qq xorg-dev ;
+      sudo apt-get install -qq freeglut3-dev ;
+      sudo pip install requests ;
+    fi
 
 script:
  - qmake -project
- - qmake *.pro
+ - qmake Library.pro
  - make
