@@ -5,12 +5,12 @@ sudo: required
 dist: trusty
 
 compiler:
-  - clang
+  - gcc
 
 os:
   - linux
-  - osx
   - windows
+# - osx
 
 before_install:
   - |
