@@ -1,8 +1,9 @@
-#当前版本
+#Latest Version
 
-[Library v1.0 for Windows](https://github.com/liangzhenduo0608/Library/releases)
+[Library v1.0](https://github.com/liangzhenduo0608/Library/releases) [![Build Status](https://travis-ci.org/liangzhenduo0608/Library.svg?)](https://travis-ci.org/liangzhenduo0608/Library.svg)
 
-#使用说明
+
+#To Do
 
 - 运行环境需要`MySQL`及`ODBC`驱动
 
