@@ -6,7 +6,6 @@ dist: trusty
 
 compiler:
   - clang
-  - gcc
 
 os:
   - linux
@@ -36,5 +35,5 @@ install:
 
 script:
  - qmake -project
- - qmake Library.pro
+ - qmake "QT += core gui sql widgets" Library.pro
  - make
