@@ -24,12 +24,9 @@ before_install:
 install:
   - |
     if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-      brew install qt5;
-      LDFLAGS=-L/usr/local/opt/qt5/lib;
-      CPPFLAGS=-I/usr/local/opt/qt5/include;
+      brew install qt;
     else
-      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qt5-default libudev-dev ;
-      sudo pip install requests ;
+      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qt5-default libudev-dev;
     fi
 
 script:
